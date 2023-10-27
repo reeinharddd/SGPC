@@ -19,7 +19,7 @@ if (!isset($_SESSION['admin_name'])) {
     <body>
 
         <div class = "hero">
-            <a href="../index.html">Regresar al menú</a>
+            <a href="../index.php">Regresar al menú</a>
             <h1 class="colortexto">Registro de Proyectos</h1>
             <form method="post" action="addProyecto.php" class="colortexto">
             <label>Nombre del proyecto: * <input type="text" name="txtNombre"></label>
