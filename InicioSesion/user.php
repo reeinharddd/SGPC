@@ -1,5 +1,5 @@
 <?php
-include('../conexion.php');
+include('conexion.php');
 
 class user extends conexion
 {

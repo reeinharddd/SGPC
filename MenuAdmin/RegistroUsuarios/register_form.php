@@ -1,6 +1,6 @@
 <?php
 
-@include 'config.php';
+@include '../../conexion.php';
 
 session_start();
 
@@ -26,7 +26,7 @@ if (!isset($_SESSION['admin_name'])) {
 
    <div class="form-container">
 
-      <form action="addUser.php" method="post" id = "form">
+      <form action="addUser.php" method="POST" id = "form">
          <h3>Registrar</h3>
 
          <input id = "nombre"type="text" name="name" required pattern="[A-Za-z\s']{2,50}" placeholder="Nombre"><br>

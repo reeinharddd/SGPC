@@ -1,5 +1,4 @@
 <?php
-
 include('../../InicioSesion/user.php');
 $user = new user();
 
@@ -34,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $newUserId = $user->setNewUser();
             if ($newUserId > 0) {
                 echo 'Usuario registrado';
-                header('location:login_form.php');
+                header('location:../../InicioSesion/index.html');
             } else {
                 echo 'Algo salio mal';
             }
