@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Inicio de Sesión</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Formulario de inicio de sesión -->
+    <form action="login.php" method="post">
+        <div class="formulario">
+            <!-- Campo de correo -->
+            <input type="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"placeholder="Correo electrónico">
+            <!-- Campo de contraseña -->
+            <input type="password" name="password" required placeholder="Contraseña">
+            <!-- Botón de iniciar sesión -->
+            <button type = "submit" name = "submit">Iniciar sesión</button>
+        </div>
+    </form>
+</body>
+</html>

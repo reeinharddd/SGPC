@@ -1,0 +1,47 @@
+<?php
+
+@include 'config.php';
+
+session_start();
+
+if (!isset($_SESSION['admin_name'])) {
+   header('location:../../Alertas/warning.html');
+}
+?>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Gestión de Proyectos</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <div class = "hero">
+            <a href="../index.html">Regresar al menú</a>
+            <h1 class="colortexto">Registro de Proyectos</h1>
+            <form method="post" action="addProyecto.php" class="colortexto">
+            <label>Nombre del proyecto: * <input type="text" name="txtNombre"></label>
+            <br>
+            <label>Descripción del proyecto: * <input type="text" name="txtDes"></label>
+            <br>
+            <label>Ubicación del proyecto: * <input type="text" name="txtUbi"></label>
+            <br>
+            <label>Fecha de inicio: *<input type="date" name="F-inicio"></label>
+            <br>
+            <label>Fecha de finalización: *<input type="date" name="F-fin"></label>
+            <br>
+            <label>Estado del proyecto: *<input type="text" name="estado"></label>
+            <br>
+
+            <input type="reset" value="Cancel">
+            <input type="submit" value="Send">
+        </form>
+        <nav>
+            <button>Roles y permisos</button>
+        </nav>
+    </div>
+        
+    </body>
+</html>
