@@ -36,7 +36,6 @@ if (!isset($_SESSION['admin_name'])) {
                     <li><a href="indexTareas.html">Gestión de Tareas</a></li>
                     <li><a href="RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
                     <li><a href="indexMNTREG.php">Mantenimiento de registros</a></li>
-                    //jfk
                 </ul>
             </li>
             <li><a href="#">Contacto</a></li>
