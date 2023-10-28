@@ -32,7 +32,7 @@ if (!isset($_SESSION['admin_name'])) {
          <input id = "nombre"type="text" name="name" required pattern="[A-Za-z\s']{2,50}" placeholder="Nombre"><br>
          <input id = "apPat" type="text" name="apPat" required pattern="[A-Za-z\s']{2,50}" placeholder="Apellido paterno"><br>
          <input id = "apMat" type="text" name="apMat" required pattern="[A-Za-z\s']{2,50}" placeholder="Apellido materno"><br>
-         <input id = "numero" type="text" name="numero" required pattern="[0-9-\s]{7,20}" placeholder="Telefono"><br>
+         <input id = "numero" type="text" name="numero" required pattern="[0-9-\s]{7,20}" placeholder="Telefono (Formato xxx-xxx-xxxx)"><br>
          <input id = "email" type="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Correo electronico"><br>
          <input id = "password" type="password" name="password" required
             pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]{8,}$" placeholder="Contraseña"><br>

@@ -18,6 +18,14 @@ if (!isset($_SESSION['admin_name'])) {
     <link rel="icon" href="../img/Logo1.png" type = "image/png">
   </head>
   <body>
+    <?php
+    if (isset($_SESSION['admin_name'])) {
+      echo "<h1>Bienvenido administrador:" . $_SESSION['admin_name'] . "</h1>";
+    }else{
+      header('location:../Alertas/warning.html');
+    }
+    
+    ?>
 
     <header class = "header">
       <div><img src="../img/Logo1.png" alt="" width="100px" height="100px"></div>
