@@ -1,3 +1,13 @@
+<?php
+
+@include 'config.php';
+
+session_start();
+
+if (!isset($_SESSION['user_name'])) {
+   header('location:../Alertas/warning.html');
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,14 +25,14 @@
         <label for="toggle"> <img src="../../img/menu.svg" alt="menu"></label>
         <nav class = "navigation">
           <ul>
-            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../index.php">Inicio</a></li>
             <li><a href="#">Proyectos</a>
                 <ul>
-                    <li><a href="../Proyectos.html">Proyectos vigentes</a></li>
-                    <li><a href="../AllProyectos.html">Proyectos completados</a></li>
+                    <li><a href="../Proyectos.php">Proyectos vigentes</a></li>
+                    <li><a href="../AllProyectos.php">Proyectos completados</a></li>
                 </ul>
               </li>
-              <li><a href="../Contactos.html">Contacto</a></li>
+              <li><a href="../Contactos.php">Contacto</a></li>
           </ul>
         </nav>
       </header>

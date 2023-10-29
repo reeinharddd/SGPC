@@ -1,3 +1,13 @@
+<?php
+
+@include 'config.php';
+
+session_start();
+
+if (!isset($_SESSION['user_name'])) {
+   header('location:../Alertas/warning.html');
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,7 +16,7 @@
     <title>Detalles de la Fecha</title>
 </head>
 <body>
-    <a href="../../index.html">Regresar al menú</a>
+    <a href="../../index.php">Regresar al menú</a>
     <h1>Detalles de la Fecha</h1>
     <p id="fechaSeleccionada">Cargando fecha...</p>
 
