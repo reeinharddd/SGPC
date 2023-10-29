@@ -22,6 +22,9 @@ class conexion
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function getConexion() {
+        return $this->CON;
+    }
 
     public function exeqInsert($query)
     {
