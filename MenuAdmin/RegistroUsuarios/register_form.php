@@ -19,6 +19,15 @@ if (!isset($_SESSION['admin_name'])) {
    <title>Registrar</title>
 
    <link rel="stylesheet" href="">
+   <script>
+      function formatPhoneNumber(input) {
+         var phoneNumber = input.value.replace(/\D/g, '');
+
+         var formattedPhoneNumber = phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+
+         input.value = formattedPhoneNumber;
+      }
+   </script>
 
 </head>
 
@@ -26,26 +35,34 @@ if (!isset($_SESSION['admin_name'])) {
 
    <div class="form-container">
 
-      <form action="addUser.php" method="POST" id = "form">
+      <form action="addUser.php" method="POST" id="form">
          <h3>Registrar</h3>
 
-         <input id = "nombre"type="text" name="name" required pattern="[A-Za-z\s']{2,50}" placeholder="Nombre"><br>
-         <input id = "apPat" type="text" name="apPat" required pattern="[A-Za-z\s']{2,50}" placeholder="Apellido paterno"><br>
-         <input id = "apMat" type="text" name="apMat" required pattern="[A-Za-z\s']{2,50}" placeholder="Apellido materno"><br>
-         <input id = "numero" type="text" name="numero" required pattern="[0-9-\s]{7,20}" placeholder="Telefono (Formato xxx-xxx-xxxx)"><br>
-         <input id = "email" type="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Correo electronico"><br>
-         <input id = "password" type="password" name="password" required
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]{8,}$" placeholder="Contraseña"><br>
+         <input id="nombre" type="text" name="name" required pattern="[A-Za-z\s']{2,50}" placeholder="Nombre"><br>
+         <input id="apPat" type="text" name="apPat" required pattern="[A-Za-z\s']{2,50}"
+            placeholder="Apellido paterno"><br>
+         <input id="apMat" type="text" name="apMat" required pattern="[A-Za-z\s']{2,50}"
+            placeholder="Apellido materno"><br>
+         <input id="numero" type="text" name="numero" maxlength="10" required pattern="\d{3}-\d{3}-\d{4}"
+            placeholder="Telefono (Formato" oninput="formatPhoneNumber(this)"><br>
+         <input id="email" type="email" name="email" required pattern="[a-z0-9._%+-]+@SGPC\.mx$"
+            placeholder="Correo electronico"><br>
+         <input id="password" type="password" name="password" required
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]{8,}$"
+            placeholder="Contraseña"><br>
          <input type="password" name="cpassword" required
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]{8,}$" placeholder="Confirmacion"><br>
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]{8,}$"
+            placeholder="Confirmacion"><br>
          <select name="user_type"><br>
             <option value="1">Administrador</option>
             <option value="3">Arquitecto</option>
             <option value="2">Empleado</option>
          </select><br>
-         <input type="submit" name="submit" value="Registrar" class="form-btn">
+         <input type="submit" name="submit" value="Registrar" class="form-btn" form="form">
       </form>
    </div>
+
+
 
 </body>
 
