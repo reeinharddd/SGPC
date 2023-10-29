@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('location:../MenuAdmin/index.php');
         }else if($row['TipoUsuario'] == '3') {
             $_SESSION['arqui_name'] = $row['nombre'];
-            header('location:../MenuArquitecto/index.html');
+            header('location:../MenuArquitecto/index.php');
         } else if ($row['TipoUsuario'] == '2') {
             $_SESSION['user_name'] = $row['nombre'];
             header('location:../MenuUsuario/index.php');
