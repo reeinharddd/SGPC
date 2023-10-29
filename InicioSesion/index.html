@@ -7,16 +7,16 @@
     <link rel="stylesheet" href="../css/inicioSesion.css">
 </head>
 <body>
-    <!-- Formulario de inicio de sesión -->
-    <form action="login.php" method="post">
-        <div class="formulario">
+    <div class="container">
+        <!-- Formulario de inicio de sesión -->
+        <form action="login.php" method="post" class="formulario">
             <!-- Campo de correo -->
-            <input type="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"placeholder="Correo electrónico">
+            <input type="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Correo electrónico">
             <!-- Campo de contraseña -->
             <input type="password" name="password" required placeholder="Contraseña">
             <!-- Botón de iniciar sesión -->
-            <button type = "submit" name = "submit">Iniciar sesión</button>
-        </div>
-    </form>
+            <button type="submit" name="submit">Iniciar sesión</button>
+        </form>
+    </div>
 </body>
 </html>
