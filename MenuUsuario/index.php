@@ -40,7 +40,7 @@ if (!isset($_SESSION['user_name'])) {
               </ul>
             </li>
             <li><a href="Calendario/Calendario.php">Calendario</a></li>
-            <li><a href="Contactos.php">Contacto</a></li>
+            <li><a href="Contacto.php">Contacto</a></li>
             <li><a href="../InicioSesion/logout.php">Cerrar sesion</a></li>
         </ul>
       </nav>
