@@ -13,7 +13,7 @@ if (!isset($_SESSION['arqui_name'])) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vista Arquitecto</title>
+    <title>Vista Arquitecto  </title>
   </head>
   <body>
     <?php

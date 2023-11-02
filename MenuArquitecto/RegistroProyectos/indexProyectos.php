@@ -14,7 +14,7 @@ if (!isset($_SESSION['admin_name'])) {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Proyectos</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../../css/main.css">
 </head>
 
 <body>
