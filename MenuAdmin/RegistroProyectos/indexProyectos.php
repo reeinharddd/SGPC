@@ -25,13 +25,13 @@ if (!isset($_SESSION['admin_name'])) {
         <h1 class="colortexto">Registro de Proyectos</h1>
         <form id="datos" method="post" action="addProyecto.php" class="colortexto">
             <label>Nombre del proyecto: * <input type="text" name="txtNombre" required 
-            pattern="[A-Za-z\s']{2,50}" placeholder="max. 100 caracteres"></label>
+             placeholder="max. 100 caracteres"></label>
             <br>
             <label>Descripción del proyecto: * <input type="text" name="txtDes" required 
-            pattern="[A-Za-z\s']{2,50}" placeholder="max. 200 caracteres"></label>
+             placeholder="max. 200 caracteres"></label>
             <br>
             <label>Ubicación del proyecto: * <input type="text" name="txtUbi" required
-            pattern="[A-Za-z\s']{2,50}" placeholder="max. 100 caracteres"></label>
+             placeholder="max. 100 caracteres"></label>
             <br>
             <label>Fecha de inicio: *<input type="date" name="F-inicio" id="fechaInicio" required></label>
             <br>

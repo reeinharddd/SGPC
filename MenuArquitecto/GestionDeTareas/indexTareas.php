@@ -43,19 +43,19 @@ if (!isset($_SESSION['arqui_name'])) {
                 <input type="submit" value="Send">
             </form>
             <script>
-            document.getElementById("datos").addEventListener("submit", function(event) {
-            const fechaInicio = new Date(document.getElementById("fechaInicio").value);
-            const fechaFin = new Date(document.getElementById("fechaFin").value);
-            const fechaActual = new Date();
+                document.getElementById("datos").addEventListener("submit", function(event) {
+                const fechaInicio = new Date(document.getElementById("fechaInicio").value);
+                const fechaFin = new Date(document.getElementById("fechaFin").value);
+                const fechaActual = new Date();
 
-            if (fechaInicio < fechaActual) {
-                alert("La fecha de inicio no puede ser anterior al día actual.");
-                event.preventDefault();
-            } else if (fechaFin < fechaInicio) {
-                alert("La fecha de fin no puede ser anterior a la fecha de inicio.");
-                event.preventDefault();
-            }
-            });
+                if (fechaInicio < fechaActual) {
+                    alert("La fecha de inicio no puede ser anterior al día actual.");
+                    event.preventDefault();
+                } else if (fechaFin < fechaInicio) {
+                    alert("La fecha de fin no puede ser anterior a la fecha de inicio.");
+                    event.preventDefault();
+                }
+                });
             </script>
         </div>
         
