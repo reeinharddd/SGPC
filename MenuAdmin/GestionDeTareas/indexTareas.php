@@ -19,7 +19,7 @@ if (!isset($_SESSION['arqui_name'])) {
     
     <body>
         <div class="hero">
-            <button><a href="../index.php">Regresar al menú</a></button>
+            <button><b><a href="../index.php">Regresar al menú</a></b></button>
             <h1 class="colortexto">Registro de Tareas</h1>
             <form method="post" action="addTarea.php" class="colortexto">
                 

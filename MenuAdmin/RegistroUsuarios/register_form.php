@@ -36,9 +36,11 @@ if (!isset($_SESSION['admin_name'])) {
    <div class="form-container">
 
       <form action="addUser.php" method="POST" id="form">
-         <h3>Registrar</h3>
-
-         <input id="nombre" type="text" name="name" required pattern="[A-Za-z\s']{2,50}" placeholder="Nombre"><br>
+      <button><b><a href="../index.php">Regresar al menú</a></b></button>
+         <h2>Nuevo usuario</h2><br>
+         
+         <input id="nombre" type="text" name="name" required pattern="[A-Za-z\s']{2,50}" 
+         placeholder="Nombre"><br>
          <input id="apPat" type="text" name="apPat" required pattern="[A-Za-z\s']{2,50}"
             placeholder="Apellido paterno"><br>
          <input id="apMat" type="text" name="apMat" required pattern="[A-Za-z\s']{2,50}"
@@ -46,13 +48,13 @@ if (!isset($_SESSION['admin_name'])) {
          <input id="numero" type="text" name="numero" maxlength="10" required pattern="\d{3}-\d{3}-\d{4}"
             placeholder="Telefono (Formato" oninput="formatPhoneNumber(this)"><br>
          <input id="email" type="email" name="email" required pattern="[a-z0-9._%+-]+@SGPC\.mx$"
-            placeholder="Correo electronico"><br>
+            placeholder="Correo electrónico"><br>
          <input id="password" type="password" name="password" required
             pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]{8,}$"
             placeholder="Contraseña"><br>
          <input type="password" name="cpassword" required
             pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]{8,}$"
-            placeholder="Confirmacion"><br>
+            placeholder="Confirmación"><br>
          <select name="user_type"><br>
             <option value="1">Administrador</option>
             <option value="3">Arquitecto</option>
