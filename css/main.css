@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
+/* Reset CSS */
 *,
 *::before,
 *::after {
@@ -8,13 +9,11 @@
   box-sizing: inherit;
 }
 
+/* Base Styles */
 body {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
-}
-.usuario{
-  justify-content: center;
 }
 
 .header {
@@ -30,11 +29,14 @@ body {
   z-index: 1000;
 }
 
-.logo {
-  font-size: 25px;
-  text-transform: uppercase;
-  color: black;
-  font-weight: 700;
+.header img {
+  width: 100px;
+  height: 100px;
+}
+
+.header label {
+  display: none;
+  cursor: pointer;
 }
 
 .navigation ul {
@@ -82,24 +84,78 @@ body {
   display: initial;
 }
 
-#toggle,
-.header label {
-  display: none;
-  cursor: pointer;
-}
-
 .hero {
   min-height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("../img/edificio.png");
+    url("../img/edificio.pn");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 
-.cuerpo {
-  font-size: 25px;
-  text-transform: uppercase;
-  color: black;
-  font-weight: 700;
+/* Estilos adicionales para el nuevo diseño */
+section {
+  padding: 20px;
 }
+
+.welcome-and-projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.welcome-message {
+  flex: 1; /* El mensaje de bienvenida ocupa todo el ancho disponible */
+}
+
+.project-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.project-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: calc(
+    33.33% - 20px
+  ); /* 33.33% de ancho para que se muestren en línea */
+  background-color: #f8f8f8;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.project-info h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.project-info p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.details-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.details-button:hover {
+  background-color: #0056b3;
+}
+
+.no-projects {
+  font-size: 16px;
+  margin: 10px 0;
+  text-align: center;
+  color: #333;
+}
+
+/* Personalizar otros estilos según tus necesidades */
