@@ -14,7 +14,8 @@ if (!isset($_SESSION['admin_name'])) {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Proyectos</title>
-    <link rel="stylesheet" href="">
+    
+    <link rel="icon" href="../../img/Logo1.png" type = "image/png">
 </head>
 
 <body>
@@ -64,9 +65,7 @@ if (!isset($_SESSION['admin_name'])) {
             <input type="reset" value="Cancel">
             <input type="submit" value="Send">
         </form>
-        <nav>
-            <button>Roles y permisos</button>
-        </nav>
+        
     </div>
 
 </body>
