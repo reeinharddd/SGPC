@@ -1,113 +1,111 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-/* Reset CSS */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
+* {
+  font-family: "Poppins";
 }
 
-/* Base Styles */
 body {
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  min-height: 100vh;
+  background-color: #e0e0e1;
+  margin-top: 100px;
 }
-
+/* Estilos para el encabezado */
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(32, 30, 31);
+  padding: 10px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 0 10%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   z-index: 1000;
 }
 
-.header img {
-  width: 100px;
-  height: 100px;
+.user-info {
+  display: flex;
+  align-items: center;
+  color: #e0e0e1;
 }
 
-.header label {
-  display: none;
-  cursor: pointer;
+.user-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Para mostrar la imagen del usuario redonda */
+  margin-right: 10px;
+}
+
+.user-info h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.user-info p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
 }
 
 .navigation ul {
   list-style: none;
 }
 
-.header .navigation ul li {
-  float: left;
-  position: relative;
+.navigation ul li {
+  display: inline-block;
+  margin-right: 20px;
 }
 
-.header .navigation ul li a {
+.navigation ul li:last-child {
+  margin-right: 0;
+}
+
+.navigation ul li a {
   font-size: 18px;
-  color: #fff;
+  color: #e0e0e1;
   text-decoration: none;
-  padding: 20px;
-  display: block;
-  transition: all 0.2s ease;
 }
 
-.header .navigation ul li ul {
-  position: absolute;
-  right: 0;
+/* Estilos para el menú desplegable (aside) */
+.menu {
+  margin-top: 73.1px;
+  background: rgb(32, 30, 31);
+  color: #e0e0e1;
   width: 200px;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-}
-
-.header .navigation ul li ul li a {
-  font-size: 15px;
-  text-transform: capitalize;
-}
-
-.header .navigation ul li ul li ul {
-  position: absolute;
-  top: 0;
-  right: 300px;
-}
-
-.header .navigation ul li ul li {
-  width: 100%;
-}
-
-.header .navigation ul li:hover > ul {
-  display: initial;
-}
-
-.hero {
-  min-height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("../img/edificio.pn");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-/* Estilos adicionales para el nuevo diseño */
-section {
+  padding-right: 10px;
   padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0px;
+  height: 100%;
+  overflow-y: auto;
+  transition: left 0.3s;
+  z-index: 900;
 }
 
-.welcome-and-projects {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
+.menu ul {
+  list-style: none;
+  padding: 0;
 }
 
-.welcome-message {
-  flex: 1; /* El mensaje de bienvenida ocupa todo el ancho disponible */
+.menu ul li {
+  margin-bottom: 10px;
+}
+
+.menu ul li a {
+  color: #e0e0e1;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+}
+
+/* Estilos para la sección principal (main) */
+main {
+  margin-left: 220px; /* Ancho del menú desplegable */
+  padding: 20px;
 }
 
 .project-list {
@@ -118,15 +116,40 @@ section {
 
 .project-box {
   border: 1px solid #ccc;
-  padding: 10px;
-  width: calc(
-    33.33% - 20px
-  ); /* 33.33% de ancho para que se muestren en línea */
-  background-color: #f8f8f8;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  background-color: #eaeaeb;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
 }
-
-
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.project-number {
+  font-size: 16px;
+}
+.project-name {
+  font-size: 16px;
+}
+.project-location {
+  font-size: 12px;
+}
+.project-dates {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.project-date,
+.project-state {
+  font-size: 14px;
+}
 
 .project-info h3 {
   font-size: 18px;
@@ -139,23 +162,17 @@ section {
 }
 
 .details-button {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #ff6947;
+  color: #e0e0e1;
   border: none;
   padding: 10px;
+  margin-top: 10px;
   cursor: pointer;
   text-decoration: none;
 }
 
 .details-button:hover {
-  background-color: #0056b3;
+  background-color: #ff8a70;
 }
 
-.no-projects {
-  font-size: 16px;
-  margin: 10px 0;
-  text-align: center;
-  color: #333;
-}
-
-/* Personalizar otros estilos según tus necesidades */
+/* Estilos adicionales para otros elementos según tus necesidades */
