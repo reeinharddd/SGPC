@@ -8,7 +8,7 @@ body {
   background-color: #e0e0e1;
   margin-top: 100px;
 }
-/* Estilos para el encabezado */
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -20,9 +20,10 @@ body {
   left: 0;
   right: 0;
   z-index: 1000;
+  border-bottom: 3px solid #ff6947;
 }
 
-.user-info {
+.header .user-info {
   display: flex;
   align-items: center;
   color: #e0e0e1;
@@ -50,33 +51,14 @@ body {
   height: 50px;
 }
 
-.navigation ul {
-  list-style: none;
-}
-
-.navigation ul li {
-  display: inline-block;
-  margin-right: 20px;
-}
-
-.navigation ul li:last-child {
-  margin-right: 0;
-}
-
-.navigation ul li a {
-  font-size: 18px;
-  color: #e0e0e1;
-  text-decoration: none;
-}
-
-/* Estilos para el menú desplegable (aside) */
 .menu {
   margin-top: 73.1px;
   background: rgb(32, 30, 31);
   color: #e0e0e1;
   width: 200px;
   padding-right: 10px;
-  padding: 20px;
+  padding: 10px;
+  padding-top: 0px;
   position: fixed;
   top: 0;
   left: 0px;
@@ -84,7 +66,12 @@ body {
   overflow-y: auto;
   transition: left 0.3s;
   z-index: 900;
+  display: flex;
+  flex-direction: column;
+  border-right: 3px solid  #ff6947;
 }
+
+
 
 .menu ul {
   list-style: none;
@@ -102,7 +89,7 @@ body {
   display: block;
 }
 
-/* Estilos para la sección principal (main) */
+/* Estilos para el contenido principal (main) */
 main {
   margin-left: 220px; /* Ancho del menú desplegable */
   padding: 20px;
@@ -125,27 +112,33 @@ main {
   justify-content: space-between;
   text-align: center;
 }
+
 .project-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
 }
+
 .project-number {
   font-size: 16px;
 }
+
 .project-name {
   font-size: 16px;
 }
+
 .project-location {
   font-size: 12px;
 }
+
 .project-dates {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
 }
+
 .project-date,
 .project-state {
   font-size: 14px;
@@ -175,4 +168,27 @@ main {
   background-color: #ff8a70;
 }
 
-/* Estilos adicionales para otros elementos según tus necesidades */
+.about-button {
+  background-color: #ff6947;
+  color: #e0e0e1;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.about-button:hover::after {
+  content: "Esta es una descripción de la aplicación";
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 10px;
+  display: none;
+}
+
+.about-button:hover::after {
+  display: block;
+}
