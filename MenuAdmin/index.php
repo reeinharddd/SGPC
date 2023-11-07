@@ -31,7 +31,7 @@ if (!isset($_SESSION['admin_name'])) {
 
     <header class = "header">
       <div><img src="../img/Logo1.png" alt="" width="100px" height="100px"></div>
-      <input type="checkbox" id = "toggle">
+      
       <label for="toggle"> <img src="../img/menu.svg" alt="menu"></label>
       <nav class = "navigation">
         <ul>
@@ -39,11 +39,7 @@ if (!isset($_SESSION['admin_name'])) {
             <li><a href="#">Opciones</a>
                 <ul>
                     <li><a href="RegistroProyectos/indexProyectos.php">Gestión de proyectos</a></li>
-                    <ul>
-                      <li><a href="#">Registrar proyecto</a></li>
-                      <li><a href="#">Modificar proyecto</a></li>
-                    </ul>
-                    <li><a href="indexTareas.html">Gestión de Tareas</a></li>
+                    <li><a href="GestionDeTareas/indexTareas.php">Gestión de Tareas</a></li>
                     <li><a href="RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
                     <li><a href="indexMNTREG.php">Mantenimiento de registros</a></li>
                 </ul>

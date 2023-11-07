@@ -4,7 +4,7 @@
 
 session_start();
 
-if (!isset($_SESSION['arqui_name'])) {
+if (!isset($_SESSION['arqui_name']) && !isset($_SESSION['admin_name']) ) {
    header('location:../../Alertas/warning.html');
 }
 ?>
@@ -19,9 +19,9 @@ if (!isset($_SESSION['arqui_name'])) {
     
     <body>
         <div class="hero">
-            <button><a href="../index.php">Regresar al menú</a></button>
+            <button><b><a href="../index.php">Regresar al menú</a></b></button>
             <h1 class="colortexto">Registro de Tareas</h1>
-            <form method="post" action="addTarea.php" class="colortexto">
+            <form id="datos" method="post" action="addTarea.php" class="colortexto">
                 
                 <label>Código de la Tarea: *<input type="text" name="Cod" required 
                 pattern="[A-Za-z\s']{2,50}" placeholder="max. 4 caracteres"></label>
@@ -43,19 +43,19 @@ if (!isset($_SESSION['arqui_name'])) {
                 <input type="submit" value="Send">
             </form>
             <script>
-                document.getElementById("datos").addEventListener("submit", function(event) {
-                const fechaInicio = new Date(document.getElementById("fechaInicio").value);
-                const fechaFin = new Date(document.getElementById("fechaFin").value);
-                const fechaActual = new Date();
+            document.getElementById("datos").addEventListener("submit", function(event) {
+            const fechaInicio = new Date(document.getElementById("fechaInicio").value);
+            const fechaFin = new Date(document.getElementById("fechaFin").value);
+            const fechaActual = new Date();
 
-                if (fechaInicio < fechaActual) {
-                    alert("La fecha de inicio no puede ser anterior al día actual.");
-                    event.preventDefault();
-                } else if (fechaFin < fechaInicio) {
-                    alert("La fecha de fin no puede ser anterior a la fecha de inicio.");
-                    event.preventDefault();
-                }
-                });
+            if (fechaInicio < fechaActual) {
+                alert("La fecha de inicio no puede ser anterior al día actual.");
+                event.preventDefault();
+            } else if (fechaFin < fechaInicio) {
+                alert("La fecha de fin no puede ser anterior a la fecha de inicio.");
+                event.preventDefault();
+            }
+            });
             </script>
         </div>
         

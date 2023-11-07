@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $newUserId = $user->setNewUser();
             if ($newUserId > 0) {
                 echo 'Usuario registrado';
-                header('location:../../InicioSesion/index.html');
+                header('location:../index.php');
             } else {
                 echo 'Algo salio mal';
             }
