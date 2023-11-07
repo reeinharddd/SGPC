@@ -40,10 +40,10 @@ if (!isset($_SESSION['user_name'])) {
                 <div class="head-menu">
                     <li><a href="#">Página Principal</a></li>
                     <li><a href="Calendario/Calendario.php">Calendario</a></li>
-                    </div>
-                    <li><a href="#">Tareas Activas</a></li>
-                    <li><a href="#">Tareas Terminadas</a></li>
-                    <li><a href="../InicioSesion/logout.php">Cerrar Sesión</a></li>
+                </div>
+                <li><a href="#">Tareas Activas</a></li>
+                <li><a href="#">Tareas Terminadas</a></li>
+                <li><a href="../InicioSesion/logout.php">Cerrar Sesión</a></li>
             </ul>
         </aside>
         <main>
