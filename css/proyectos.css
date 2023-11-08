@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "Poppins";
+}
+
+body {
+  background-color: #e0e0e1;
+  margin-top: 100px;
+}
+/* Estilos para el encabezado */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(32, 30, 31);
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  color: #e0e0e1;
+}
+
+.user-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Para mostrar la imagen del usuario redonda */
+  margin-right: 10px;
+}
+
+.user-info h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.user-info p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.navigation ul {
+  list-style: none;
+}
+
+.navigation ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.navigation ul li:last-child {
+  margin-right: 0;
+}
+
+.navigation ul li a {
+  font-size: 18px;
+  color: #e0e0e1;
+  text-decoration: none;
+}
+
+/* Estilos para el menú desplegable (aside) */
+.menu {
+  margin-top: 73.1px;
+  background: rgb(32, 30, 31);
+  color: #e0e0e1;
+  width: 200px;
+  padding-right: 10px;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0px;
+  height: 100%;
+  overflow-y: auto;
+  transition: left 0.3s;
+  z-index: 900;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu ul li {
+  margin-bottom: 10px;
+}
+
+.menu ul li a {
+  color: #e0e0e1;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+}
+
+/* Estilos para la sección principal (main) */
+main {
+  margin-left: 250px; /* Ancho del menú desplegable */
+  padding: 20px;
+}
+
+.project-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.project-box {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 250px;
+  background-color: #eaeaeb;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  margin: 0px 250px 0px;
+  border-radius: 20px;
+}
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.project-number {
+  font-size: 16px;
+}
+.project-name {
+  font-size: 16px;
+}
+.project-location {
+  font-size: 12px;
+}
+.project-dates {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.project-date,
+.project-state {
+  font-size: 14px;
+}
+
+.project-info h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.project-info p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.details-button {
+  background-color: #ff6947;
+  color: #e0e0e1;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block; /* Hace que el botón se vea en línea */
+  border-radius: 5px; /* Agrega bordes redondeados al botón */
+  transition: background-color 0.2s;
+}
+
+.details-button:hover {
+  background-color: #ff8a70;
+}
+.back-link img {
+  width: 20px; /* Tamaño del ícono */
+  height: 20px;
+  margin-right: 5px; /* Espacio entre el ícono y el texto */
+}
+
+.back-link {
+  text-decoration: none;
+  color: #007bff; /* Color del texto del enlace */
+}
+
+/* Estilos adicionales para otros elementos según tus necesidades */

@@ -54,7 +54,7 @@ if (!isset($_SESSION['admin_name'])) {
                                 echo "<option value='" . $row['Codigo'] . "'>" . $row['nombre'] . "</option>";
                             }
                         } else {
-                            echo "Error en la consulta: " . mysqli_error($con);
+                            echo "Erro en la consulta: " . mysqli_error($con);
                         }
                     } else {
                         echo "Error en la conexión: " . mysqli_error($con);
