@@ -4,16 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
     <header>
+      <link rel="stylesheet" href="css/index.css" />
       <nav>
-        <div class="logo">Tu Empresa</div>
+        <div class="logo">SGPC</div>
         <ul>
-          <li><a href="#features">Características</a></li>
-          <li><a href="#about">Acerca de Nosotros</a></li>
-          <li><a href="#contact">Contáctanos</a></li>
+          
           <li>
             <a href="InicioSesion/index.html" class="login-button">Iniciar Sesión</a>
           </li>
@@ -21,50 +24,73 @@
       </nav>
     </header>
 
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Gestión de Proyectos de Construcción</h1>
-      </div>
-    </section>
 
-    <section id="features" class="features">
-      <h2>Características Destacadas</h2>
-      <div class="feature">
-        <h3>Planificación Efectiva</h3>
-        <p>
-          Nuestra plataforma te ayuda a planificar proyectos de construcción de manera eficiente.
-        </p>
-      </div>
-      <div class="feature">
-        <h3>Colaboración en Tiempo Real</h3>
-        <p>
-          Colabora con tu equipo y clientes en tiempo real para una comunicación eficaz.
-        </p>
-      </div>
-      <div class="feature">
-        <h3>Seguimiento Avanzado</h3>
-        <p>
-          Realiza un seguimiento detallado del progreso y el presupuesto de tu proyecto.
-        </p>
-      </div>
-    </section>
+  
 
-    <section id="about" class="about">
-      <h2>Acerca de Nosotros</h2>
-      <p>
-        Somos una empresa líder en la gestión de proyectos de construcción con años de experiencia en el sector. Nuestra misión es ayudarte a llevar a cabo proyectos exitosos y sin problemas.
-      </p>
-    </section>
+   
+      <div class="container">
+        <br>
+        <div id="theCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicadores -->
+          <ol class="carousel-indicators">
+            <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#theCarousel" data-slide-to="1"></li>
+            <li data-target="#theCarousel" data-slide-to="2"></li>
+            <li data-target="#theCarousel" data-slide-to="3"></li>
+            
+          </ol>
+      
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <img src="img/carusel/banner-construccion.jpg" alt="Ilustracion" > 
+               <div class="carousel-caption d-none d-md-block">
+          <h3>SGPC</h3>
+          <p>El futuro</p>
+        </div>
+            </div>
+      
+           
+          
+            <div class="item">
+              <img src="img/carusel/asi-son-las-nuevas-tendencias-en-la-construccion.jpg" alt="fotografia" width="600" height="424"> 
+               <div class="carousel-caption d-none d-md-block">
+                <h3>SGPC</h3>
+                <p>El futuro</p>
+        </div>
+            </div>
+      
+           <div class="item">
+              <img src="img/carusel/Articuloguateweb.jpg" alt="pintura" width="600" height="424">
+               <div class="carousel-caption d-none d-md-block">
+                <h3>SGPC</h3>
+                <p>El futuro</p>
+        </div>
+            </div>
+             <div class="item">
+              <img src="img/carusel/descarga.jpeg" alt="diseno" width="600" height="424"> 
+               <div class="carousel-caption d-none d-md-block">
+                <h3>SGPC</h3>
+                <p>El futuro</p>
+        </div>
+            </div>
+      
+      
+          <a class="left carousel-control" href="#theCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">anterior</span>
+          </a>
+          <a class="right carousel-control" href="#theCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">siguiente</span>
+          </a>
+        </div>
+       
+      </div>
+      
+      
 
-    <section id="contact" class="contact">
-      <h2>Contáctanos</h2>
-      <p>
-        ¿Tienes alguna pregunta o comentario? Estamos aquí para ayudarte. Contáctanos a través de:
-      </p>
-      <p>Email: info@tuempresa.com</p>
-      <p>Teléfono: +123-456-7890</p>
-    </section>
-
+    
+   
     <footer>
       <p>&copy; 2023 Tu Empresa. Todos los derechos reservados.</p>
     </footer>
