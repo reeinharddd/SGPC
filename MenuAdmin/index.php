@@ -44,7 +44,6 @@ if (!isset($_SESSION['admin_name'])) {
                     <li><a href="indexMNTREG.php">Mantenimiento de registros</a></li>
                 </ul>
             </li>
-            <li><a href="#">Contacto</a></li>
             <li><a href="../InicioSesion/logout.php">Cerrar sesion</a></li>
         </ul>
       </nav>
