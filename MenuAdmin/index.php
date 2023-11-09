@@ -18,57 +18,26 @@ if (!isset($_SESSION['admin_name'])) {
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="icon" href="../img/Logo1.png" type="image/png">
 </head>
+<header class="header">
+    <div class="logo">
+        <img src="../img/Logo1.png" alt="Logo de la empresa">
+    </div>
+    <div class="user-info">
+        <img src="../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
+        <h3><?php echo $_SESSION['admin_name']; ?> <p>Administrador</p>
+        </h3>
 
-<body>
-    <div class="usuario">
-        <?php
-    if (isset($_SESSION['admin_name'])) {
-      echo "<h1>Bienvenido administrador:" . $_SESSION['admin_name'] . "</h1>";
-    }else{
-      header('location:../Alertas/warning.html');
-    }
-    
-    ?>
-        <link rel="icon" href="../img/Logo1.png" type="image/png">
-        </head>
-        <header class="header">
-            <div class="logo">
-                <img src="../img/Logo1.png" alt="Logo de la empresa">
-            </div>
-            <div class="user-info">
-                <img src="../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
-                <h3><?php echo $_SESSION['admin_name']; ?> <p>Administrador</p>
-                </h3>
-
-            </div>
-
-            <header class="header">
-                <div><img src="../img/Logo1.png" alt="" width="100px" height="100px"></div>
-
-                <label for="toggle"> <img src="../img/menu.svg" alt="menu"></label>
-                <nav class="navigation">
-                    <ul>
-                        <li><a href="ComCol.php">Comentarios y colaboración</a></li>
-                        <li><a href="#">Opciones</a>
-                            <ul>
-                                <li><a href="RegistroProyectos/indexProyectos.php">Gestión de proyectos</a></li>
-                                <li><a href="GestionDeTareas/indexTareas.php">Gestión de Tareas</a></li>
-                                <li><a href="RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
-                                <li><a href="indexMNTREG.php">Mantenimiento de registros</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="../InicioSesion/logout.php">Cerrar sesion</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <div class="hero"></div>
-</body>
+    </div>
 
 
 
 
 </header>
+
+
+
+
+
 <section>
     <aside class="menu">
         <ul>
