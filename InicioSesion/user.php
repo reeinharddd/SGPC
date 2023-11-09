@@ -39,6 +39,11 @@ class user extends conexion
         $this->apMat = $apMat;
 
     }
+    public function getApMat()
+    {
+        return $this->apMat;
+
+    }
 
     public function getNumTel()
     {
@@ -91,16 +96,17 @@ class user extends conexion
 
     public function setNewUser()
     {
-        $query = "INSERT INTO Usuario(nombre,apellidoPat,apellidoMat,numTel,email,contrasena,TipoUsuario) VALUES ('" . $this->nombre . "','" . $this->apPat . "','" . $this->apMat . "','" . $this->numTel . "','" . $this->email . "','" . $this->contra . "','" . $this->tipoUsuario . "')";
+        $query = "INSERT INTO Usuario(nombre,apellidoPat,apellidoMat,numTel,email,contrasena,TipoUsuario) VALUES ('" . $this->nombre . "','" . $this->apPat . "','" . $this->apMat . "','" . $this->numTel . "','" . $this->email . "','" . $this->contra . "','". $this->tipoUsuario . "')";
         $result = $this->connect();
         if ($result) {
             $newid = $this->exeqInsert($query);
         } else {
-            echo "algo salio mal";
+            echo "algo salio mal 1";
             $newid = 0;
         }
         return $newid;
     }
+  
 
     public function verificar($query){
         $result = $this->connect();
