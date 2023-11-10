@@ -66,44 +66,50 @@ if (!isset($_SESSION['admin_name'])) {
                 if ($conexion->connect()) {
                     $con = $conexion->getConexion();
                     $sql = "SELECT 
-                                Proyectos.numProyecto,
-                                Proyectos.Nombre,
-                                Proyectos.Descripcion,
-                                Proyectos.Ubicacion,
-                                Proyectos.fechaInicio,
-                                Proyectos.fechaFinal,
-                                Proyectos.Estado
-                            FROM 
-                                Proyectos
-                            JOIN 
-                                USUARIO_PROYECTO
-                            ON 
-                                Proyectos.numProyecto = USUARIO_PROYECTO.Proyecto
-                            WHERE 
-                                USUARIO_PROYECTO.Usuario";
+                    P.idProyecto,
+                    P.nombre,
+                    P.descripcion,
+                    P.ubicacion,
+                    P.fechaInicio,
+                    P.fechaFinal,
+                    P.estado
+                  FROM Proyecto P
+                  INNER JOIN UsuarioProyecto UP ON P.idProyecto = UP.idProyecto
+                  WHERE UP.idUsuario";
 
                     $result = $conexion->exeqSelect($sql);
 
                     if ($result) {
+
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<div class='project-box'>";
-                            echo "<div class='project-header'>";
-                            echo "<div class='project-number'>" . $row["numProyecto"] . "</div>";
-                            echo "<div class='project-name'>" . $row["Nombre"] . "</div>";
-                            echo "<div class='project-location'>" . $row['Ubicacion'] . "</div>";
-                            echo "</div>";
-                            echo "<div class='project-dates'>";
-                            echo "<div class='project-date'>" . $row['fechaInicio'] . "</div>";
-                            echo "<div class='project-state'>" . $row['Estado'] . "</div>";
-                            echo "<div class='project-date'>" . $row['fechaFinal'] . "</div>";
-                            echo "</div>";
-                            echo "<a href='Proyectos.php?data-numProyecto=" . $row["numProyecto"] . "' class='details-button'>Ver detalles</a>";
-                            echo "</div>";
+                      
+                          echo "<div class='project-box'>";
+                      
+                          echo "<div class='project-header'>";
+                          echo "<div class='project-number'>" . $row["idProyecto"] . "</div>";
+                          echo "<div class='project-name'>" . $row["nombre"] . "</div>";
+                          echo "<div class='project-location'>" . $row['ubicacion'] . "</div>";
+                          echo "</div>";
+                      
+                          echo "<div class='project-dates'>";
+                          echo "<div class='project-date'>" . $row['fechaInicio'] . "</div>";
+                          echo "<div class='project-state'>" . $row['estado'] . "</div>"; 
+                          echo "<div class='project-date'>" . $row['fechaFinal'] . "</div>";
+                          echo "</div>";
+                      
+                          echo "<a href='proyectoDetalle.php?idProyecto=" . $row["idProyecto"] . "' class='details-button'>Ver detalles</a>";
+                      
+                          echo "</div>";
+                        
                         }
+                      
                         echo "</div>";
-                    } else {
+                      
+                      } else {
+                      
                         echo "No se encontraron proyectos.";
-                    }
+                      
+                      }
                 }
                 ?>
         </div>
