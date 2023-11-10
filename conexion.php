@@ -3,8 +3,8 @@ class conexion
 {
     private $HOST = "localhost";
     private $USER = "root";
-    private $PASS = "";
-    private $DB = "ProyectosConstructora";
+    private $PASS = "password";
+    private $DB = "sgpc";
     private $CON;
     private $DATASET = "";
 

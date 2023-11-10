@@ -4,7 +4,7 @@ class conexion
     private $HOST = "localhost";
     private $USER = "root";
     private $PASS = "password";
-    private $DB = "ProyectosConstructora";
+    private $DB = "sgpc";
     private $CON;
     private $DATASET = "";
 
@@ -51,5 +51,3 @@ class conexion
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-?>

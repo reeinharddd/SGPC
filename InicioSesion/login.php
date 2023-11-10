@@ -11,15 +11,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_array($result);
-        $_SESSION['id'] = $row['UsuarioID'];
+        $_SESSION['id'] = $row['idUsuario'];
 
-        if ($row['TipoUsuario'] == '1'){
+        if ($row['idTipoUsuario'] == '1'){
             $_SESSION['admin_name'] = $row['nombre'];
             header('location:../MenuAdmin/index.php');
-        }else if($row['TipoUsuario'] == '3') {
+        }else if($row['idTipoUsuario'] == '2') {
             $_SESSION['arqui_name'] = $row['nombre'];
             header('location:../MenuArquitecto/index.php');
-        } else if ($row['TipoUsuario'] == '2') {
+        } else if ($row['idTipoUsuario'] == '3') {
             $_SESSION['user_name'] = $row['nombre'];
             header('location:../MenuUsuario/index.php');
         }

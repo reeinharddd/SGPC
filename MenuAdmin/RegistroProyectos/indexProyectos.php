@@ -14,24 +14,24 @@ if (!isset($_SESSION['admin_name'])) {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Proyectos</title>
-    
-    <link rel="icon" href="../../img/Logo1.png" type = "image/png">
+
+    <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
 
 <body>
 
     <div class="hero">
-    <button><b><a href="../index.php">Regresar al menú</a></b></button>
+        <button><b><a href="../index.php">Regresar al menú</a></b></button>
         <h1 class="colortexto">Registro de Proyectos</h1>
         <form id="datos" method="post" action="addProyecto.php" class="colortexto">
-            <label>Nombre del proyecto: * <input type="text" name="txtNombre" required 
-             placeholder="max. 100 caracteres"></label>
+            <label>Nombre del proyecto: * <input type="text" name="txtNombre" required
+                    placeholder="max. 100 caracteres"></label>
             <br>
-            <label>Descripción del proyecto: * <input type="text" name="txtDes" required 
-             placeholder="max. 200 caracteres"></label>
+            <label>Descripción del proyecto: * <input type="text" name="txtDes" required
+                    placeholder="max. 200 caracteres"></label>
             <br>
             <label>Ubicación del proyecto: * <input type="text" name="txtUbi" required
-             placeholder="max. 100 caracteres"></label>
+                    placeholder="max. 100 caracteres"></label>
             <br>
             <label>Fecha de inicio: *<input type="date" name="F-inicio" id="fechaInicio" required></label>
             <br>
@@ -51,7 +51,7 @@ if (!isset($_SESSION['admin_name'])) {
 
                         if ($resultado) {
                             while ($row = mysqli_fetch_array($resultado)) {
-                                echo "<option value='" . $row['Codigo'] . "'>" . $row['nombre'] . "</option>";
+                                echo "<option value='" . $row['codigo'] . "'>" . $row['nombre'] . "</option>";
                             }
                         } else {
                             echo "Erro en la consulta: " . mysqli_error($con);
@@ -69,20 +69,20 @@ if (!isset($_SESSION['admin_name'])) {
             <input type="submit" value="Send">
         </form>
         <script>
-    document.getElementById("datos").addEventListener("submit", function(event) {
-      const fechaInicio = new Date(document.getElementById("fechaInicio").value);
-      const fechaFin = new Date(document.getElementById("fechaFin").value);
-      const fechaActual = new Date();
+        document.getElementById("datos").addEventListener("submit", function(event) {
+            const fechaInicio = new Date(document.getElementById("fechaInicio").value);
+            const fechaFin = new Date(document.getElementById("fechaFin").value);
+            const fechaActual = new Date();
 
-      if (fechaInicio < fechaActual) {
-        alert("La fecha de inicio no puede ser anterior al día actual.");
-        event.preventDefault();
-      } else if (fechaFin < fechaInicio) {
-        alert("La fecha de fin no puede ser anterior a la fecha de inicio.");
-        event.preventDefault();
-      }
-    });
-  </script>
+            if (fechaInicio < fechaActual) {
+                alert("La fecha de inicio no puede ser anterior al día actual.");
+                event.preventDefault();
+            } else if (fechaFin < fechaInicio) {
+                alert("La fecha de fin no puede ser anterior a la fecha de inicio.");
+                event.preventDefault();
+            }
+        });
+        </script>
     </div>
 
 </body>

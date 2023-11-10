@@ -60,25 +60,25 @@ if (!isset($_SESSION['user_name'])) {
         $conexion = new conexion();
         if ($conexion->connect()) {
             $con = $conexion->getConexion();
-            $proyecto = $_GET['data-numProyecto'];
+            $proyecto = $_GET['idProyecto'];
             $usuario = $_SESSION['id'];
 
-            $query = "SELECT T.Nombre AS NombreTarea, T.Descripcion AS DescripcionTarea
-        FROM Proyectos P
-        INNER JOIN USUARIO_PROYECTO UP ON P.numProyecto = UP.Proyecto
-        INNER JOIN USUARIO_TAREAS UT ON UP.Usuario = UT.Usuario
-        INNER JOIN Tareas T ON UT.Tareas = T.Codigo
-        WHERE P.numProyecto = $proyecto AND UT.Usuario = $usuario;";
+            $query = "SELECT T.titulo AS NombreTarea, T.descripcion AS DescripcionTarea, T.idTarea As idTarea FROM Proyecto P INNER JOIN UsuarioProyecto UP ON P.idProyecto = UP.idProyecto INNER JOIN UsuarioTarea UT ON UP.idUsuario = UT.idUsuario INNER JOIN Tarea T ON UT.idTarea = T.idTarea WHERE UT.idUsuario = $usuario AND P.idProyecto = $proyecto";
 
             $result = $conexion->exeqSelect($query);
             if ($result) {
+
                 while ($row = mysqli_fetch_assoc($result)) {
+
                     echo "<div class='project-box'>";
+
                     echo "<div class='project-info'>";
                     echo "<h3>Nombre: " . $row["NombreTarea"] . "</h3>";
                     echo "<p>Descripción: " . $row["DescripcionTarea"] . "</p>";
                     echo "</div>";
-                    echo "<a href='detalleTarea.php?nombreTarea=" . $row["NombreTarea"] . "' class='details-button'>Ver detalles</a>";
+
+                    echo "<a href='detalleTarea.php?idTarea=" . $row["idTarea"] . "&idProyecto=" .$proyecto. "' class='details-button'>Ver detalles</a>";
+
                     echo "</div>";
                 }
             }

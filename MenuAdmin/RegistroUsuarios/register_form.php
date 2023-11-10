@@ -50,8 +50,8 @@ if (!isset($_SESSION['admin_name'])) {
                 placeholder="Correo electrónico"><br>
             <select name="user_type"><br>
                 <option value="1">Administrador</option>
-                <option value="3">Arquitecto</option>
-                <option value="2">Empleado</option>
+                <option value="2">Arquitecto</option>
+                <option value="3">Empleado</option>
             </select><br>
             <input type="submit" name="submit" value="Registrar" class="form-btn" form="form">
         </form>
