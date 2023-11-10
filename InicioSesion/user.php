@@ -96,7 +96,15 @@ class user extends conexion
 
     public function setNewUser()
     {
-        $query = "INSERT INTO Usuario(nombre,apellidoPat,apellidoMat,numTel,email,contrasena,TipoUsuario) VALUES ('" . $this->nombre . "','" . $this->apPat . "','" . $this->apMat . "','" . $this->numTel . "','" . $this->email . "','" . $this->contra . "','". $this->tipoUsuario . "')";
+        $query = "INSERT INTO Usuario (nombre, apellidoPat, apellidoMat, numTel,  
+        email, contrasena, idTipoUsuario)
+VALUES ('" . $this->nombre ."',
+'" . $this->apPat ."',
+'" . $this->apMat ."', 
+'" . $this->numTel ."',
+'" . $this->email ."',
+'" . $this->contra ."',
+" . $this->tipoUsuario .")";
         $result = $this->connect();
         if ($result) {
             $newid = $this->exeqInsert($query);
