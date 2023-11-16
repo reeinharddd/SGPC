@@ -3,7 +3,7 @@ class conexion
 {
     private $HOST = "localhost";
     private $USER = "root";
-    private $PASS = "password";
+    private $PASS = "";
     private $DB = "sgpc";
     private $CON;
     private $DATASET = "";
@@ -11,15 +11,12 @@ class conexion
 
     public function connect()
     {
-     
-
         $this->CON = mysqli_connect($this->HOST, $this->USER, $this->PASS, $this->DB);
-        if ($this->CON) {
-           
-            return true;
-        } else {
-            echo "Error de conexion";
+        if (mysqli_connect_errno()) {
+            echo "Error de conexión: " . mysqli_connect_error();
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -56,6 +53,31 @@ class conexion
         return 0;
     }
 }
+
+
+
+public function exeqUpdate($query)
+{
+    try {
+        $result = mysqli_query($this->CON, $query);
+
+        if ($result !== false) {
+            $affectedRows = mysqli_affected_rows($this->CON);
+            return $affectedRows;
+        } else {
+            throw new Exception("Error en la consulta de actualización: " . mysqli_error($this->CON));
+        }
+    } catch (Exception $e) {
+        echo "Excepción: " . $e->getMessage();
+        return 0;
+    }
+}
+public function close()
+    {
+        if ($this->CON) {
+            mysqli_close($this->CON);
+        }
+    }
 
 }
 
