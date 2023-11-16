@@ -1,13 +1,45 @@
 <?php
-
-@include 'config.php';
-
 session_start();
 
 if (!isset($_SESSION['user_name'])) {
     header('location:../Alertas/warning.html');
+    exit;
+}
+
+$current_page = basename($_SERVER['PHP_SELF']);
+
+include 'consultas.php';
+$consultas = new Consultas();
+$proyectos = $consultas->getProyectos();
+
+if ($proyectos) {
+    $proyecto = isset($_GET['idProyecto']) ? $_GET['idProyecto'] : null;
+    $idProyecto = $_SESSION['idProyecto'];
+
+    if ($proyecto !== null) {
+        $tareas = $consultas->getTareas($proyecto);
+
+        // Ahora, para cada tarea, obtenemos información adicional
+        foreach ($tareas as &$tarea) {
+            // Obtén información adicional según sea necesario
+            $usuarioAsignado = $consultas->getUsuarioAsignado($tarea['idTarea']);
+            $comentarios = $consultas->getComentariosTarea($tarea['idTarea']);
+
+            // Agrega la información adicional a la tarea
+            $tarea['usuarioAsignado'] = $usuarioAsignado;
+            $tarea['comentarios'] = $comentarios;
+        }
+
+        // Resto del código...
+    } else {
+        echo "No se encontró el proyecto.";
+    }
+} else {
+    echo "No se encontraron proyectos.";
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,72 +50,54 @@ if (!isset($_SESSION['user_name'])) {
     <link rel="stylesheet" href="../css/proyectos.css">
     <link rel="icon" href="../img/Logo1.png" type="image/png">
 </head>
-<header class="header">
-    <div class="user-info">
-        <a href="index.php" class="back-link">
-            <img src="../img/left-arrow.svg" alt="Regresar">
-        </a>
-        <img src="../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
-        <div>
-            <h3><?php echo $_SESSION['user_name']; ?></h3>
-            <p>Usuario</p>
-        </div>
-    </div>
-    <div class="logo">
-        <a href="../img/Logo1.png">
-            <img src="../img/Logo1.png" alt="Logo de la empresa">
-        </a>
-    </div>
-    <nav class="navigation">
-        <ul>
-            <li><a href="#">Proyectos</a></li>
-            <li><a href="Calendario/Calendario.php">Calendario</a></li>
-            <li><a href="Contacto.php">Contacto</a></li>
-            <li><a href="../InicioSesion/logout.php">Cerrar sesión</a></li>
-        </ul>
-    </nav>
-</header>
 
-<section>
-    <aside class="menu">
-        <ul>
-            <li><a href="#">Opción 1</a></li>
-            <li><a href="#">Opción 2</a></li>
-            <li><a href="#">Opción 3</a></li>
-        </ul>
-    </aside>
+<body>
+    <?php
+    include "plantillas/header.php";
+    include "plantillas/miniBar.php"
+    ?>
 
-    <body class="cuerpo">
-
+    <section>
         <?php
-        include "../conexion.php";
-        $conexion = new conexion();
-        if ($conexion->connect()) {
-            $con = $conexion->getConexion();
-            $tarea = $_GET['idTarea'];
-            $usuario = $_SESSION['id'];
-
-            $query = "SELECT * FROM Comentario WHERE idTarea =  $tarea";
-
-            $result = $conexion->exeqSelect($query);
-            if ($result) {
-
-                while ($row = mysqli_fetch_assoc($result)) {
-
-                    echo "<div class='project-box'>";
-
-                    echo "<div class='project-info'>";
-                    echo "<h3>Nombre: " . $row["NombreTarea"] . "</h3>";
-                    echo "<p>Descripción: " . $row["DescripcionTarea"] . "</p>";
-                    echo "</div>";
-
-                    echo "<a href='detalleTarea.php?idTarea=" . $row["idTarea"] . "&idProyecto=" . $proyecto . "' class='details-button'>Ver detalles</a>";
-
-                    echo "</div>";
-                }
-            }
-        }
+        include "plantillas/menu.php";
         ?>
-    </body>
+
+        <main>
+            <div class="project-list">
+                <div id="project-list">
+                    <?php
+                    foreach ($tareas as $tarea) {
+                        echo '<div class="task-card">';
+                        echo '<div class="task-title">' . $tarea['NombreTarea'] . '</div>';
+                        echo '<div class="task-description">' . $tarea['DescripcionTarea'] . '</div>';
+                        echo '<div class="task-status">' . $tarea['estado'] . '</div>';
+
+                        // Integrar información adicional en la tarea
+                        echo '<div class="task-info">';
+                        echo '<p>Usuario Asignado: ' . $tarea['usuarioAsignado'] . '</p>';
+
+                        // Si hay comentarios, mostrarlos
+                        if (!empty($tarea['comentarios'])) {
+                            echo '<div class="comments-section">';
+                            echo '<p>Comentarios:</p>';
+                            foreach ($tarea['comentarios'] as $comentario) {
+                                echo '<div class="comment">';
+                                echo '<p>' . $comentario['descripcion'] . '</p>';
+                                echo '<p>Fecha: ' . $comentario['fechaComentario'] . '</p>';
+                                echo '<p>Usuario: ' . $comentario['nombreUsuario'] . '</p>';
+                                echo '</div>';
+                            }
+                            echo '</div>';
+                        }
+
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                    ?>
+                </div>
+            </div>
+        </main>
+    </section>
+</body>
 
 </html>
