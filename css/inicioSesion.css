@@ -15,6 +15,13 @@ body {
   background: #e0e0e1;
 }
 
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
 .box {
   position: relative;
   width: 400px;
@@ -110,11 +117,11 @@ body {
   display: flex;
   flex-direction: column;
 }
-a{
+a {
   text-decoration: none;
   margin-bottom: 50px;
   font-size: 15px;
-  color: #ff6947
+  color: #ff6947;
 }
 
 .box form h2 {
