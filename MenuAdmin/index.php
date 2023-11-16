@@ -28,10 +28,6 @@ if (!isset($_SESSION['admin_name'])) {
         </h3>
 
     </div>
-
-
-
-
 </header>
 
 
