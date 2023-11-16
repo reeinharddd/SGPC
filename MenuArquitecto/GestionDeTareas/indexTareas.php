@@ -73,6 +73,7 @@ if (!isset($_SESSION['arqui_name'])) {
                     </select>
                 </label>
                 <br>
+                <label>ID tarea: *<input type="number" name="IDtarea"></label>
                 <input type="reset" value="Cancel">
                 <br>
                 <input type="submit" value="Send">
