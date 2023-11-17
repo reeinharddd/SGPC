@@ -41,44 +41,32 @@
     </div>
     <script>
     $(document).ready(function() {
-        // Función para resaltar y manejar la navegación
         function handleNavigation(elementId, targetPage) {
-            // Elimina la clase 'highlighted' de todos los elementos
             $('#miniBar a').removeClass('highlighted');
 
-            // Resalta el elemento actual
             $('#' + elementId).addClass('highlighted');
 
-            // Maneja la navegación según el destino
             if (targetPage) {
                 window.location.href = targetPage;
             } else {
-                // Si no hay un destino, simplemente despliega un mensaje (puedes ajustar según sea necesario)
                 console.log("No hay destino específico.");
             }
         }
 
-        // Maneja el clic en 'Ver Tareas'
         $('#verTareas').click(function(e) {
-            e.preventDefault(); // Evita la navegación normal al hacer clic
             handleNavigation('verTareas', null);
         });
 
-        // Maneja el clic en 'Ver Usuarios'
         $('#verUsuarios').click(function(e) {
             e.preventDefault();
             handleNavigation('verUsuarios', 'usuariosProyecto.php');
         });
-
-        // Maneja el clic en el botón "Volver"
         $('#volver').click(function(e) {
             e.preventDefault();
             history.back();
         });
 
-        // Verifica si la página se ha cargado desde el historial
         if (performance.navigation.type == 2) {
-            // Si se ha cargado desde el historial, marca como resaltado el enlace correspondiente
             $('#verUsuarios').addClass('highlighted');
         }
     });

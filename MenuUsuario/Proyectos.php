@@ -39,7 +39,6 @@ if ($proyectos) {
         $primerasTareas = $consultas->obtenerPrimerasTareas($_SESSION['id'], $proyecto, 3);
 
 
-        // Resto del código...
     } else {
         echo "No se encontró el proyecto.";
     }
@@ -89,22 +88,24 @@ if ($proyectos) {
                     <h2>Tareas Próximas</h2>
 
                     <?php foreach ($primerasTareas as $tarea) : ?>
-                        <a href='detalleTarea.php?idTarea=<?= $tarea["idTarea"] ?>&idProyecto=<?= $proyecto["idProyecto"] ?>' class='upcoming-task <?= strtolower($tarea["estado"]) . "-state-left"; ?>'>
-                            <div class='task-info'>
-                                <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
-                                <div class='task-data'>
-                                    <div class="fechas">
-                                        <span class="label">Fecha final:</span>
-                                        <span class="date"><?= $tarea["fechaInicio"] . ' - ' . $tarea["fechaFinal"]; ?></span>
-                                    </div>
+                    <a href='detalleTarea.php?idTarea=<?= $tarea["idTarea"] ?>&idProyecto=<?= $proyecto["idProyecto"] ?>'
+                        class='upcoming-task <?= strtolower($tarea["estado"]) . "-state-left"; ?>'>
+                        <div class='task-info'>
+                            <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
+                            <div class='task-data'>
+                                <div class="fechas">
+                                    <span class="label">Fecha final:</span>
+                                    <span
+                                        class="date"><?= $tarea["fechaInicio"] . ' - ' . $tarea["fechaFinal"]; ?></span>
                                 </div>
-                                <div class='task-data'>
-                                    <span class='days-remaining'></span>
-                                    <span class='days-message'>días para la fecha final</span>
-                                </div>
-                                <div class='task-data'><?= $tarea["estado"] ?></div>
                             </div>
-                        </a>
+                            <div class='task-data'>
+                                <span class='days-remaining'></span>
+                                <span class='days-message'>días para la fecha final</span>
+                            </div>
+                            <div class='task-data'><?= $tarea["estado"] ?></div>
+                        </div>
+                    </a>
                     <?php endforeach; ?>
                 </div>
 
@@ -144,32 +145,31 @@ if ($proyectos) {
 
     </section>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var upcomingTasks = document.querySelectorAll('.upcoming-task');
+    document.addEventListener("DOMContentLoaded", function() {
+        var upcomingTasks = document.querySelectorAll('.upcoming-task');
 
-            upcomingTasks.forEach(function(task) {
-                var dueDateElement = task.querySelector('.task-data:nth-child(2)');
-                var daysRemainingElement = task.querySelector('.days-remaining');
-                var daysMessageElement = task.querySelector('.days-message');
-                var taskStatusElement = task.querySelector('.task-data:last-child');
+        upcomingTasks.forEach(function(task) {
+            var dueDateElement = task.querySelector('.task-data:nth-child(2)');
+            var daysRemainingElement = task.querySelector('.days-remaining');
+            var daysMessageElement = task.querySelector('.days-message');
+            var taskStatusElement = task.querySelector('.task-data:last-child');
 
-                var dueDate = new Date(dueDateElement.textContent);
-                var currentDate = new Date();
+            var dueDate = new Date(dueDateElement.textContent);
+            var currentDate = new Date();
 
-                // Ajuste para considerar el final del día
-                var timeDifference = dueDate.getTime() - currentDate.getTime() + (24 * 60 * 60 * 1000) - 1;
-                var daysRemaining = Math.floor(timeDifference / (1000 * 3600 * 24));
+            var timeDifference = dueDate.getTime() - currentDate.getTime() + (24 * 60 * 60 * 1000) - 1;
+            var daysRemaining = Math.floor(timeDifference / (1000 * 3600 * 24));
 
-                daysRemainingElement.textContent = daysRemaining;
-                daysMessageElement.style.display = 'inline'; // Muestra el mensaje
-                daysMessageElement.textContent = 'días para la entrega'; // Texto del mensaje
+            daysRemainingElement.textContent = daysRemaining;
+            daysMessageElement.style.display = 'inline';
+            daysMessageElement.textContent = 'días para la entrega';
 
-                if (daysRemaining <= 3) {
-                    daysRemainingElement.style.color = 'red';
-                    daysMessageElement.style.color = 'red';
-                }
-            });
+            if (daysRemaining <= 3) {
+                daysRemainingElement.style.color = 'red';
+                daysMessageElement.style.color = 'red';
+            }
         });
+    });
     </script>
 
 

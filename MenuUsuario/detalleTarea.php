@@ -18,19 +18,75 @@ if ($proyectos) {
 
     if ($proyecto !== null) {
         $tareas = $consultas->getTareas($proyecto);
+        $idTarea = isset($_GET['idTarea']) ? $_GET['idTarea'] : null;
+        $tareaSeleccionada = null;
 
-        // Ahora, para cada tarea, obtenemos información adicional
-        foreach ($tareas as &$tarea) {
-            // Obtén información adicional según sea necesario
-            $usuarioAsignado = $consultas->getUsuarioAsignado($tarea['idTarea']);
-            $comentarios = $consultas->getComentariosTarea($tarea['idTarea']);
-
-            // Agrega la información adicional a la tarea
-            $tarea['usuarioAsignado'] = $usuarioAsignado;
-            $tarea['comentarios'] = $comentarios;
+        foreach ($tareas as $tarea) {
+            if ($tarea['idTarea'] == $idTarea) {
+                $tareaSeleccionada = $tarea;
+                break;
+            }
         }
 
-        // Resto del código...
+        if ($tareaSeleccionada) {
+            $usuarioAsignado = $consultas->getUsuarioAsignado($tareaSeleccionada['idTarea']);
+            $comentarios = $consultas->getComentariosTarea($tareaSeleccionada['idTarea']);
+
+           
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <?php
+                include "plantillas/header.php";
+                include "plantillas/miniBar.php";
+                include "plantillas/menu.php";
+
+                if ($tareaSeleccionada) {
+                    $infoProyecto = $consultas->getInfoProyecto($tareaSeleccionada['idProyecto']);
+                    $usuarioAsignado = $consultas->getUsuarioAsignado($tareaSeleccionada['idTarea']);
+                    $comentarios = $consultas->getComentariosTarea($tareaSeleccionada['idTarea']);
+                ?>
+    <main>
+        <div class="task-details">
+            <h2><?= $tareaSeleccionada['NombreTarea']; ?></h2>
+            <p><strong>Proyecto:</strong> <?= $infoProyecto['nombre']; ?></p>
+            <p><strong>Fecha de Inicio:</strong> <?= $tareaSeleccionada['fechaInicio']; ?></p>
+            <p><strong>Fecha Final:</strong> <?= $tareaSeleccionada['fechaFinal']; ?></p>
+            <p><strong>Estado:</strong> <?= $consultas->obtenerNombreEstado($tareaSeleccionada['estado']); ?></p>
+            <p><strong>Descripción:</strong> <?= $tareaSeleccionada['DescripcionTarea']; ?></p>
+
+
+            <?php if (!empty($comentarios)) : ?>
+            <div class="comments-section">
+                <p><strong>Comentarios:</strong></p>
+                <?php foreach ($comentarios as $comentario) : ?>
+                <div class="comment">
+                    <p><?= $comentario['descripcion']; ?></p>
+                    <p><strong>Fecha:</strong> <?= $comentario['fechaComentario']; ?></p>
+                    <p><strong>Usuario:</strong> <?= $comentario['nombreUsuario']; ?></p>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+        </div>
+    </main>
+    <?php
+                } else {
+                    echo "No se encontró la tarea seleccionada.";
+                }
+                ?>
+</body>
+
+</html>
+<?php
+        } else {
+            echo "No se encontró la tarea seleccionada.";
+        }
     } else {
         echo "No se encontró el proyecto.";
     }
@@ -38,66 +94,3 @@ if ($proyectos) {
     echo "No se encontraron proyectos.";
 }
 ?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyectos</title>
-    <link rel="stylesheet" href="../css/proyectos.css">
-    <link rel="icon" href="../img/Logo1.png" type="image/png">
-</head>
-
-<body>
-    <?php
-    include "plantillas/header.php";
-    include "plantillas/miniBar.php"
-    ?>
-
-    <section>
-        <?php
-        include "plantillas/menu.php";
-        ?>
-
-        <main>
-            <div class="project-list">
-                <div id="project-list">
-                    <?php
-                    foreach ($tareas as $tarea) {
-                        echo '<div class="task-card">';
-                        echo '<div class="task-title">' . $tarea['NombreTarea'] . '</div>';
-                        echo '<div class="task-description">' . $tarea['DescripcionTarea'] . '</div>';
-                        echo '<div class="task-status">' . $tarea['estado'] . '</div>';
-
-                        // Integrar información adicional en la tarea
-                        echo '<div class="task-info">';
-                        echo '<p>Usuario Asignado: ' . $tarea['usuarioAsignado'] . '</p>';
-
-                        // Si hay comentarios, mostrarlos
-                        if (!empty($tarea['comentarios'])) {
-                            echo '<div class="comments-section">';
-                            echo '<p>Comentarios:</p>';
-                            foreach ($tarea['comentarios'] as $comentario) {
-                                echo '<div class="comment">';
-                                echo '<p>' . $comentario['descripcion'] . '</p>';
-                                echo '<p>Fecha: ' . $comentario['fechaComentario'] . '</p>';
-                                echo '<p>Usuario: ' . $comentario['nombreUsuario'] . '</p>';
-                                echo '</div>';
-                            }
-                            echo '</div>';
-                        }
-
-                        echo '</div>';
-                        echo '</div>';
-                    }
-                    ?>
-                </div>
-            </div>
-        </main>
-    </section>
-</body>
-
-</html>

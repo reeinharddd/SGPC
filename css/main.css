@@ -102,9 +102,7 @@ body {
   
   } 
   
-  /* Estilos para la mini barra */ 
-  
-  /* Estilos para la mini barra */ 
+   
   
   .mini-bar { 
   
@@ -149,7 +147,7 @@ body {
    
    
   
-  /* Estilo para la opciÃ³n activa */ 
+  
   
   .mini-bar-option.active { 
   
@@ -228,11 +226,11 @@ body {
   
   .menu ul li[role="separator"] { 
   
-  height: 1.5px; /* Altura del separador */ 
+  height: 1.5px; 
   
-  background-color: #ff6947; /* Color del separador */ 
+  background-color: #ff6947;
   
-  margin: 10px 0; /* Ajusta el margen para separar visualmente */ 
+  margin: 10px 0; 
   
   } 
   
@@ -368,7 +366,7 @@ body {
   
   .active-state { 
   
-  background-color: #4caf50; /* Green */ 
+  background-color: #4caf50; 
   
   } 
   
@@ -377,7 +375,7 @@ body {
   
   .pending-state { 
   
-  background-color: #ffc107; /* Yellow */ 
+  background-color: #ffc107; 
   
   } 
   
@@ -386,7 +384,7 @@ body {
   
   .finished-state { 
   
-  background-color: #2196f3; /* Blue */ 
+  background-color: #2196f3; 
   
   } 
   
@@ -395,7 +393,7 @@ body {
   
   .canceled-state { 
   
-  background-color: #f44336; /* Red */ 
+  background-color: #f44336; 
   
   } 
   
@@ -404,11 +402,9 @@ body {
   
   .delayed-state { 
   
-  background-color: #ff9800; /* Orange */ 
+  background-color: #ff9800; 
   
-  } 
-  
-  /* Estilos para la lista desplegable */ 
+  }  
   
   .active-tasks { 
   
@@ -444,7 +440,7 @@ body {
   
   .active-tasks .task-list { 
   
-  margin-top: 8px; /* Espacio entre el menÃº y la lista de tareas */ 
+  margin-top: 8px;  
   
   background-color: rgb(32, 30, 31); 
   
@@ -465,12 +461,11 @@ body {
   
   .menu-item img { 
   
-  width: 16px; /* Ajusta el ancho del icono segÃºn sea necesario */ 
+  width: 16px; 
   
-  height: 16px; /* Ajusta la altura del icono segÃºn sea necesario */ 
+  height: 16px; 
   
-  margin-left: 5px; /* Ajusta el espacio entre el texto y el icono segÃºn sea necesario */ 
-  
+  margin-left: 5px;
   } 
   
    

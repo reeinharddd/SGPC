@@ -53,7 +53,6 @@ class consultas
             AND T.estado != 'FIN'  -- Excluir tareas finalizadas
         ORDER BY PT.fechaFinal ASC";
 
-            // Utilizar una consulta preparada
             $stmt = $con->prepare($query);
             $stmt->bind_param("ii", $usuario, $proyecto);
             $stmt->execute();
@@ -176,7 +175,6 @@ class consultas
         if ($conexion->connect()) {
             $con = $conexion->getConexion();
 
-            // Obtener la fecha actual en formato MySQL
             $fechaActual = date('Y-m-d');
 
             $query = "SELECT T.titulo AS NombreTarea, T.descripcion AS DescripcionTarea, T.idTarea, PT.fechaFinal, T.estado
@@ -187,7 +185,6 @@ class consultas
                   AND PT.fechaFinal BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
                   ORDER BY PT.fechaFinal ASC LIMIT $cantidad";
 
-            // Utilizar una consulta preparada
             $stmt = $con->prepare($query);
             $stmt->bind_param("iii", $usuario, $proyecto, $proyecto);
             $stmt->execute();
@@ -217,15 +214,13 @@ class consultas
             $con = $conexion->getConexion();
             $query = "SELECT nombre FROM Estado WHERE codigo = ?";
 
-            // Utilizar una consulta preparada
             $stmt = $con->prepare($query);
             $stmt->bind_param("s", $codigoEstado);
             $stmt->execute();
-            $stmt->bind_result($nombreEstado); // Corregir aquí
+            $stmt->bind_result($nombreEstado); 
 
             if ($stmt->fetch()) {
-                // No es necesario asignar a otra variable, ya está en $nombreEstado
-            }
+                }
 
             $stmt->close();
         }
