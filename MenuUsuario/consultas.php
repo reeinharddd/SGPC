@@ -39,6 +39,7 @@ class consultas
             $query = "SELECT
             T.titulo AS NombreTarea,
             T.descripcion AS DescripcionTarea,
+            T.estado,
             T.idTarea AS idTarea
         FROM
             Proyecto AS P
@@ -49,7 +50,8 @@ class consultas
         WHERE
             UP.idUsuario = ?
             AND P.idProyecto = ?
-        ";
+            AND T.estado != 'FIN'  -- Excluir tareas finalizadas
+        ORDER BY PT.fechaFinal ASC";
 
             // Utilizar una consulta preparada
             $stmt = $con->prepare($query);
@@ -205,5 +207,30 @@ class consultas
 
         $conexion->close();
         return $tareas;
+    }
+    public function obtenerNombreEstado($codigoEstado)
+    {
+        $conexion = new conexion();
+        $nombreEstado = null;
+
+        if ($conexion->connect()) {
+            $con = $conexion->getConexion();
+            $query = "SELECT nombre FROM Estado WHERE codigo = ?";
+
+            // Utilizar una consulta preparada
+            $stmt = $con->prepare($query);
+            $stmt->bind_param("s", $codigoEstado);
+            $stmt->execute();
+            $stmt->bind_result($nombreEstado); // Corregir aquí
+
+            if ($stmt->fetch()) {
+                // No es necesario asignar a otra variable, ya está en $nombreEstado
+            }
+
+            $stmt->close();
+        }
+
+        $conexion->close();
+        return $nombreEstado;
     }
 }
