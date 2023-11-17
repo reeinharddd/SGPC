@@ -23,6 +23,9 @@ if (!isset($_SESSION['admin_name'])) {
         <img src="../../img/Logo1.png" alt="Logo de la empresa">
     </div>
     <div class="user-info">
+            <h3>Registro de Proyectos</h3>
+        </div>
+    <div class="user-info">
         <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
         <h3><?php echo $_SESSION['admin_name']; ?> <p>Administrador</p>
         </h3>
@@ -33,7 +36,7 @@ if (!isset($_SESSION['admin_name'])) {
 <body>
 
     <div class="hero">
-        <h1 class="colortexto">Registro de Proyectos</h1>
+        
         <form id="datos" method="post" action="addProyecto.php" class="colortexto">
         <button><b><a href="../index.php">◄ Menú</a></b></button>
         <br>

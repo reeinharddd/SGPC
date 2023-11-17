@@ -17,6 +17,8 @@ if (!isset($_SESSION['admin_name'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="icon" href="../../img/Logo1.png" type = "image/png">
 
     <link rel="stylesheet" href="">
     <script>
@@ -30,6 +32,20 @@ if (!isset($_SESSION['admin_name'])) {
     </script>
 
 </head>
+<header class="header">
+    <div class="logo">
+        <img src="../../img/Logo1.png" alt="Logo de la empresa">
+    </div>
+    <div class="user-info">
+        <h3>Registro de Usuarios</h3>
+    </div>
+    <div class="user-info">
+        <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
+        <h3><?php echo $_SESSION['admin_name']; ?> <p>Administrador</p>
+        </h3>
+
+    </div>
+</header>
 
 <body>
 
@@ -45,7 +61,7 @@ if (!isset($_SESSION['admin_name'])) {
             <input id="apMat" type="text" name="apMat" required pattern="[A-Za-z\s']{2,50}"
                 placeholder="Apellido materno"><br>
             <input id="numero" type="text" name="numero" maxlength="10" required pattern="\d{3}-\d{3}-\d{4}"
-                placeholder="Telefono (Formato" oninput="formatPhoneNumber(this)"><br>
+                placeholder="Teléfono" oninput="formatPhoneNumber(this)"><br>
             <input id="email" type="email" name="email" required pattern="[a-z0-9._%+-]+@SGPC\.mx$"
                 placeholder="Correo electrónico"><br>
             <select name="user_type"><br>

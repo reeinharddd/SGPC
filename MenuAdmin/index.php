@@ -23,6 +23,9 @@ if (!isset($_SESSION['admin_name'])) {
         <img src="../img/Logo1.png" alt="Logo de la empresa">
     </div>
     <div class="user-info">
+    <h3>Página Principal</h3>
+    </div>
+    <div class="user-info">
         <img src="../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
         <h3><?php echo $_SESSION['admin_name']; ?> <p>Administrador</p>
         </h3>
@@ -38,18 +41,12 @@ if (!isset($_SESSION['admin_name'])) {
     <aside class="menu">
         <ul>
             <div class="head-menu">
-                <li><a href="#">Página Principal</a></li>
                 <li><a href="Calendario/Calendario.php">Calendario</a></li>
             </div>
-
-            <li>Opciones
-                <ul>
-                    <li><a href="RegistroProyectos/indexProyectos.php">Gestión de proyectos</a></li>
-                    <li><a href="GestionDeTareas/indexTareas.php">Gestión de Tareas</a></li>
-                    <li><a href="RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
-                    <li><a href="Historial/index.html">Historial</a></li>
-                </ul>
-            </li>
+            <li><a href="RegistroProyectos/indexProyectos.php">Gestión de proyectos</a></li>
+            <li><a href="GestionDeTareas/indexTareas.php">Gestión de Tareas</a></li>
+            <li><a href="RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
+            <li><a href="Historial/index.html">Historial</a></li>
             <li><a href="../InicioSesion/logout.php">Cerrar sesion</a></li>
         </ul>
     </aside>
