@@ -50,7 +50,7 @@ body {
   width: 50px;
   height: 50px;
 }
-/* Estilos para la mini barra */
+
 /* Estilos para la mini barra */
 .mini-bar {
   display: flex;
@@ -95,6 +95,7 @@ body {
   flex-direction: column;
   border-right: 3px solid #ff6947;
 }
+
 .menu-item {
   line-height: 50px;
   padding-left: 10px;
@@ -109,11 +110,13 @@ body {
 .menu ul li {
   margin-bottom: 0px;
 }
+
 .menu ul li[role="separator"] {
-  height: 1.5px; /* Altura del separador */
-  background-color: #ff6947; /* Color del separador */
-  margin: 10px 0; /* Ajusta el margen para separar visualmente */
+  height: 1.5px;
+  background-color: #ff6947;
+  margin: 10px 0;
 }
+
 .active-task span {
   text-align: center;
 }
@@ -127,6 +130,7 @@ body {
   margin: 0px;
   position: relative;
 }
+
 .menu ul li a:hover {
   background-color: #e0e0e087;
 }
@@ -135,30 +139,29 @@ main {
   margin-left: 220px;
   padding: 20px;
 }
+
 .project-banner {
   position: relative;
   text-align: center;
   color: #fff;
   padding: 40px;
-  background: url("../img/building-website.svg") no-repeat center center fixed;
+  background: url("../img/building_construction_frame_223639_3840x2160.jpg")
+    no-repeat center center fixed;
   background-size: cover;
 }
+
 .project-banner-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.19
-  ); /* Puedes ajustar el valor alfa para la opacidad */
+  background-color: rgba(0, 0, 0, 0.19);
 }
+
 .project-banner h1,
 .project-banner p {
-  z-index: 1; /* Coloca el texto por encima de la imagen de fondo */
+  z-index: 1;
 }
 
 .project-banner h1 {
@@ -173,46 +176,56 @@ main {
 
 .project-list {
   margin-top: 20px;
-  /* Ajusta según sea necesario */
-}
-.project-list {
   display: flex;
 }
+
 .left-section {
   display: flex;
   flex-direction: column;
   width: 45%;
 }
+
 .days-message {
   font-size: 14px;
   color: red;
   margin-top: 5px;
 }
+
 .upcoming-tasks-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
+  border: 1px solid #edebeb;
   padding: 10px;
   margin-bottom: 20px;
+  background-color: #f8f8f9;
 }
 
 .upcoming-task {
   text-decoration: none;
   color: #333;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #f1eeee;
   border-radius: 8px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #f8f8f9;
 }
+
 .task-title,
 .task-due-date,
 .days-remaining,
 .task-status {
   flex: 1;
 }
+.task-state {
+  font-size: 12px; /* Tamaño del texto del estado */
+  padding: 5px; /* Espacio interno del estado */
+  border-radius: 4px; /* Bordes redondeados */
+  display: inline-block; /* Hace que la caja se ajuste al texto */
+}
+
 .task-info {
   flex: 1;
   display: flex;
@@ -223,6 +236,7 @@ main {
 .task-data:not(:last-child) {
   margin-right: 10px;
 }
+
 .days-remaining {
   font-weight: bold;
   color: red;
@@ -243,15 +257,41 @@ main {
 }
 
 .task-status {
-  font-size: 14px;
-  margin-top: 5px;
-  color: #007bff;
+  font-size: 12px; /* Tamaño del texto del estado */
+  padding: 5px; /* Espacio interno del estado */
+  border-radius: 4px; /* Bordes redondeados */
+}
+.right-section .task-state {
+  font-size: 12px; /* Tamaño del texto del estado */
+  padding: 5px; /* Espacio interno del estado */
+  border-radius: 4px; /* Bordes redondeados */
+  display: inline-block; /* Hace que la caja se ajuste al texto */
+  max-width: 5%;
+}
+.right-section .active-state,
+.right-section .pending-state,
+.right-section .finished-state,
+.right-section .canceled-state,
+.right-section .delayed-state {
+  width: auto; /* Ajusta el ancho automáticamente al contenido */
+  padding: 5px; /* Espacio interno del estado */
+  border-radius: 4px; /* Bordes redondeados */
 }
 
 .right-section {
-  flex: 2; /* La sección derecha ocupará el doble del espacio que la izquierda */
-  padding: 20px; /* Ajusta según sea necesario */
-  overflow-y: auto; /* Añade desplazamiento vertical si el contenido es demasiado largo */
+  flex: 2;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.right-section h2 {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: px;
+}
+
+.left-section h2 {
+  text-align: center;
 }
 
 .task-card {
@@ -260,7 +300,7 @@ main {
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 300px; /* Ajusta el ancho según sea necesario */
+  width: 300px;
 }
 
 .task-title {
@@ -276,14 +316,15 @@ main {
 .project-box {
   cursor: pointer;
   border: 1px solid #ccc;
-  border-radius: 8px; /* Bordes más redondeados */
+  border-radius: 8px;
   margin: 10px;
   padding: 15px;
-  width: 300px; /* Ajusta el ancho según sea necesario */
+  width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff; /* Fondo blanco */
+  background-color: #fff;
   transition: box-shadow 0.3s ease-in-out;
 }
+
 .project-box:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -292,19 +333,22 @@ main {
   display: flex;
   flex-direction: column;
 }
+
 .project-title {
-  font-size: 20px; /* Tamaño de fuente más grande */
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 10px; /* Mayor espacio inferior */
+  margin-bottom: 10px;
 }
+
 .project-info {
-  font-size: 16px; /* Tamaño de fuente para la información de la tarea */
-  color: #555; /* Color de texto más oscuro */
+  font-size: 16px;
+  color: #555;
 }
 
 .project-info span {
   font-weight: bold;
 }
+
 .project-state {
   font-size: 14px;
   padding: 5px;
@@ -314,25 +358,26 @@ main {
 }
 
 .active-state {
-  background-color: #4caf50; /* Green */
+  background-color: #4caf50;
+  margin-right: 50px;
 }
 
 .pending-state {
-  background-color: #ffc107; /* Yellow */
+  background-color: #ffc107;
 }
 
 .finished-state {
-  background-color: #2196f3; /* Blue */
+  background-color: #2196f3;
 }
 
 .canceled-state {
-  background-color: #f44336; /* Red */
+  background-color: #f44336;
 }
 
 .delayed-state {
-  background-color: #ff9800; /* Orange */
+  background-color: #ff9800;
 }
-/* Estilos para la lista desplegable */
+
 .active-tasks {
   display: flex;
   flex-direction: column;
@@ -349,7 +394,7 @@ main {
 }
 
 .active-tasks .task-list {
-  margin-top: 8px; /* Espacio entre el menú y la lista de tareas */
+  margin-top: 8px;
   background-color: rgb(32, 30, 31);
   border-top: none;
   border-radius: 0 0 4px 4px;
@@ -359,9 +404,9 @@ main {
 }
 
 .menu-item img {
-  width: 16px; /* Ajusta el ancho del icono según sea necesario */
-  height: 16px; /* Ajusta la altura del icono según sea necesario */
-  margin-left: 5px; /* Ajusta el espacio entre el texto y el icono según sea necesario */
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
 }
 
 .active-tasks .task-list a {
@@ -413,7 +458,7 @@ main {
   color: #fff;
   border: none;
   padding: 10px;
-  margin-top: 15px; /* Mayor espacio superior */
+  margin-top: 15px;
   cursor: pointer;
   text-decoration: none;
   border-radius: 5px;
@@ -449,6 +494,7 @@ main {
 .about-button:hover::after {
   display: block;
 }
+
 .back-link {
   margin-right: 20px;
   cursor: pointer;
@@ -468,8 +514,9 @@ main {
   list-style: none;
   padding: 0;
 }
+
 .task-item {
-  background-color: #e0e0e1;
+  background-color: #f8f8f9;
   border: 1px solid #ddd;
   border-radius: 8px;
   margin-bottom: 10px;
@@ -477,13 +524,16 @@ main {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease-in-out;
 }
+
 .task-item:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
 .task-link {
   text-decoration: none;
   color: #333;
 }
+
 .task-header {
   display: flex;
   flex-direction: column;

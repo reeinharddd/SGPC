@@ -1,4 +1,21 @@
 <?php
+function getTaskStateClass($estado)
+{
+    switch ($estado) {
+        case 'ACT':
+            return 'active-state';
+        case 'PEN':
+            return 'pending-state';
+        case 'FIN':
+            return 'finished-state';
+        case 'CAN':
+            return 'canceled-state';
+        case 'RET':
+            return 'delayed-state';
+        default:
+            return '';
+    }
+}
 
 session_start();
 
@@ -72,75 +89,90 @@ if ($proyectos) {
                     <h2>Tareas Próximas</h2>
 
                     <?php foreach ($primerasTareas as $tarea) : ?>
-                    <a href='detalleTarea.php?idTarea=<?= $tarea["idTarea"] ?>&idProyecto=<?= $proyecto["idProyecto"] ?>'
-                        class='upcoming-task'>
-                        <div class='task-info'>
-                            <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
-                            <div class='task-data'><?= $tarea["fechaFinal"] ?></div>
-                            <div class='task-data'>
-                                <span class='days-remaining'></span> <!-- Se llenará con JavaScript -->
-                                <span class='days-message'>días para la fecha final</span>
+                        <a href='detalleTarea.php?idTarea=<?= $tarea["idTarea"] ?>&idProyecto=<?= $proyecto["idProyecto"] ?>' class='upcoming-task <?= strtolower($tarea["estado"]) . "-state-left"; ?>'>
+                            <div class='task-info'>
+                                <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
+                                <div class='task-data'>
+                                    <div class="fechas">
+                                        <span class="label">Fecha final:</span>
+                                        <span class="date"><?= $tarea["fechaInicio"] . ' - ' . $tarea["fechaFinal"]; ?></span>
+                                    </div>
+                                </div>
+                                <div class='task-data'>
+                                    <span class='days-remaining'></span>
+                                    <span class='days-message'>días para la fecha final</span>
+                                </div>
+                                <div class='task-data'><?= $tarea["estado"] ?></div>
                             </div>
-                            <div class='task-data'><?= $tarea["estado"] ?></div>
-                        </div>>
-                    </a>
+                        </a>
                     <?php endforeach; ?>
-
                 </div>
+
+
 
 
 
 
                 <div class="right-section">
+                    <h2>Todas las tareas</h2>
                     <ul class="task-list">
                         <?php
-        if (isset($tareas)) {
-            foreach ($tareas as $tarea) {
-                echo "<li class='task-item'>";
-                echo "<a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "&idProyecto=" . $proyecto["idProyecto"] . "' class='task-link'>";
-                echo "<div class='task-header'>";
-                echo "<div class='task-name'>" . $tarea["NombreTarea"] . "</div>";
-                echo "<div class='task-description'>" . $tarea['DescripcionTarea'] . " </div>";
-                echo "</div>";
-                echo "</a>";
-                echo "</li>";
-            }
-        }
-        ?>
+                        if (isset($tareas)) {
+                            foreach ($tareas as $tarea) {
+                                echo "<li class='task-item'>";
+                                $idProyecto = $proyecto['idProyecto'];
+                                echo "<a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "&idProyecto=" . $idProyecto . "' class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left task-link'>";
+
+                                echo "<div class='task-header'>";
+                                echo "<div class='task-name'>" . $tarea["NombreTarea"] . "</div>";
+                                echo "<div class='task-description'>" . $tarea['DescripcionTarea'] . "</div>";
+                                echo "<div class='task-state " . getTaskStateClass($tarea["estado"]) . "'>" .
+                                    $tarea["estado"] . "</div>";
+                                echo "</div>";
+                                echo "</a>";
+                                echo "</li>";
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
+                s
+
 
             </div>
         </main>
 
     </section>
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var upcomingTasks = document.querySelectorAll('.upcoming-task');
+        document.addEventListener("DOMContentLoaded", function() {
+            var upcomingTasks = document.querySelectorAll('.upcoming-task');
 
-        upcomingTasks.forEach(function(task) {
-            var dueDateElement = task.querySelector('.task-data:nth-child(2)');
-            var daysRemainingElement = task.querySelector('.days-remaining');
-            var daysMessageElement = task.querySelector('.days-message');
-            var taskStatusElement = task.querySelector('.task-data:last-child');
+            upcomingTasks.forEach(function(task) {
+                var dueDateElement = task.querySelector('.task-data:nth-child(2)');
+                var daysRemainingElement = task.querySelector('.days-remaining');
+                var daysMessageElement = task.querySelector('.days-message');
+                var taskStatusElement = task.querySelector('.task-data:last-child');
 
-            var dueDate = new Date(dueDateElement.textContent);
-            var currentDate = new Date();
+                var dueDate = new Date(dueDateElement.textContent);
+                var currentDate = new Date();
 
-            var timeDifference = dueDate.getTime() - currentDate.getTime();
-            var daysRemaining = Math.ceil(timeDifference / (1000 * 3600 * 24));
+                // Ajuste para considerar el final del día
+                var timeDifference = dueDate.getTime() - currentDate.getTime() + (24 * 60 * 60 * 1000) - 1;
+                var daysRemaining = Math.floor(timeDifference / (1000 * 3600 * 24));
 
-            daysRemainingElement.textContent = daysRemaining;
-            daysMessageElement.style.display = 'inline'; // Muestra el mensaje
-            daysMessageElement.textContent = 'días para la entrega'; // Texto del mensaje
+                daysRemainingElement.textContent = daysRemaining;
+                daysMessageElement.style.display = 'inline'; // Muestra el mensaje
+                daysMessageElement.textContent = 'días para la entrega'; // Texto del mensaje
 
-            if (daysRemaining <= 3) {
-                daysRemainingElement.style.color = 'red';
-                daysMessageElement.style.color = 'red';
-            }
+                if (daysRemaining <= 3) {
+                    daysRemainingElement.style.color = 'red';
+                    daysMessageElement.style.color = 'red';
+                }
+            });
         });
-    });
     </script>
+
+
 
 </body>
 
