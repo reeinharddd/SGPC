@@ -78,8 +78,15 @@ public function close()
             mysqli_close($this->CON);
         }
     }
+    public function getLastError()
+    {
+        return mysqli_error($this->CON);
+    }
+
 
 }
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
