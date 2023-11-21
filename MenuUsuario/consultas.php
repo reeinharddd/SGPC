@@ -54,8 +54,8 @@ class consultas
             WHERE
               UP.idUsuario = ?
               AND P.idProyecto = ?
-              AND T.estado != 'FIN' 
-            ORDER BY PT.fechaFinal ASC";
+              
+            ORDER BY PT.fechaFinal DESC";
 
             $stmt = $con->prepare($query);
             $stmt->bind_param("ii", $usuario, $proyecto);
@@ -285,4 +285,64 @@ class consultas
         $conexion->close();
         return $idProyecto;
     }
+    public function getProyectosTerminados()
+{
+    $conexion = new conexion();
+    $proyectos = array();
+    if ($conexion->connect()) {
+        $con = $conexion->getConexion();
+        $sql = "SELECT P.idProyecto, P.nombre, P.descripcion, P.ubicacion, P.fechaInicio, P.fechaFinal, P.estado 
+        FROM Proyecto P 
+        INNER JOIN UsuarioProyecto UP ON P.idProyecto = UP.idProyecto
+        WHERE UP.idUsuario = '" . $_SESSION['id'] . "' AND P.estado = 'FIN'
+        ORDER BY P.fechaFinal DESC";
+        $result = $conexion->exeqSelect($sql);
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $proyectos[] = $row;
+            }
+            unset($result, $row);
+        } else {
+            echo "No se encontraron proyectos terminados.";
+        }
+    }
+    $conexion->close();
+    return $proyectos;
+}
+public function getUsuariosPorTipoYProyecto($idProyecto, $tipoUsuario)
+{
+    $conexion = new conexion();
+    $usuarios = array();
+
+    if ($conexion->connect()) {
+        $con = $conexion->getConexion();
+
+        $query = "SELECT U.nombre, U.apellidoPat, U.apellidoMat, U.email
+                  FROM Usuario U
+                  JOIN UsuarioProyecto UP ON U.idUsuario = UP.idUsuario
+                  WHERE UP.idProyecto = ? AND U.idTipoUsuario = ?
+                  ORDER BY U.apellidoPat, U.apellidoMat, U.nombre";
+
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("ii", $idProyecto, $tipoUsuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $usuarios[] = $row;
+            }
+            unset($result, $row);
+        } else {
+            echo "No se encontraron usuarios.";
+        }
+
+        $stmt->close();
+    }
+
+    $conexion->close();
+    return $usuarios;
+}
+
+
 }
