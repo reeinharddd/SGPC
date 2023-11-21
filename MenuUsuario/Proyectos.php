@@ -1,13 +1,53 @@
 <?php
-
-@include 'config.php';
+function getTaskStateClass($estado)
+{
+    switch ($estado) {
+        case 'ACT':
+            return 'active-state';
+        case 'PEN':
+            return 'pending-state';
+        case 'FIN':
+            return 'finished-state';
+        case 'CAN':
+            return 'canceled-state';
+        case 'RET':
+            return 'delayed-state';
+        default:
+            return '';
+    }
+}
 
 session_start();
 
 if (!isset($_SESSION['user_name'])) {
     header('location:../Alertas/warning.html');
+    exit;
 }
+
+$current_page = basename($_SERVER['PHP_SELF']);
+
+include 'consultas.php';
+$consultas = new Consultas();
+$proyectos = $consultas->getProyectos();
+if ($proyectos) {
+    $proyecto = isset($_GET['idProyecto']) ? $_GET['idProyecto'] : null;
+    $idProyecto = $_SESSION['idProyecto'];
+
+    if ($proyecto !== null) {
+        $tareas = $consultas->getTareas($proyecto);
+        $infoProyecto = $consultas->getInfoProyecto($proyecto);
+        $primerasTareas = $consultas->obtenerPrimerasTareas($_SESSION['id'], $proyecto, 3);
+
+
+    } else {
+        echo "No se encontró el proyecto.";
+    }
+} else {
+    echo "No se encontraron proyectos.";
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,72 +58,122 @@ if (!isset($_SESSION['user_name'])) {
     <link rel="stylesheet" href="../css/proyectos.css">
     <link rel="icon" href="../img/Logo1.png" type="image/png">
 </head>
-<header class="header">
-    <div class="user-info">
-        <a href="index.php" class="back-link">
-            <img src="../img/left-arrow.svg" alt="Regresar">
-        </a>
-        <img src="../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
-        <div>
-            <h3><?php echo $_SESSION['user_name']; ?></h3>
-            <p>Usuario</p>
-        </div>
-    </div>
-    <div class="logo">
-        <a href="../img/Logo1.png">
-            <img src="../img/Logo1.png" alt="Logo de la empresa">
-        </a>
-    </div>
-    <nav class="navigation">
-        <ul>
-            <li><a href="#">Proyectos</a></li>
-            <li><a href="Calendario/Calendario.php">Calendario</a></li>
-            <li><a href="Contacto.php">Contacto</a></li>
-            <li><a href="../InicioSesion/logout.php">Cerrar sesión</a></li>
-        </ul>
-    </nav>
-</header>
 
-<section>
-    <aside class="menu">
-        <ul>
-            <li><a href="#">Opción 1</a></li>
-            <li><a href="#">Opción 2</a></li>
-            <li><a href="#">Opción 3</a></li>
-        </ul>
-    </aside>
+<body>
+    <?php
+    include "plantillas/header.php";
 
-    <body class="cuerpo">
+
+    include "plantillas/miniBar.php"
+    ?> <section>
 
         <?php
-        include "../conexion.php";
-        $conexion = new conexion();
-        if ($conexion->connect()) {
-            $con = $conexion->getConexion();
-            $proyecto = $_GET['idProyecto'];
-            $usuario = $_SESSION['id'];
-
-            $query = "SELECT T.titulo AS NombreTarea, T.descripcion AS DescripcionTarea, T.idTarea As idTarea FROM Proyecto P INNER JOIN UsuarioProyecto UP ON P.idProyecto = UP.idProyecto INNER JOIN UsuarioTarea UT ON UP.idUsuario = UT.idUsuario INNER JOIN Tarea T ON UT.idTarea = T.idTarea WHERE UT.idUsuario = $usuario AND P.idProyecto = $proyecto";
-
-            $result = $conexion->exeqSelect($query);
-            if ($result) {
-
-                while ($row = mysqli_fetch_assoc($result)) {
-
-                    echo "<div class='project-box'>";
-
-                    echo "<div class='project-info'>";
-                    echo "<h3>Nombre: " . $row["NombreTarea"] . "</h3>";
-                    echo "<p>Descripción: " . $row["DescripcionTarea"] . "</p>";
-                    echo "</div>";
-
-                    echo "<a href='detalleTarea.php?idTarea=" . $row["idTarea"] . "&idProyecto=" .$proyecto. "' class='details-button'>Ver detalles</a>";
-
-                    echo "</div>";
-                }
-            }
-        }
+        include "plantillas/menu.php";
         ?>
-    </body>
+
+        <main>
+            <div class="project-banner">
+                <div class="project-banner-overlay"></div>
+
+                <h1><?php echo $infoProyecto['nombre']; ?></h1>
+                <p><strong>Fecha de Inicio:</strong> <?php echo $infoProyecto['fechaInicio']; ?></p>
+                <p><strong>Fecha Final:</strong> <?php echo $infoProyecto['fechaFinal']; ?></p>
+                <p><strong>Estado:</strong> <?php echo $infoProyecto['estado']; ?></p>
+                <p><strong>Ubicación:</strong> <?php echo $infoProyecto['ubicacion']; ?></p>
+                <p><strong>Descripción:</strong> <?php echo $infoProyecto['descripcion']; ?></p>
+            </div>
+
+            <div class="project-list">
+                <div class="left-section">
+                    <h2>Tareas Próximas</h2>
+
+                    <?php foreach ($primerasTareas as $tarea) : ?>
+                    <a href='detalleTarea.php?idTarea=<?= $tarea["idTarea"] ?>&idProyecto=<?= $proyecto["idProyecto"] ?>'
+                        class='upcoming-task <?= strtolower($tarea["estado"]) . "-state-left"; ?>'>
+                        <div class='task-info'>
+                            <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
+                            <div class='task-data'>
+                                <div class="fechas">
+                                    <span class="label">Fecha final:</span>
+                                    <span
+                                        class="date"><?= $tarea["fechaInicio"] . ' - ' . $tarea["fechaFinal"]; ?></span>
+                                </div>
+                            </div>
+                            <div class='task-data'>
+                                <span class='days-remaining'></span>
+                                <span class='days-message'>días para la fecha final</span>
+                            </div>
+                            <div class='task-data'><?= $tarea["estado"] ?></div>
+                        </div>
+                    </a>
+                    <?php endforeach; ?>
+                </div>
+
+
+
+
+
+
+                <div class="right-section">
+                    <h2>Todas las tareas</h2>
+                    <ul class="task-list">
+                        <?php
+                        if (isset($tareas)) {
+                            foreach ($tareas as $tarea) {
+                                echo "<li class='task-item'>";
+                                $idProyecto = $proyecto['idProyecto'];
+                                echo "<a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "&idProyecto=" . $idProyecto . "' class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left task-link'>";
+
+                                echo "<div class='task-header'>";
+                                echo "<div class='task-name'>" . $tarea["NombreTarea"] . "</div>";
+                                echo "<div class='task-description'>" . $tarea['DescripcionTarea'] . "</div>";
+                                echo "<div class='task-state " . getTaskStateClass($tarea["estado"]) . "'>" .
+                                    $tarea["estado"] . "</div>";
+                                echo "</div>";
+                                echo "</a>";
+                                echo "</li>";
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+
+
+
+            </div>
+        </main>
+
+    </section>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var upcomingTasks = document.querySelectorAll('.upcoming-task');
+
+        upcomingTasks.forEach(function(task) {
+            var dueDateElement = task.querySelector('.task-data:nth-child(2)');
+            var daysRemainingElement = task.querySelector('.days-remaining');
+            var daysMessageElement = task.querySelector('.days-message');
+            var taskStatusElement = task.querySelector('.task-data:last-child');
+
+            var dueDate = new Date(dueDateElement.textContent);
+            var currentDate = new Date();
+
+            var timeDifference = dueDate.getTime() - currentDate.getTime() + (24 * 60 * 60 * 1000) - 1;
+            var daysRemaining = Math.floor(timeDifference / (1000 * 3600 * 24));
+
+            daysRemainingElement.textContent = daysRemaining;
+            daysMessageElement.style.display = 'inline';
+            daysMessageElement.textContent = 'días para la entrega';
+
+            if (daysRemaining <= 3) {
+                daysRemainingElement.style.color = 'red';
+                daysMessageElement.style.color = 'red';
+            }
+        });
+    });
+    </script>
+
+
+
+</body>
 
 </html>

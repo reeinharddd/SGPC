@@ -13,10 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $row = mysqli_fetch_array($result);
         $_SESSION['id'] = $row['idUsuario'];
 
-        if ($row['idTipoUsuario'] == '1'){
+        if ($row['idTipoUsuario'] == '1') {
             $_SESSION['admin_name'] = $row['nombre'];
             header('location:../MenuAdmin/index.php');
-        }else if($row['idTipoUsuario'] == '2') {
+        } else if ($row['idTipoUsuario'] == '2') {
             $_SESSION['arqui_name'] = $row['nombre'];
             header('location:../MenuArquitecto/index.php');
         } else if ($row['idTipoUsuario'] == '3') {
@@ -24,11 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('location:../MenuUsuario/index.php');
         }
     } else {
-        
-        echo 'incorrecto';
-    
-        header('location:index.html');
-        
+
+        $_SESSION['error'] = true;
+        header('location:index.php');
+        exit();
     }
 }
-?>

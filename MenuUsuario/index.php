@@ -1,10 +1,25 @@
 <?php
+
 session_start();
 
 if (!isset($_SESSION['user_name'])) {
     header('location:../Alertas/warning.html');
     exit;
 }
+
+$current_page = basename($_SERVER['PHP_SELF']);
+include "consultas.php";
+$consultas = new Consultas();
+$proyectos = $consultas->getProyectos();
+
+if (!empty($proyectos)) {
+    $proyecto = $proyectos[0];
+    $_SESSION['idProyecto'] = $proyecto['idProyecto'];
+} else {
+    header('location:../Alertas/error.html');
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -19,81 +34,70 @@ if (!isset($_SESSION['user_name'])) {
 </head>
 
 <body>
-    <header class="header">
-        <div class="logo">
-            <img src="../img/Logo1.png" alt="Logo de la empresa">
-        </div>
-        <div class="user-info">
-            <img src="../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
-            <h3><?php echo $_SESSION['user_name']; ?> <p>Usuario</p>
-            </h3>
+    <?php
+    include "plantillas/header.php";
 
-        </div>
-        <button class="about-button">¿Qué es esta aplicación?</button>
-
-
-
-    </header>
+    ?>
     <section>
-        <aside class="menu">
-            <ul>
-                <div class="head-menu">
-                    <li><a href="#">Página Principal</a></li>
-                    <li><a href="Calendario/Calendario.php">Calendario</a></li>
-                </div>
-                <li><a href="#">Tareas Activas</a></li>
-                <li><a href="#">Tareas Terminadas</a></li>
-                <li><a href="../InicioSesion/logout.php">Cerrar Sesión</a></li>
-            </ul>
-        </aside>
+
+        <?php
+        include "plantillas/menu.php";
+        ?>
         <main>
+
             <div class="project-list">
                 <?php
-                include "../conexion.php";
+                foreach ($proyectos as $proyecto) {
 
-                $conexion = new conexion();
-                if ($conexion->connect()) {
-                    $con = $conexion->getConexion();
-                    $sql = "SELECT P.idProyecto, P.nombre, P.descripcion, P.ubicacion, P.fechaInicio, P.fechaFinal, P.estado 
-                        FROM Proyecto P 
-                        INNER JOIN UsuarioProyecto UP ON P.idProyecto = UP.idProyecto
-                        WHERE UP.idUsuario = " . $_SESSION['id'];
+                    echo "<div class='project-box' onclick='redirectToTasks(" . $proyecto["idProyecto"] . ")'>";
+                    echo "<div class='project-header'>";
+                    echo "<div class='project-title'>" . $proyecto["nombre"] . "</div>";
 
-                    $result = $conexion->exeqSelect($sql);
-                    if ($result) {
-
-                        while ($row = mysqli_fetch_assoc($result)) {
-
-                            echo "<div class='project-box'>";
-
-                            echo "<div class='project-header'>";
-                            echo "<div class='project-number'>" . $row["idProyecto"] . "</div>";
-                            echo "<div class='project-name'>" . $row["nombre"] . "</div>";
-                            echo "<div class='project-location'>" . $row['ubicacion'] . "</div>";
-                            echo "</div>";
-
-                            echo "<div class='project-dates'>";
-                            echo "<div class='project-date'>" . $row['fechaInicio'] . "</div>";
-                            echo "<div class='project-state'>" . $row['estado'] . "</div>";
-                            echo "<div class='project-date'>" . $row['fechaFinal'] . "</div>";
-                            echo "</div>";
-
-                            echo "<a href='Proyectos.php?idProyecto=" . $row["idProyecto"] . "' class='details-button'>Ver detalles</a>";
-
-                            echo "</div>";
-                        }
-
-                        echo "</div>";
-                    } else {
-
-                        echo "No se encontraron proyectos.";
+                    $estadoClass = '';
+                    switch ($proyecto['estado']) {
+                        case 'ACT':
+                            $estadoClass = 'active-state';
+                            break;
+                        case 'PEN':
+                            $estadoClass = 'pending-state';
+                            break;
+                        case 'FIN':
+                            $estadoClass = 'finished-state';
+                            break;
+                        case 'CAN':
+                            $estadoClass = 'canceled-state';
+                            break;
+                        case 'RET':
+                            $estadoClass = 'delayed-state';
+                            break;
                     }
+
+                    echo "<div class='project-info'>";
+                    echo "<div class='project-state $estadoClass'>" . $proyecto['estado'] . "</div>";
+                    echo "</div>";
+
+                    echo "<div class='project-dates'>";
+                    echo "<div class='project-date-label'>Fecha Inicio:</div>";
+                    echo "<div class='project-date'>" . $proyecto['fechaInicio'] . "</div>";
+                    echo "<div class='project-date-label'>Fecha Fin:</div>";
+                    echo "<div class='project-date'>" . $proyecto['fechaFinal'] . "</div>";
+                    echo "</div>";
+
+                    echo "</div>";
+                    echo "</div>";
                 }
                 ?>
             </div>
+
         </main>
+
     </section>
-    <div class="hero"></div>
+    <script>
+        function redirectToTasks(idProyecto) {
+            window.location.href = 'Proyectos.php?idProyecto=' + idProyecto;
+        }
+    </script>
+
 </body>
 
 </html>
