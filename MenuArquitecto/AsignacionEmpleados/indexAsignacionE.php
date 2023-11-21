@@ -14,7 +14,7 @@ if (!isset($_SESSION['arqui_name'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Asignación de Tareas</title>
+        <title>Asignación de Empleados</title>
         <link rel="stylesheet" href="../../css/main.css" />
         <link rel="icon" href="../../img/Logo1.png" type="image/png">
     </head>
@@ -39,12 +39,12 @@ if (!isset($_SESSION['arqui_name'])) {
             <p>Ingrese el ID del empleado al que quiere asignar a un proyecto, utilizando el ID del proyecto.</p>
             <form method="post" action="addAsignarE.php" class="colortexto">
             <br>
-
+                <label>ID Proyecto: *<input type="text" name="IDP"></label>
+                <br>
                 <label>ID Empleado: *<input type="text" name="IDU" required 
                 placeholder="max. 40 caracteres"></label>
                 <br>
-                <label>ID Proyecto: *<input type="text" name="IDP"></label>
-                <br>
+                
                 <input type="reset" value="Cancel">
                 <input type="submit" value="Send">
             </form>

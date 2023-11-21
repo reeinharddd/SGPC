@@ -5,11 +5,11 @@ class AsignarE extends conexion {
     private $idUsuario;
     private $idProyecto;
 
-    public function setidUsuario($idUsuario){
+    public function setIdUsuario($idUsuario){
         $this->idUsuario = $idUsuario;
     }
 
-    public function setidProyecto($idProyecto){
+    public function setIdProyecto($idProyecto){
         $this->idProyecto = $idProyecto;
     }
 
