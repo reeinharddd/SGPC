@@ -4,6 +4,7 @@ class Asignar extends conexion{
 
     private $idTarea;
     private $idUsuario;
+    
 
     public function setIdUsuario($idUsuario){
         $this->idUsuario=$idUsuario;
@@ -12,6 +13,8 @@ class Asignar extends conexion{
     public function setIdTarea($idTarea){
         $this->idTarea=$idTarea;
     }
+
+    
     
     public function setAsignacion(){
         $query = "insert into usuariotarea (idUsuario, idTarea)

@@ -29,7 +29,7 @@ class Tareas extends conexion{
 
     public function setFullTarea(){
         $query = "insert into tarea (titulo, descripcion, estado, idProyecto)
-        values ('".$this->nombre."', '".$this->descripcion."', '".$this->estado."', '".$this->idProyecto."')";
+        values ('".$this->titulo."', '".$this->descripcion."', '".$this->estado."', '".$this->idProyecto."')";
         $result = $this->connect();
         if ($result == true){
             echo "Insercion Exitosa";

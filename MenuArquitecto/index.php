@@ -38,10 +38,11 @@ if (!isset($_SESSION['arqui_name'])) {
     <section>
       <aside class="menu">
         <ul>
-        <li><a href="AsignacionTareas/indexAsignacion.php">Asignar tareas</a></li>
+          <li><a href="AsignacionTareasP/indexAsignacion.php">Asignar tareas</a></li>
+          <li><a href="AsignacionEmpleados/indexAsignacionE.php">Asignar empleados</a></li>
           <li><a href="GestionDeTareas/indexTareas.php">Registrar tareas</a></li>
           <li><a href="RegistroProyectos/indexProyectos.php">Registrar Proyectos</a></li>
-          <li><a href="../InicioSesion/logout.php">Cerrar sesion</a></li>
+          <li><a href="../InicioSesion/logout.php">Cerrar sesión</a></li>
         </ul>
       </aside>
     </section>

@@ -23,6 +23,9 @@ if (!isset($_SESSION['arqui_name'])) {
             <img src="../../img/Logo1.png" alt="Logo de la empresa">
         </div>
         <div class="user-info">
+            <h3>Registro de tareas</h3>
+        </div>
+        <div class="user-info">
             <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
             <h3><?php echo $_SESSION['arqui_name']; ?> <p>Arquitecto</p>
             </h3>
@@ -32,7 +35,7 @@ if (!isset($_SESSION['arqui_name'])) {
     
     <body>
         <div class="hero">
-            <h1 class="colortexto">Registro de Tareas</h1>
+            
             <form method="post" action="addTarea.php" class="colortexto">
             <button><a href="../index.php">◄ Menú</a></button>
             <br>
@@ -41,12 +44,9 @@ if (!isset($_SESSION['arqui_name'])) {
                 pattern="[A-Za-z\s']{2,50}" placeholder="max. 40 caracteres"></label>
                 <br>
                 <label>Descripción de la Tarea: *<input type="text" name="Des" required 
-                pattern="[A-Za-z\s']{2,50}" placeholder="max. 100 caracteres"></label>
+                pattern="[A-Za-z\s'´ ()''/,.#]{2,50}" placeholder="max. 100 caracteres"></label>
                 <br>
-                <label>Fecha de Inicio: *<input type="date" name="F-inicio" id="fechaInicio" required></label>
-                <br>
-                <label>Fecha de Finalización: *<input type="date" name="F-fin" id="fechaFin" required></label>
-                <br>
+                
                 <label>Estado de la Tarea: *
                     <select name="estado">
                         <?php
@@ -73,26 +73,12 @@ if (!isset($_SESSION['arqui_name'])) {
                     </select>
                 </label>
                 <br>
-                <label>ID tarea: *<input type="number" name="IDtarea"></label>
+                <label>ID Proyecto: *<input type="number" name="IDtarea"></label>
                 <input type="reset" value="Cancel">
                 <br>
                 <input type="submit" value="Send">
             </form>
-            <script>
-                document.getElementById("datos").addEventListener("submit", function(event) {
-                const fechaInicio = new Date(document.getElementById("fechaInicio").value);
-                const fechaFin = new Date(document.getElementById("fechaFin").value);
-                const fechaActual = new Date();
-
-                if (fechaInicio < fechaActual) {
-                    alert("La fecha de inicio no puede ser anterior al día actual.");
-                    event.preventDefault();
-                } else if (fechaFin < fechaInicio) {
-                    alert("La fecha de fin no puede ser anterior a la fecha de inicio.");
-                    event.preventDefault();
-                }
-                });
-            </script>
+           
         </div>
         
     </body>
