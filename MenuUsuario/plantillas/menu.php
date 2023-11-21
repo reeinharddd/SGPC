@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC</title>
-    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/proyectos.css">
     <link rel="icon" href="../img/Logo1.png" type="image/png">
 
 
@@ -39,7 +39,7 @@
             </li>
 
             <li role="separator"></li>
-            <li><a href="#">Proyectos Terminados</a></li>
+            <li><a href="proyectosTerminados.php">Proyectos Terminados</a></li>
             <li><a href="../InicioSesion/logout.php">Cerrar Sesión</a></li>
 
         </ul>
