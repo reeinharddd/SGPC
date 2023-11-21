@@ -1,49 +1,59 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const daysInMonth = (month, year) => new Date(year, month, 0).getDate();
-    const calendarBody = document.querySelector('.calendar-body');
-    const currentMonthYear = document.getElementById('currentMonthYear');
-    
-    let currentMonth = 9;
-    let currentYear = 2023;
+    const calendarContainer = document.getElementById('calendar');
+    const monthYear = document.getElementById('month-year');
+    const prevMonthBtn = document.getElementById('prev-month');
+    const nextMonthBtn = document.getElementById('next-month');
 
-    const loadMonth = (month, year) => {
-        calendarBody.innerHTML = '';
-        
-        // Cargar nuevas fechas
-        for (let i = 1; i <= daysInMonth(month + 1, year); i++) {
-            const dayDiv = document.createElement('div');
-            dayDiv.innerText = i;
-            dayDiv.addEventListener('click', function() {
-                window.location.href = `detalles_fecha.html?day=${i}&month=${currentMonth + 1}&year=${currentYear}`;
-            });
-            calendarBody.appendChild(dayDiv);
+    let currentDate = new Date();
+
+    const popup = document.getElementById('popup');
+    const fechaInfo = document.getElementById('fecha-info');
+    const closeBtn = document.querySelector('.close-btn');
+
+    closeBtn.onclick = () => popup.style.display = 'none';
+
+    function loadPopupContent(date) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'detalles_fecha.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (this.status === 200) {
+                fechaInfo.innerHTML = this.responseText;
+            } else {
+                fechaInfo.textContent = 'Error al cargar proyectos';
+            }
+        };
+        xhr.send('fecha=' + date);
+    }
+    const loadCalendar = (date) => {
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        calendarContainer.innerHTML = '';
+        monthYear.textContent = `${date.toLocaleString('es', { month: 'long' })} ${year}`;
+
+        for (let i = 1; i <= daysInMonth; i++) {
+            const dayElem = document.createElement('div');
+            dayElem.classList.add('day');
+            dayElem.textContent = i;
+            dayElem.onclick = () => {
+                const selectedDate = `${year}-${month + 1}-${i}`; // Formato de fecha Año-Mes-Día
+                loadPopupContent(selectedDate);
+                popup.style.display = 'block';
+            };
+            calendarContainer.appendChild(dayElem);
         }
-
-        const monthNames = [
-            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-        ];
-        currentMonthYear.innerText = `${monthNames[month]} ${year}`;
     }
 
-    document.getElementById('prevMonth').addEventListener('click', function() {
-        currentMonth--;
-        if (currentMonth < 0) {
-            currentMonth = 11; // Diciembre
-            currentYear--;
-        }
-        loadMonth(currentMonth, currentYear);
-    });
+    prevMonthBtn.onclick = () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        loadCalendar(currentDate);
+    }
 
-    document.getElementById('nextMonth').addEventListener('click', function() {
-        currentMonth++;
-        if (currentMonth > 11) {
-            currentMonth = 0; // Enero
-            currentYear++;
-        }
-        loadMonth(currentMonth, currentYear);
-    });
+    nextMonthBtn.onclick = () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        loadCalendar(currentDate);
+    }
 
-    // Cargar el mes inicial
-    loadMonth(currentMonth, currentYear);
+    loadCalendar(currentDate);
 });

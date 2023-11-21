@@ -36,18 +36,23 @@ if (!isset($_SESSION['user_name'])) {
           </ul>
         </nav>
       </header>
-      <div class = "hero">
-        <div class="calendar">
-        <div class="calendar-header">
-            <button id="prevMonth">←</button>
-            <span id="currentMonthYear">Octubre 2023</span>
-            <button id="nextMonth">→</button>
-        </div>
-        <div class="calendar-body">
-            <!-- Las fechas se insertarán con JavaScript -->
+
+    <div id="calendar-container">
+        <button id="prev-month">←</button>
+        <h2 id="month-year"></h2>
+        <button button id="next-month">→</button>
+        <div id="calendar"></div>
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <h3>Proyectos del dia</h3>
+            <p id="fecha-info">Información de la fecha seleccionada aquí</p>
         </div>
     </div>
+
     
-        <script src="script.js"></script></div>
+    <div><script src="script.js"></script></div>
 </body>
 </html>
