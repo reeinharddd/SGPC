@@ -38,82 +38,98 @@ if ($proyectos) {
 
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
+            <!DOCTYPE html>
+            <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGPC</title>
-    <link rel="stylesheet" href="../css/detalleTarea.css">
-    <link rel="icon" href="../img/Logo1.png" type="image/png">
-</head>
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>SGPC</title>
+                <link rel="stylesheet" href="../css/detalleTarea.css">
+                <link rel="icon" href="../img/Logo1.png" type="image/png">
+            </head>
 
-<body>
-    <?php
-
+            <body>
+                <?php
                 include "plantillas/header.php";
                 include "plantillas/menu.php";
                 ?>
-    <?php
 
+                <?php
                 if ($tareaSeleccionada) {
                     $infoProyecto = $consultas->getInfoProyecto($tareaSeleccionada['idProyecto']);
                     $usuarioAsignado = $consultas->getUsuarioAsignado($tareaSeleccionada['idTarea']);
                     $comentarios = $consultas->getComentariosTarea($tareaSeleccionada['idTarea']);
                 ?>
-    <main>
-        <form action="marcar_completa.php" method="post">
-            <input type="hidden" name="idTarea" value="<?= $tareaSeleccionada['idTarea']; ?>">
-            <input type="submit" value="Marcar como Completa">
-        </form>
-        <div class="task-details">
-            <h2><?= $tareaSeleccionada['NombreTarea']; ?></h2>
-            <p><strong>Fecha de Inicio:</strong> <?= date("Y-m-d", strtotime($tareaSeleccionada['fechaInicio'])); ?></p>
-            <p><strong>Fecha Final:</strong>
-                <?= ($tareaSeleccionada['fechaFinal'] !== null) ? date("Y-m-d", strtotime($tareaSeleccionada['fechaFinal'])) : 'Sin fecha final'; ?>
-            </p>
+                    <main>
 
 
-            <p><strong>Estado:</strong> <?= $consultas->obtenerNombreEstado($tareaSeleccionada['estado']); ?></p>
-            <p><strong>Descripción:</strong> <?= $tareaSeleccionada['DescripcionTarea']; ?></p>
+                        <div class="task-details">
+                            <div class="header-section">
+                                <h2><?= $tareaSeleccionada['NombreTarea']; ?></h2>
+                                <p class="date">
+                                    <strong>Fecha de Inicio:</strong>
+                                    <?= date("Y-m-d", strtotime($tareaSeleccionada['fechaInicio'])); ?>
+                                </p>
+                                <p class="date">
+                                    <strong>Fecha Final:</strong>
+                                    <?= ($tareaSeleccionada['fechaFinal'] !== null) ? date("Y-m-d", strtotime($tareaSeleccionada['fechaFinal'])) : 'Sin fecha final'; ?>
+                                </p>
+                                <form action="marcar_completa.php" method="post" class="complete-task-section">
+                                    <input type="hidden" name="idTarea" value="<?= $tareaSeleccionada['idTarea']; ?>">
+                                    <input type="submit" value="Marcar como Completa" class="complete-task-button">
+                                </form>
+                                <p class="status <?= $consultas->obtenerNombreEstado($tareaSeleccionada['estado']); ?>">
+                                    <strong>Estado:</strong> <?= $consultas->obtenerNombreEstado($tareaSeleccionada['estado']); ?>
+                                </p>
 
-            <?php if (!empty($comentarios)) : ?>
-            <div class="comments-section">
-                <p><strong>Comentarios:</strong></p>
-                <?php foreach ($comentarios as $comentario) : ?>
-                <div class="comment">
-                    <p><?= $comentario['descripcion']; ?></p>
-                    <p><strong>Fecha:</strong> <?= $comentario['fechaComentario']; ?></p>
-                    <p><strong>Usuario:</strong> <?= $comentario['nombreUsuario']; ?></p>
-                </div>
-                <?php endforeach; ?>
-            </div>
-            <?php else : ?>
-            <p>No hay comentarios disponibles.</p>
-            <?php endif; ?>
-            <div class="add-comment-section">
-                <h3>Agregar Comentario</h3>
-                <form action="agregar_comentario.php" method="post">
-                    <textarea name="comentario" placeholder="Escribe tu comentario aquí..." required></textarea>
-                    <input type="hidden" name="idTarea" value="<?= $tareaSeleccionada['idTarea']; ?>">
-                    <input type="submit" value="Enviar Comentario">
-                </form>
-            </div>
-        </div>
-    </main>
+                                <div class="divider"></div>
+
+                                <div class="project-description">
+                                    <p><?= $tareaSeleccionada['DescripcionTarea']; ?></p>
+                                </div>
+                            </div>
+                        </div>
 
 
 
+                        <div class="divider"></div>
 
-    <?php
+                        <?php if (!empty($comentarios)) : ?>
+                            <div class="comments-section">
+                                <h3>Comentarios:</h3>
+                                <?php foreach ($comentarios as $comentario) : ?>
+                                    <div class="comment <?= ($comentario['nombreUsuario'] == 'nombreUsuarioActual') ? 'user-comment' : ''; ?>">
+                                        <p><?= $comentario['descripcion']; ?></p>
+                                        <p><strong>Fecha:</strong> <?= $comentario['fechaComentario']; ?></p>
+                                        <p><strong>Usuario:</strong> <?= $comentario['nombreUsuario']; ?></p>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php else : ?>
+                            <p>No hay comentarios disponibles.</p>
+                        <?php endif; ?>
+
+                        <div class="add-comment-section">
+                            <h3>Agregar Comentario</h3>
+                            <form action="agregar_comentario.php" method="post">
+                                <textarea name="comentario" placeholder="Escribe tu comentario aquí..." required></textarea>
+                                <input type="hidden" name="idTarea" value="<?= $tareaSeleccionada['idTarea']; ?>">
+                                <input type="submit" value="Enviar Comentario">
+                            </form>
+                        </div>
+                        </div>
+                    </main>
+
+                <?php
                 } else {
                     echo "No se encontró la tarea seleccionada.";
                 }
                 ?>
-</body>
 
-</html>
+            </body>
+
+            </html>
 <?php
         } else {
             echo "No se encontró la tarea seleccionada.";
