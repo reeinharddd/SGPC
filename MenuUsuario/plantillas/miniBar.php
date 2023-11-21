@@ -5,72 +5,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/proyectos.css">
     <link rel="icon" href="../img/Logo1.png" type="image/png">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
-        #header {
-            background-color: #f1f1f1;
-            padding: 20px;
-            text-align: center;
-        }
+    #header {
+        background-color: #f1f1f1;
+        padding: 20px;
+        text-align: center;
+    }
 
-        #miniBar a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
+    #miniBar a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
 
-        #miniBar a:hover {
-            color: blue;
-        }
+    #miniBar a:hover {
+        color: blue;
+    }
 
-        .highlighted {
-            background-color: yellow;
-        }
+    .highlighted {
+        background-color: yellow;
+    }
+
+    /* Agregado para deshabilitar el enlace */
+    #miniBar a.disabled {
+        pointer-events: none;
+        color: grey;
+    }
     </style>
 </head>
 
 <body>
     <div id="header">
         <div id="miniBar">
-            <a href="#" id="volver">Volver</a>
-            <a href="#" id="verTareas">Ver Tareas</a>
-            <a href="#" id="verUsuarios">Ver Usuarios</a>
+            <a href="#" id="verTareas" class="<?php echo ($current_page === 'Proyectos.php') ? 'disabled' : ''; ?>">Ver
+                Tareas</a>
+            <a href="#" id="verUsuarios"
+                class="<?php echo ($current_page === 'usuariosProyecto.php') ? 'disabled' : ''; ?>">Ver
+                Usuarios</a>
         </div>
     </div>
+
     <script>
-        $(document).ready(function() {
-            function handleNavigation(elementId, targetPage) {
-                $('#miniBar a').removeClass('highlighted');
+    $(document).ready(function() {
+        function handleNavigation(elementId, targetPage) {
+            $('#miniBar a').removeClass('highlighted');
 
-                $('#' + elementId).addClass('highlighted');
+            $('#' + elementId).addClass('highlighted');
 
-                if (targetPage) {
-                    window.location.href = targetPage;
-                } else {
-                    console.log("No hay destino específico.");
-                }
-            }
-
-            $('#verTareas').click(function(e) {
-                handleNavigation('verTareas', 'Proyectos.php?idProyecto=$_SESSION["idProyecto"]');
-            });
-
-            $('#verUsuarios').click(function(e) {
-                e.preventDefault();
-                handleNavigation('verUsuarios', 'usuariosProyecto.php');
-            });
-            $('#volver').click(function(e) {
-                e.preventDefault();
+            if (targetPage) {
+                window.location.href = targetPage;
+            } else {
                 history.back();
-            });
-
-            if (performance.navigation.type == 2) {
-                $('#verUsuarios').addClass('highlighted');
             }
+        }
+
+        $('#verTareas').click(function(e) {
+            e.preventDefault();
+            handleNavigation('verTareas');
         });
+
+        $('#verUsuarios').click(function(e) {
+            e.preventDefault();
+            handleNavigation('verUsuarios', 'usuariosProyecto.php');
+        });
+        $('#volver').click(function(e) {
+            e.preventDefault();
+            history.back();
+        });
+
+        if (performance.navigation.type == 2) {
+            $('#verUsuarios').addClass('highlighted');
+        }
+    });
     </script>
 </body>
 
