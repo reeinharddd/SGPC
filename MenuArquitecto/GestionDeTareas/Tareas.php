@@ -3,21 +3,16 @@ include("../../conexion.php");
 class Tareas extends conexion{
 
     
-    private $codigo;
-    private $nombre;
+    
+    private $titulo;
     private $descripcion;
     private $fechaInicio;
     private $fechaFinal;
     private $estado;
+    private $idProyecto;
 
-    
-
-    public function setCodigo($codigo){
-        $this->codigo = $codigo;
-    }
-
-    public function setNombre($nombre){
-        $this->nombre = $nombre;
+    public function setTitulo($titulo){
+        $this->titulo = $titulo;
     }
 
     public function setDescripcion($descripcion){
@@ -28,8 +23,13 @@ class Tareas extends conexion{
         $this->estado = $estado;
     }
 
+    public function setIdProyecto($idProyecto){
+        $this->idProyecto=$idProyecto;
+    }
+
     public function setFullTarea(){
-        $query = "insert into Tareas (Codigo, Nombre, Descripcion, Estado) values ('".$this->codigo."', '".$this->nombre."', '".$this->descripcion."', '".$this->estado."')";
+        $query = "insert into tarea (titulo, descripcion, estado, idProyecto)
+        values ('".$this->titulo."', '".$this->descripcion."', '".$this->estado."', '".$this->idProyecto."')";
         $result = $this->connect();
         if ($result == true){
             echo "Insercion Exitosa";

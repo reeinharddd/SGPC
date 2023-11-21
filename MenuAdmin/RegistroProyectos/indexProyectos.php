@@ -4,7 +4,7 @@
 
 session_start();
 
-if (!isset($_SESSION['admin_name'])) {
+if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
     header('location:../../Alertas/warning.html');
 }
 ?>
@@ -13,17 +13,34 @@ if (!isset($_SESSION['admin_name'])) {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestión de Proyectos</title>
-
+    <link rel="stylesheet" href="../../css/main.css" />
     <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
+<header class="header">
+<div class="logo">
+        <img src="../../img/Logo1.png" alt="Logo de la empresa">
+    </div>
+    <div class="user-info">
+            <h3>Registro de Proyectos</h3>
+        </div>
+    <div class="user-info">
+        <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
+        <h3><?php echo $_SESSION['admin_name']; ?> <p>Administrador</p>
+        </h3>
+
+    </div>
+</header>
 
 <body>
 
     <div class="hero">
-        <button><b><a href="../index.php">Regresar al menú</a></b></button>
-        <h1 class="colortexto">Registro de Proyectos</h1>
+        
         <form id="datos" method="post" action="addProyecto.php" class="colortexto">
+        <button><b><a href="../index.php">◄ Menú</a></b></button>
+        <br>
+
             <label>Nombre del proyecto: * <input type="text" name="txtNombre" required
                     placeholder="max. 100 caracteres"></label>
             <br>
@@ -54,7 +71,7 @@ if (!isset($_SESSION['admin_name'])) {
                                 echo "<option value='" . $row['codigo'] . "'>" . $row['nombre'] . "</option>";
                             }
                         } else {
-                            echo "Erro en la consulta: " . mysqli_error($con);
+                            echo "Error en la consulta: " . mysqli_error($con);
                         }
                     } else {
                         echo "Error en la conexión: " . mysqli_error($con);
