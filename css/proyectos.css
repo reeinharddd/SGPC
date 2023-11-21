@@ -6,7 +6,7 @@
 
 body {
   background-color: #e0e0e1;
-  margin-top: 100px;
+  margin-top: 77px;
 }
 
 .header {
@@ -218,8 +218,8 @@ main {
   flex: 1;
 }
 .task-state {
-  font-size: 12px; 
-  padding: 5px; 
+  font-size: 12px;
+  padding: 5px;
   border-radius: 4px;
   display: inline-block;
 }
@@ -255,15 +255,15 @@ main {
 }
 
 .task-status {
-  font-size: 12px; 
-  padding: 5px; 
-  border-radius: 4px; 
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 4px;
 }
 .right-section .task-state {
   font-size: 12px;
-  padding: 5px; 
-  border-radius: 4px; 
-  display: inline-block; 
+  padding: 5px;
+  border-radius: 4px;
+  display: inline-block;
   max-width: 5%;
 }
 .right-section .active-state,
@@ -271,9 +271,9 @@ main {
 .right-section .finished-state,
 .right-section .canceled-state,
 .right-section .delayed-state {
-  width: auto; 
-  padding: 5px; 
-  border-radius: 4px; 
+  width: auto;
+  padding: 5px;
+  border-radius: 4px;
 }
 
 .right-section {

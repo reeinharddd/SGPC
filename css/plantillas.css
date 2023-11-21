@@ -1,0 +1,682 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "Poppins";
+}
+
+body { 
+
+  background-color: #e0e0e1; 
+  
+  margin-top: 100px; 
+  
+  } 
+  
+   
+   
+  
+  .header { 
+  
+  display: flex; 
+  
+  justify-content: space-between; 
+  
+  align-items: center; 
+  
+  background: rgb(32, 30, 31); 
+  
+  padding: 10px; 
+  
+  position: fixed; 
+  
+  top: 0; 
+  
+  left: 0; 
+  
+  right: 0; 
+  
+  z-index: 1000; 
+  
+  border-bottom: 3px solid #ff6947; 
+  
+  } 
+  
+   
+   
+  
+  .header .user-info { 
+  
+  display: flex; 
+  
+  align-items: center; 
+  
+  color: #e0e0e1; 
+  
+  } 
+  
+   
+   
+  
+  .user-info img { 
+  
+  width: 50px; 
+  
+  height: 50px; 
+  
+  border-radius: 50%; 
+  
+  margin-right: 10px; 
+  
+  } 
+  
+   
+   
+  
+  .user-info h3 { 
+  
+  font-size: 18px; 
+  
+  margin: 0; 
+  
+  } 
+  
+   
+   
+  
+  .user-info p { 
+  
+  font-size: 14px; 
+  
+  margin: 0; 
+  
+  } 
+  
+   
+   
+  
+  .logo img { 
+  
+  width: 50px; 
+  
+  height: 50px; 
+  
+  } 
+  
+   
+  
+  .mini-bar { 
+  
+  display: flex; 
+  
+  justify-content: space-around; 
+  
+  background-color: #f0f0f0; 
+  
+  padding: 10px; 
+  
+  } 
+  
+   
+   
+  
+  .mini-bar-option { 
+  
+  text-decoration: none; 
+  
+  color: #333; 
+  
+  font-weight: bold; 
+  
+  font-size: 16px; 
+  
+  padding: 5px 10px; 
+  
+  border-radius: 5px; 
+  
+  } 
+  
+   
+   
+  
+  .mini-bar-option:hover { 
+  
+  background-color: #ddd; 
+  
+  } 
+  
+   
+   
+  
+  
+  
+  .mini-bar-option.active { 
+  
+  background-color: #ff6947; 
+  
+  color: #fff; 
+  
+  } 
+  
+   
+   
+  
+  .menu { 
+  
+  margin-top: 73.1px; 
+  
+  background: rgb(32, 30, 31); 
+  
+  color: #e0e0e1; 
+  
+  width: 200px; 
+  
+  padding: 0 10px; 
+  
+  position: fixed; 
+  
+  top: 0; 
+  
+  left: 0px; 
+  
+  height: 100%; 
+  
+  overflow-y: auto; 
+  
+  transition: left 0.3s; 
+  
+  z-index: 900; 
+  
+  display: flex; 
+  
+  flex-direction: column; 
+  
+  border-right: 3px solid #ff6947; 
+  
+  } 
+  
+  .menu-item { 
+  
+  line-height: 50px; 
+  
+  padding-left: 10px; 
+  
+  } 
+  
+   
+   
+  
+  .menu ul { 
+  
+  list-style: none; 
+  
+  padding: 0; 
+  
+  width: 100%; 
+  
+  } 
+  
+   
+   
+  
+  .menu ul li { 
+  
+  margin-bottom: 0px; 
+  
+  } 
+  
+  .menu ul li[role="separator"] { 
+  
+  height: 1.5px; 
+  
+  background-color: #ff6947;
+  
+  margin: 10px 0; 
+  
+  } 
+  
+  .active-task span { 
+  
+  text-align: center; 
+  
+  } 
+  
+   
+   
+  
+  .menu ul li a { 
+  
+  color: #e0e0e1; 
+  
+  text-decoration: none; 
+  
+  font-size: 16px; 
+  
+  display: block; 
+  
+  padding: 10px; 
+  
+  margin: 0px; 
+  
+  position: relative; 
+  
+  } 
+  
+  .menu ul li a:hover { 
+  
+  background-color: #e0e0e087; 
+  
+  } 
+  
+   
+   
+  
+  main { 
+  
+  margin-left: 220px; 
+  
+  padding: 20px; 
+  
+  } 
+  
+   
+   
+  
+  .project-list { 
+  
+  display: flex; 
+  
+  flex-wrap: wrap; 
+  
+  gap: 20px; 
+  
+  } 
+  
+   
+   
+  
+  .project-box { 
+  
+  background-color: #f8f8f9; 
+  
+  cursor: pointer; 
+  
+  border: 1px solid #ccc; 
+  
+  border-radius: 15px; 
+  
+  margin: 10px; 
+  
+  padding: 15px; 
+  
+  width: 200px; 
+  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  
+  } 
+  
+   
+   
+  
+  .project-header { 
+  
+  display: flex; 
+  
+  flex-direction: column; 
+  
+  } 
+  
+  .project-title { 
+  
+  font-size: 18px; 
+  
+  font-weight: bold; 
+  
+  margin-bottom: 5px; 
+  
+  } 
+  
+  .project-info { 
+  
+  display: flex; 
+  
+  flex-direction: row; 
+  
+  justify-content: space-between; 
+  
+  align-items: center; 
+  
+  } 
+  
+  .project-state { 
+  
+  font-size: 14px; 
+  
+  padding: 5px; 
+  
+  border-radius: 5px; 
+  
+  color: #fff; 
+  
+  font-weight: bold; 
+  
+  } 
+  
+   
+   
+  
+  .active-state { 
+  
+  background-color: #4caf50; 
+  
+  } 
+  
+   
+   
+  
+  .pending-state { 
+  
+  background-color: #ffc107; 
+  
+  } 
+  
+   
+   
+  
+  .finished-state { 
+  
+  background-color: #2196f3; 
+  
+  } 
+  
+   
+   
+  
+  .canceled-state { 
+  
+  background-color: #f44336; 
+  
+  } 
+  
+   
+   
+  
+  .delayed-state { 
+  
+  background-color: #ff9800; 
+  
+  }  
+  
+  .active-tasks { 
+  
+  display: flex; 
+  
+  flex-direction: column; 
+  
+  position: relative; 
+  
+  } 
+  
+   
+   
+  
+  .active-tasks .menu-item { 
+  
+  cursor: pointer; 
+  
+  padding: 8px; 
+  
+  border-radius: 4px; 
+  
+  background-color: rgb(32, 30, 31); 
+  
+  color: #e0e0e1; 
+  
+  font-size: 14px; 
+  
+  } 
+  
+   
+   
+  
+  .active-tasks .task-list { 
+  
+  margin-top: 8px;  
+  
+  background-color: rgb(32, 30, 31); 
+  
+  border-top: none; 
+  
+  border-radius: 0 0 4px 4px; 
+  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  
+  display: none; 
+  
+  z-index: 1; 
+  
+  } 
+  
+   
+   
+  
+  .menu-item img { 
+  
+  width: 16px; 
+  
+  height: 16px; 
+  
+  margin-left: 5px;
+  } 
+  
+   
+   
+  
+  .active-tasks .task-list a { 
+  
+  display: block; 
+  
+  padding: 8px; 
+  
+  color: #e0e0e1; 
+  
+  text-decoration: none; 
+  
+  } 
+  
+   
+   
+  
+  .active-tasks:hover .task-list { 
+  
+  display: block; 
+  
+  } 
+  
+   
+   
+  
+  .project-number { 
+  
+  font-size: 16px; 
+  
+  } 
+  
+   
+   
+  
+  .project-name { 
+  
+  font-size: 16px; 
+  
+  } 
+  
+   
+   
+  
+  .project-location { 
+  
+  font-size: 12px; 
+  
+  } 
+  
+   
+   
+  
+  .project-dates { 
+  
+  font-size: 12px; 
+  
+  color: rgba(0, 0, 0, 0.6); 
+  
+  margin-top: 5px; 
+  
+  } 
+  
+   
+   
+  
+  .project-date, 
+  
+  .project-state { 
+  
+  font-size: 14px; 
+  
+  } 
+  
+   
+   
+  
+  .project-info h3 { 
+  
+  font-size: 18px; 
+  
+  margin: 0; 
+  
+  } 
+  
+   
+   
+  
+  .project-info p { 
+  
+  font-size: 14px; 
+  
+  margin: 5px 0; 
+  
+  } 
+  
+   
+   
+  
+  .details-button { 
+  
+  background-color: #ff6947; 
+  
+  color: #e0e0e1; 
+  
+  border: none; 
+  
+  padding: 10px; 
+  
+  margin-top: 10px; 
+  
+  cursor: pointer; 
+  
+  text-decoration: none; 
+  
+  } 
+  
+   
+   
+  
+  .details-button:hover { 
+  
+  background-color: #ff8a70; 
+  
+  } 
+  
+   
+   
+  
+  .about-button { 
+  
+  background-color: #ff6947; 
+  
+  color: #e0e0e1; 
+  
+  border: none; 
+  
+  padding: 10px; 
+  
+  margin-top: 10px; 
+  
+  cursor: pointer; 
+  
+  text-decoration: none; 
+  
+  } 
+  
+   
+   
+  
+  .about-button:hover::after { 
+  
+  content: "Esta es una descripciÃ³n de la aplicaciÃ³n"; 
+  
+  background-color: rgba(0, 0, 0, 0.7); 
+  
+  color: #fff; 
+  
+  position: absolute; 
+  
+  left: 85%; 
+  
+  padding: 10px; 
+  
+  display: none; 
+  
+  margin-top: 27px; 
+  
+  } 
+  
+   
+   
+  
+  .about-button:hover::after { 
+  
+  display: block; 
+  
+  } 
+  
+  .back-link { 
+  
+  margin-right: 20px; 
+  
+  cursor: pointer; 
+  
+  } 
+  
+   
+   
+  
+  .back-link img { 
+  
+  width: 30px; 
+  
+  height: 30px; 
+  
+  } 
+  
+   
+   
+  
+  .current-page { 
+  
+  background-color: #f0f0f061; 
+  
+  font-weight: bold; 
+  
+  } 
+  
+   
+   

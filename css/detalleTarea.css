@@ -6,7 +6,8 @@
 
 body {
   background-color: #e0e0e1;
-  margin-top: 100px;
+  margin: 0; /* Elimina el margen predeterminado del cuerpo */
+  overflow: hidden; /* Oculta el desplazamiento vertical en la página completa */
 }
 
 .header {
@@ -132,15 +133,21 @@ body {
 }
 
 main {
-  margin-left: 220px;
-  padding: 20px;
+  max-width: 1200px; /* Ancho máximo del contenido */
+  max-height: 700px; /* Agrega desplazamiento vertical si el contenido excede la altura máxima */
+  margin-left: 250px;
+  margin-top: 77px;
+  padding: 0 20px;
+  margin-bottom: 25px;
 }
+
 .project-banner {
   position: relative;
   text-align: center;
   color: #fff;
   padding: 40px;
-  background: url("../img/building_construction_frame_223639_3840x2160.jpg") no-repeat center center fixed;
+  background: url("../img/building_construction_frame_223639_3840x2160.jpg")
+    no-repeat center center fixed;
   background-size: cover;
 }
 .project-banner-overlay {
@@ -503,11 +510,13 @@ main {
 /*---------------------------*/
 /* Estilos para la sección de comentarios */
 .add-comment-section {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  margin-top: 20px;
+  max-width: 100%; /* Ajusta el ancho según sea necesario */
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  max-height: calc(50vh - 200px);
 }
 
 .add-comment-section h3 {
@@ -521,7 +530,7 @@ main {
 }
 
 .add-comment-section textarea {
-  height: 80px;
+  height: 5px; /* Ajusta la altura según sea necesario */
   margin-bottom: 10px;
   padding: 8px;
   border: 1px solid #ddd;
@@ -542,14 +551,26 @@ main {
 .add-comment-section input[type="submit"]:hover {
   background-color: #45a049;
 }
-
 /* Estilos para la sección de comentarios */
 .comments-section {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
+  max-height: calc(50vh - 200px); /* Ajusta según sea necesario */
+  overflow-y: auto;
+}
+
+.comments-section,
+.add-comment-section {
+  width: 100%; /* Ajusta el ancho al 100% */
+  box-sizing: border-box;
   padding: 15px;
-  margin-top: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
 .comments-section h3 {
@@ -569,6 +590,7 @@ main {
 /* Estilos para comentarios del usuario actual */
 .comment.user-comment {
   background-color: #f0f8ff; /* Puedes ajustar el color según tu preferencia */
+  border-radius: 8px; /* Agrega bordes redondeados para comentarios del usuario actual */
 }
 
 .comment.user-comment p {
@@ -578,3 +600,81 @@ main {
 .comment.user-comment p strong {
   color: #007bff; /* Puedes ajustar el color según tu preferencia */
 }
+/* ... (código existente) ... */
+
+/* ... (código existente) ... */
+
+/* Estilos para la sección de detalles de la tarea */
+.task-details {
+  /* Ajusta el margen superior e inferior según sea necesario */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  max-height: 100vh; /* La altura máxima será el 100% de la altura de la ventana */
+  overflow-y: auto;
+}
+
+/* Estilos para la sección de encabezado */
+.header-section {
+  margin-bottom: 20px;
+}
+
+.header-section h2 {
+  font-size: 24px;
+  margin-bottom: 5px; /* Espacio adicional */
+}
+
+.date {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px; /* Espacio adicional */
+}
+
+/* Estilos para el estado de la tarea */
+.status {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.status.pending {
+  color: #ffc107; /* Color para tareas pendientes */
+}
+
+.status.finished {
+  color: #2196f3; /* Color para tareas completadas */
+}
+
+.status.canceled {
+  color: #f44336; /* Color para tareas canceladas */
+}
+
+.status.delayed {
+  color: #ff9800; /* Color para tareas retrasadas */
+}
+
+/* Línea divisora */
+.divider {
+  border: 1px solid #ddd;
+  margin: 0px 0;
+}
+
+/* Estilos para la descripción del proyecto */
+.project-description p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Estilos para la sección de comentarios */
+
+/* Estilos para la sección de completar tarea */
+.complete-task-section {
+  text-align: right;
+  margin-top: 20px;
+  padding-top: 20px; /* Espaciado superior */
+  border-top: 1px solid #ddd; /* Línea superior */
+}
+
+/* ... (código existente) ... */
