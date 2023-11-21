@@ -7,11 +7,18 @@ if (!isset($_SESSION['user_name'])) {
     exit;
 }
 
-
 $current_page = basename($_SERVER['PHP_SELF']);
 include "consultas.php";
 $consultas = new Consultas();
 $proyectos = $consultas->getProyectos();
+
+if (!empty($proyectos)) {
+    $proyecto = $proyectos[0];
+    $_SESSION['idProyecto'] = $proyecto['idProyecto'];
+} else {
+    header('location:../Alertas/error.html');
+    exit;
+}
 
 ?>
 
@@ -86,9 +93,9 @@ $proyectos = $consultas->getProyectos();
 
     </section>
     <script>
-    function redirectToTasks(idProyecto) {
-        window.location.href = 'Proyectos.php?idProyecto=' + idProyecto;
-    }
+        function redirectToTasks(idProyecto) {
+            window.location.href = 'Proyectos.php?idProyecto=' + idProyecto;
+        }
     </script>
 
 </body>
