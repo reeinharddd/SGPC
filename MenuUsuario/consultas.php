@@ -12,7 +12,7 @@ class consultas
             $sql = "SELECT P.idProyecto, P.nombre, P.descripcion, P.ubicacion, P.fechaInicio, P.fechaFinal, P.estado 
             FROM Proyecto P 
             INNER JOIN UsuarioProyecto UP ON P.idProyecto = UP.idProyecto
-            WHERE UP.idUsuario = " . $_SESSION['id'] . " AND P.estado != 'FIN'
+            WHERE UP.idUsuario = '" . $_SESSION['id'] . "' AND P.estado != 'FIN'
             ORDER BY FIELD(P.estado, 'ACT', 'RET', 'PEN')";
             $result = $conexion->exeqSelect($sql);
             if ($result) {
@@ -29,6 +29,8 @@ class consultas
     }
     public function getTareas($proyecto)
     {
+
+
         $conexion = new conexion();
         $tareas = array();
 
@@ -37,27 +39,32 @@ class consultas
             $usuario = $_SESSION['id'];
 
             $query = "SELECT
-            T.titulo AS NombreTarea,
-            T.descripcion AS DescripcionTarea,
-            T.estado,
-            T.idTarea AS idTarea
-        FROM
-            Proyecto AS P
-            INNER JOIN UsuarioProyecto AS UP ON P.idProyecto = UP.idProyecto
-            INNER JOIN UsuarioTarea AS UT ON UP.idUsuario = UT.idUsuario
-            INNER JOIN Tarea AS T ON UT.idTarea = T.idTarea
-            INNER JOIN ProyectoTarea AS PT ON P.idProyecto = PT.idProyecto AND T.idTarea = PT.idTarea
-        WHERE
-            UP.idUsuario = ?
-            AND P.idProyecto = ?
-            AND T.estado != 'FIN'  -- Excluir tareas finalizadas
-        ORDER BY PT.fechaFinal ASC";
+              T.titulo AS NombreTarea,
+              T.descripcion AS DescripcionTarea,
+              T.estado,
+              T.idTarea AS idTarea,
+              PT.fechaInicio,
+              PT.fechaFinal
+            FROM
+              Proyecto AS P
+              INNER JOIN UsuarioProyecto AS UP ON P.idProyecto = UP.idProyecto
+              INNER JOIN UsuarioTarea AS UT ON UP.idUsuario = UT.idUsuario
+              INNER JOIN Tarea AS T ON UT.idTarea = T.idTarea
+              INNER JOIN ProyectoTarea AS PT ON P.idProyecto = PT.idProyecto AND T.idTarea = PT.idTarea
+            WHERE
+              UP.idUsuario = ?
+              AND P.idProyecto = ?
+              AND T.estado != 'FIN' 
+            ORDER BY PT.fechaFinal ASC";
 
             $stmt = $con->prepare($query);
             $stmt->bind_param("ii", $usuario, $proyecto);
             $stmt->execute();
             $result = $stmt->get_result();
 
+            if ($result === false) {
+                die("Error en la ejecución de la consulta: " . $stmt->error);
+            }
             if ($result) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     $tareas[] = $row;
@@ -73,6 +80,7 @@ class consultas
         $conexion->close();
         return $tareas;
     }
+
 
     public function getComentarios($proyecto, $tarea)
     {
@@ -129,12 +137,15 @@ class consultas
         if ($conexion->connect()) {
             $con = $conexion->getConexion();
             $query = "SELECT C.descripcion, C.fechaComentario, U.nombre AS nombreUsuario
-            FROM Comentario C
-            JOIN Usuario U ON C.idUsuario = U.idUsuario
-            WHERE C.idTarea = $idTarea
-            ORDER BY C.fechaComentario ASC";
+                  FROM Comentario C
+                  JOIN Usuario U ON C.idUsuario = U.idUsuario
+                  WHERE C.idTarea = ?
+                  ORDER BY C.fechaComentario ASC";
 
-            $result = $conexion->exeqSelect($query);
+            $stmt = $con->prepare($query);
+            $stmt->bind_param("i", $idTarea);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
             if ($result && $result->num_rows > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -144,29 +155,46 @@ class consultas
             } else {
                 echo "No se encontraron comentarios.";
             }
+
+            $stmt->close();
         }
+        $conexion->close();
         return $comentarios;
     }
+
+
     public function getInfoProyecto($idProyecto)
     {
         $conexion = new conexion();
         $infoProyecto = null;
+
         if ($conexion->connect()) {
             $con = $conexion->getConexion();
-            $query = "SELECT P.nombre, P.descripcion, P.ubicacion, P.fechaInicio, P.fechaFinal, P.estado
-            FROM Proyecto P
-            WHERE P.idProyecto = $idProyecto";
+            $query = "SELECT * FROM Proyecto WHERE idProyecto = ?";
 
-            $result = $conexion->exeqSelect($query);
+            $stmt = $con->prepare($query);
+            $stmt->bind_param("i", $idProyecto);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-            if ($result && $result->num_rows > 0) {
+            if ($result->num_rows > 0) {
                 $infoProyecto = $result->fetch_assoc();
-                return $infoProyecto;
             } else {
-                echo "No se encontró el proyecto.";
             }
+
+            $stmt->close();
+        } else {
         }
+
+        $conexion->close();
+        return $infoProyecto;
     }
+
+
+
+
+
+
     public function obtenerPrimerasTareas($usuario, $proyecto, $cantidad)
     {
         $conexion = new conexion();
@@ -217,15 +245,44 @@ class consultas
             $stmt = $con->prepare($query);
             $stmt->bind_param("s", $codigoEstado);
             $stmt->execute();
-            $stmt->bind_result($nombreEstado); 
+            $stmt->bind_result($nombreEstado);
+            if ($stmt === false) {
+                die("Error en la preparación de la consulta: " . $con->error);
+            }
 
             if ($stmt->fetch()) {
-                }
+            } else {
+                echo "No se encontró el estado.";
+            }
 
             $stmt->close();
         }
 
         $conexion->close();
+
         return $nombreEstado;
+    }
+    public function getProyectoIdFromTarea($idTarea)
+    {
+        $conexion = new conexion();
+        $idProyecto = null;
+
+        if ($conexion->connect()) {
+            $con = $conexion->getConexion();
+            $query = "SELECT idProyecto FROM ProyectoTarea WHERE idTarea = ?";
+            $stmt = $con->prepare($query);
+            $stmt->bind_param("i", $idTarea);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result && $row = $result->fetch_assoc()) {
+                $idProyecto = $row['idProyecto'];
+            }
+
+            $stmt->close();
+        }
+
+        $conexion->close();
+        return $idProyecto;
     }
 }
