@@ -499,3 +499,82 @@ main {
   font-size: 14px;
   margin-bottom: 10px;
 }
+
+/*---------------------------*/
+/* Estilos para la sección de comentarios */
+.add-comment-section {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.add-comment-section h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.add-comment-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-comment-section textarea {
+  height: 80px;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: none;
+}
+
+.add-comment-section input[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.add-comment-section input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Estilos para la sección de comentarios */
+.comments-section {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.comments-section h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.comment {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.comment p {
+  margin: 5px 0;
+}
+
+/* Estilos para comentarios del usuario actual */
+.comment.user-comment {
+  background-color: #f0f8ff; /* Puedes ajustar el color según tu preferencia */
+}
+
+.comment.user-comment p {
+  text-align: right;
+}
+
+.comment.user-comment p strong {
+  color: #007bff; /* Puedes ajustar el color según tu preferencia */
+}
