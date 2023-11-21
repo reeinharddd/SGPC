@@ -137,7 +137,7 @@ if ($proyectos) {
                         ?>
                     </ul>
                 </div>
-                s
+
 
 
             </div>
