@@ -19,8 +19,7 @@
             <li class="active-tasks">
                 <span class="menu-item">
                     Proyectos Activos
-                    <img src="https://cdn.icon-icons.com/icons2/2248/PNG/512/arrow_down_bold_circle_icon_135936.png"
-                        alt="Flecha hacia abajo">
+                    <img src="plantillas/down-arrow.svg" alt="Flecha hacia abajo" alt="Flecha hacia abajo">
                 </span>
                 <ul class="task-list">
                     <?php
@@ -38,8 +37,7 @@
             <li class="active-tasks">
                 <span class="menu-item">
                     Gestion de Proyectos
-                    <img src="https://cdn.icon-icons.com/icons2/2248/PNG/512/arrow_down_bold_circle_icon_135936.png"
-                        alt="Flecha hacia abajo">
+                    <img src="plantillas/down-arrow.svg" alt="Flecha hacia abajo">
                 </span>
                 <ul class="task-list">
                     <li><a href="RegistroProyectos/indexProyectos.php">Registro completo de proyectos</a></li>
@@ -53,8 +51,7 @@
             <li class="active-tasks">
                 <span class="menu-item">
                     Registro de Usuarios
-                    <img src="https://cdn.icon-icons.com/icons2/2248/PNG/512/arrow_down_bold_circle_icon_135936.png"
-                        alt="Flecha hacia abajo">
+                    <img src="plantillas/down-arrow.svg" alt="Flecha hacia abajo">
                 </span>
                 <ul class="task-list">
                     <li><a href="RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
