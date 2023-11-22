@@ -1,6 +1,5 @@
 <?php
 include("Proyectos.php");
-
 $Myproyecto = new Proyecto();
 $Myproyecto->setNombre($_POST['txtNombre']);
 $Myproyecto->setDescripcion($_POST['txtDes']);
@@ -11,8 +10,7 @@ $Myproyecto->setEstado($_POST['estado']);
 $newIdProyecto = $Myproyecto->setFullProyecto();
 
 if ($newIdProyecto > 0) {
-    header("Location: detalleProyecto.php?idProyecto=$newIdProyecto");
+    header("Location: detalleUnProyecto.php?idProyecto=$newIdProyecto");
 } else {
     echo "Error al registrar el proyecto.";
 }
-?>
