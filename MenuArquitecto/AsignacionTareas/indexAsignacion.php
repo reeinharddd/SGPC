@@ -40,10 +40,9 @@ if (!isset($_SESSION['arqui_name'])) {
             <form method="post" action="addAsignar.php" class="colortexto">
             <br>
 
-                <label>ID Empleado: *<input type="text" name="IDU" required 
-                placeholder="max. 40 caracteres"></label>
+                <label>ID Empleado: *<input type="text" name="IDU" required></label>
                 <br>
-                <label>Número Tarea: *<input type="text" name="IDT"></label>
+                <label>Número Tarea: *<input type="text" name="IDT" required></label>
                 <br>
                 <input type="reset" value="Cancel">
                 <input type="submit" value="Send">

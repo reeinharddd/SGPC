@@ -7,7 +7,7 @@ $Mytarea->setDescripcion($_POST['Des']);
 $Mytarea->setEstado($_POST['estado']);
 $Mytarea->setFechaInicio($_POST['F-inicio']);
 $Mytarea->setFechaFinal($_POST['F-fin']);
-$Mytarea->setIdProyecto($_POST['IDtarea']);
+$Mytarea->setIdProyecto($_POST['IDproyecto']);
 $Mytarea->setFullTarea();
 header('Location: indexTareas.php');
 ?>

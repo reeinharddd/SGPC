@@ -39,10 +39,9 @@ if (!isset($_SESSION['arqui_name'])) {
             <p>Ingrese el ID del empleado al que quiere asignar a un proyecto, utilizando el ID del proyecto.</p>
             <form method="post" action="addAsignarE.php" class="colortexto">
             <br>
-                <label>ID Proyecto: *<input type="text" name="IDP"></label>
+                <label>ID Proyecto: *<input type="text" name="IDP" required></label>
                 <br>
-                <label>ID Empleado: *<input type="text" name="IDU" required 
-                placeholder="max. 40 caracteres"></label>
+                <label>ID Empleado: *<input type="text" name="IDU" required></label>
                 <br>
                 
                 <input type="reset" value="Cancel">

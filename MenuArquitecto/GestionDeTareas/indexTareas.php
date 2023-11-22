@@ -76,7 +76,7 @@ if (!isset($_SESSION['arqui_name'])) {
                     </select>
                 </label>
                 <br>
-                <label>Número Proyecto: *<input type="text" name="IDtarea"></label>
+                <label>Número Proyecto: *<input type="text" name="IDproyecto"></label>
                 <input type="reset" value="Cancel">
                 <br>
                 <input type="submit" value="Send">

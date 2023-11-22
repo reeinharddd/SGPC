@@ -15,7 +15,8 @@ class AsignarE extends conexion {
 
     public function setFullAsignacion(){
         $query = "insert into UsuarioProyecto (idUsuario, idProyecto)
-        values('".$this->idUsuario."', '".$this->idProyecto."')";
+        values('".$this->idUsuario."',
+        '".$this->idProyecto."')";
         $result = $this->connect();
         if ($result == true){
             echo "Insercion Exitosa";
