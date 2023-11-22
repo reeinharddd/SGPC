@@ -286,63 +286,99 @@ class consultas
         return $idProyecto;
     }
     public function getProyectosTerminados()
-{
-    $conexion = new conexion();
-    $proyectos = array();
-    if ($conexion->connect()) {
-        $con = $conexion->getConexion();
-        $sql = "SELECT P.idProyecto, P.nombre, P.descripcion, P.ubicacion, P.fechaInicio, P.fechaFinal, P.estado 
+    {
+        $conexion = new conexion();
+        $proyectos = array();
+        if ($conexion->connect()) {
+            $con = $conexion->getConexion();
+            $sql = "SELECT P.idProyecto, P.nombre, P.descripcion, P.ubicacion, P.fechaInicio, P.fechaFinal, P.estado 
         FROM Proyecto P 
         INNER JOIN UsuarioProyecto UP ON P.idProyecto = UP.idProyecto
         WHERE UP.idUsuario = '" . $_SESSION['id'] . "' AND P.estado = 'FIN'
         ORDER BY P.fechaFinal DESC";
-        $result = $conexion->exeqSelect($sql);
-        if ($result) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $proyectos[] = $row;
+            $result = $conexion->exeqSelect($sql);
+            if ($result) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $proyectos[] = $row;
+                }
+                unset($result, $row);
+            } else {
+                echo "No se encontraron proyectos terminados.";
             }
-            unset($result, $row);
-        } else {
-            echo "No se encontraron proyectos terminados.";
         }
+        $conexion->close();
+        return $proyectos;
     }
-    $conexion->close();
-    return $proyectos;
-}
-public function getUsuariosPorTipoYProyecto($idProyecto, $tipoUsuario)
-{
-    $conexion = new conexion();
-    $usuarios = array();
+    public function getUsuariosPorTipoYProyecto($idProyecto, $tipoUsuario)
+    {
+        $conexion = new conexion();
+        $usuarios = array();
 
-    if ($conexion->connect()) {
-        $con = $conexion->getConexion();
+        if ($conexion->connect()) {
+            $con = $conexion->getConexion();
 
-        $query = "SELECT U.nombre, U.apellidoPat, U.apellidoMat, U.email
+            $query = "SELECT U.nombre, U.apellidoPat, U.apellidoMat, U.email
                   FROM Usuario U
                   JOIN UsuarioProyecto UP ON U.idUsuario = UP.idUsuario
                   WHERE UP.idProyecto = ? AND U.idTipoUsuario = ?
                   ORDER BY U.apellidoPat, U.apellidoMat, U.nombre";
 
-        $stmt = $con->prepare($query);
-        $stmt->bind_param("ii", $idProyecto, $tipoUsuario);
-        $stmt->execute();
-        $result = $stmt->get_result();
+            $stmt = $con->prepare($query);
+            $stmt->bind_param("ii", $idProyecto, $tipoUsuario);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-        if ($result) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $usuarios[] = $row;
+            if ($result) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $usuarios[] = $row;
+                }
+                unset($result, $row);
+            } else {
+                echo "No se encontraron usuarios.";
             }
-            unset($result, $row);
-        } else {
-            echo "No se encontraron usuarios.";
+
+            $stmt->close();
         }
 
-        $stmt->close();
+        $conexion->close();
+        return $usuarios;
     }
+    public function getTareaPorId($idTarea)
+    {
+        $conexion = new conexion();
+        $tarea = null;
 
-    $conexion->close();
-    return $usuarios;
-}
+        if ($conexion->connect()) {
+            $con = $conexion->getConexion();
+            $query = "SELECT
+                      T.titulo AS NombreTarea,
+                      T.descripcion AS DescripcionTarea,
+                      T.estado,
+                      T.idTarea AS idTarea,
+                      PT.fechaInicio,
+                      PT.fechaFinal,
+                      PT.idProyecto
+                    FROM
+                      Tarea AS T
+                      INNER JOIN ProyectoTarea AS PT ON T.idTarea = PT.idTarea
+                    WHERE
+                      T.idTarea = ?";
 
+            $stmt = $con->prepare($query);
+            $stmt->bind_param("i", $idTarea);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
+            if ($result && $result->num_rows > 0) {
+                $tarea = $result->fetch_assoc();
+            } else {
+                echo "No se encontró la tarea.";
+            }
+
+            $stmt->close();
+        }
+
+        $conexion->close();
+        return $tarea;
+    }
 }

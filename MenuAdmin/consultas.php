@@ -4,7 +4,6 @@ include '../conexion.php';
 
 class consultas
 {
-    // ... Otros métodos ...
 
     public function getProyectos()
     {
@@ -333,4 +332,66 @@ class consultas
         $conexion->close();
         return $usuarios;
     }
+    public function getTareaPorId($idTarea)
+    {
+        $conexion = new conexion();
+        $tarea = null;
+
+        if ($conexion->connect()) {
+            $con = $conexion->getConexion();
+            $query = "SELECT
+                      T.titulo AS NombreTarea,
+                      T.descripcion AS DescripcionTarea,
+                      T.estado,
+                      T.idTarea AS idTarea,
+                      PT.fechaInicio,
+                      PT.fechaFinal,
+                      PT.idProyecto
+                    FROM
+                      Tarea AS T
+                      INNER JOIN ProyectoTarea AS PT ON T.idTarea = PT.idTarea
+                    WHERE
+                      T.idTarea = ?";
+
+            $stmt = $con->prepare($query);
+            $stmt->bind_param("i", $idTarea);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result && $result->num_rows > 0) {
+                $tarea = $result->fetch_assoc();
+            } else {
+                echo "No se encontró la tarea.";
+            }
+
+            $stmt->close();
+        }
+
+        $conexion->close();
+        return $tarea;
+    }
+    public function obtenerEstados()
+    {
+        $conexion = new conexion();
+        $estados = array();
+    
+        if ($conexion->connect()) {
+            $con = $conexion->getConexion();
+            $query = "SELECT codigo, nombre FROM Estado";
+            $result = $conexion->exeqSelect($query);
+    
+            if ($result) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $estados[$row['codigo']] = $row['codigo'] . " - " . $row['nombre'];
+                }
+                unset($result, $row);
+            } else {
+                echo "No se encontraron estados.";
+            }
+        }
+    
+        $conexion->close();
+        return $estados;
+    }
+    
 }

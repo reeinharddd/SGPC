@@ -72,7 +72,7 @@ CREATE TABLE Comentario (
     fechaComentario DATE NOT NULL,
     idUsuario INT NOT NULL,
     idTarea int NOT NULL,
-    idProyecto INT NOT NULL,
+    idProyecto INT,
     FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
     FOREIGN KEY (idTarea) REFERENCES Tarea(idTarea),
     FOREIGN KEY (idProyecto) REFERENCES Proyecto(idProyecto)

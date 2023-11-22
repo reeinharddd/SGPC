@@ -30,13 +30,11 @@ include 'consultas.php';
 $consultas = new Consultas();
 $proyectos = $consultas->getProyectos();
 if ($proyectos) {
-    // En Proyectos.php
     $proyecto = isset($_GET['idProyecto']) ? $_GET['idProyecto'] : null;
     $idProyecto = isset($_SESSION['idProyecto']) ? $_SESSION['idProyecto'] : ($proyecto ? $proyecto : ($proyectos ? $proyectos[0]['idProyecto'] : null));
     $_SESSION['idProyecto'] = $idProyecto;
 
     if ($proyecto !== null) {
-        // En Proyectos.php
         $tareas = $consultas->getTareas($proyecto);
         $infoProyecto = $consultas->getInfoProyecto($idProyecto);
         $primerasTareas = $consultas->obtenerPrimerasTareas($idProyecto, 3);
@@ -89,22 +87,24 @@ if ($proyectos) {
                     <h2>Tareas Próximas</h2>
 
                     <?php foreach ($primerasTareas as $tarea) : ?>
-                        <a href='detalleTarea.php?idTarea=<?= $tarea["idTarea"] ?>&idProyecto=<?= $idProyecto ?>' <div class='task-info'>
-                            <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
-                            <div class='task-data'>
-                                <div class="fechas">
-                                    <span class="label">Fecha final:</span>
-                                    <span class="date"><?= $tarea["fechaInicio"] . ' - ' . $tarea["fechaFinal"]; ?></span>
-                                </div>
+                    echo "<a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "'
+                        class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left'>";
+                        class='task-info'>
+                        <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
+                        <div class='task-data'>
+                            <div class="fechas">
+                                <span class="label">Fecha final:</span>
+                                <span class="date"><?= $tarea["fechaInicio"] . ' - ' . $tarea["fechaFinal"]; ?></span>
                             </div>
-                            <div class='task-data'>
-                                <span class='days-remaining'></span>
-                                <span class='days-message'>días para la fecha final</span>
-                            </div>
-                            <div class='task-data'><?= $tarea["estado"] ?></div>
+                        </div>
+                        <div class='task-data'>
+                            <span class='days-remaining'></span>
+                            <span class='days-message'>días para la fecha final</span>
+                        </div>
+                        <div class='task-data'><?= $tarea["estado"] ?></div>
                 </div>
                 </a>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
             </div>
 
 
@@ -120,7 +120,7 @@ if ($proyectos) {
                         foreach ($tareas as $tarea) {
                             echo "<li class='task-item'>";
                             $idProyecto = $proyecto['idProyecto'];
-                            echo "<a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "&idProyecto=" . $idProyecto . "' class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left task-link'>";
+                            echo "<a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "' class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left'>";
 
                             echo "<div class='task-header'>";
                             echo "<div class='task-name'>" . $tarea["NombreTarea"] . "</div>";
@@ -143,31 +143,31 @@ if ($proyectos) {
 
     </section>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var upcomingTasks = document.querySelectorAll('.upcoming-task');
+    document.addEventListener("DOMContentLoaded", function() {
+        var upcomingTasks = document.querySelectorAll('.upcoming-task');
 
-            upcomingTasks.forEach(function(task) {
-                var dueDateElement = task.querySelector('.task-data:nth-child(2)');
-                var daysRemainingElement = task.querySelector('.days-remaining');
-                var daysMessageElement = task.querySelector('.days-message');
-                var taskStatusElement = task.querySelector('.task-data:last-child');
+        upcomingTasks.forEach(function(task) {
+            var dueDateElement = task.querySelector('.task-data:nth-child(2)');
+            var daysRemainingElement = task.querySelector('.days-remaining');
+            var daysMessageElement = task.querySelector('.days-message');
+            var taskStatusElement = task.querySelector('.task-data:last-child');
 
-                var dueDate = new Date(dueDateElement.textContent);
-                var currentDate = new Date();
+            var dueDate = new Date(dueDateElement.textContent);
+            var currentDate = new Date();
 
-                var timeDifference = dueDate.getTime() - currentDate.getTime() + (24 * 60 * 60 * 1000) - 1;
-                var daysRemaining = Math.floor(timeDifference / (1000 * 3600 * 24));
+            var timeDifference = dueDate.getTime() - currentDate.getTime() + (24 * 60 * 60 * 1000) - 1;
+            var daysRemaining = Math.floor(timeDifference / (1000 * 3600 * 24));
 
-                daysRemainingElement.textContent = daysRemaining;
-                daysMessageElement.style.display = 'inline';
-                daysMessageElement.textContent = 'días para la entrega';
+            daysRemainingElement.textContent = daysRemaining;
+            daysMessageElement.style.display = 'inline';
+            daysMessageElement.textContent = 'días para la entrega';
 
-                if (daysRemaining <= 3) {
-                    daysRemainingElement.style.color = 'red';
-                    daysMessageElement.style.color = 'red';
-                }
-            });
+            if (daysRemaining <= 3) {
+                daysRemainingElement.style.color = 'red';
+                daysMessageElement.style.color = 'red';
+            }
         });
+    });
     </script>
 
 

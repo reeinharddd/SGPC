@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 ob_start();
 session_start();
 
@@ -13,34 +11,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 include 'consultas.php';
 $consultas = new Consultas();
-$proyectos = $consultas->getProyectos();
+
 $idTarea = isset($_GET['idTarea']) ? $_GET['idTarea'] : null;
-$idProyecto = isset($_GET['idProyecto']) ? $_GET['idProyecto'] : null;
 
-if ($proyectos) {
-    $proyecto = isset($_GET['idProyecto']) ? $_GET['idProyecto'] : null;
-    $idProyecto = isset($_GET['idProyecto']) ? $_GET['idProyecto'] : null;
+$tareaSeleccionada = $consultas->getTareaPorId($idTarea);
 
-    if ($proyecto !== null) {
-        $tareas = $consultas->getTareas($proyecto);
-        $idTarea = isset($_GET['idTarea']) ? $_GET['idTarea'] : null;
-        $tareaSeleccionada = null;
-
-
-        foreach ($tareas as $tarea) {
-            if ($tarea['idTarea'] == $idTarea) {
-                $tareaSeleccionada = $tarea;
-                break;
-            }
-        }
-
-        if ($tareaSeleccionada) {
-            $infoProyecto = $consultas->getInfoProyecto($idProyecto);
-
-            $usuarioAsignado = $consultas->getUsuarioAsignado($tareaSeleccionada['idTarea']);
-            $comentarios = $consultas->getComentariosTarea($tareaSeleccionada['idTarea']);
-
-
+if ($tareaSeleccionada) {
+    $infoProyecto = $consultas->getInfoProyecto($tareaSeleccionada['idProyecto']);
+    $usuarioAsignado = $consultas->getUsuarioAsignado($idTarea);
+    $comentarios = $consultas->getComentariosTarea($idTarea);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,19 +34,11 @@ if ($proyectos) {
 
 <body>
     <?php
-                include "plantillas/header.php";
-                include "plantillas/menu.php";
-                ?>
+        include "plantillas/header.php";
+        include "plantillas/menu.php";
+        ?>
 
-    <?php
-                if ($tareaSeleccionada) {
-                    $infoProyecto = $consultas->getInfoProyecto($tareaSeleccionada['idProyecto']);
-                    $usuarioAsignado = $consultas->getUsuarioAsignado($tareaSeleccionada['idTarea']);
-                    $comentarios = $consultas->getComentariosTarea($tareaSeleccionada['idTarea']);
-                ?>
     <main>
-
-
         <div class="task-details">
             <div class="header-section">
                 <h2><?= $tareaSeleccionada['NombreTarea']; ?></h2>
@@ -79,9 +50,20 @@ if ($proyectos) {
                     <strong>Fecha Final:</strong>
                     <?= ($tareaSeleccionada['fechaFinal'] !== null) ? date("Y-m-d", strtotime($tareaSeleccionada['fechaFinal'])) : 'Sin fecha final'; ?>
                 </p>
-                <form action="marcar_completa.php" method="post" class="complete-task-section">
-                    <input type="hidden" name="idTarea" value="<?= $tareaSeleccionada['idTarea']; ?>">
-                    <input type="submit" value="Marcar como Completa" class="complete-task-button">
+                <form action="actualizar_estado.php" method="post" class="update-task-status-section">
+                    <label for="estadoTarea">Estado:</label>
+                    <select name="estadoTarea" id="estadoTarea">
+                        <?php
+                            $estados = $consultas->obtenerEstados(); 
+                            foreach ($estados as $codigo => $nombre) {
+                                echo '<option value="' . $codigo . '">' . $nombre . '</option>';
+                            }
+                          
+                            ?>
+                    </select>
+
+                    <input type="hidden" name="idTarea" value="<?= $idTarea; ?>">
+                    <input type="submit" value="Actualizar Estado" class="update-task-status-button">
                 </form>
                 <p class="status <?= $consultas->obtenerNombreEstado($tareaSeleccionada['estado']); ?>">
                     <strong>Estado:</strong> <?= $consultas->obtenerNombreEstado($tareaSeleccionada['estado']); ?>
@@ -94,8 +76,6 @@ if ($proyectos) {
                 </div>
             </div>
         </div>
-
-
 
         <div class="divider"></div>
 
@@ -118,30 +98,17 @@ if ($proyectos) {
             <h3>Agregar Comentario</h3>
             <form action="agregar_comentario.php" method="post">
                 <textarea name="comentario" placeholder="Escribe tu comentario aquí..." required></textarea>
-                <input type="hidden" name="idTarea" value="<?= $tareaSeleccionada['idTarea']; ?>">
+                <input type="hidden" name="idTarea" value="<?= $idTarea; ?>">
                 <input type="submit" value="Enviar Comentario">
             </form>
         </div>
-        </div>
     </main>
-
-    <?php
-                } else {
-                    echo "No se encontró la tarea seleccionada.";
-                }
-                ?>
 
 </body>
 
 </html>
 <?php
-        } else {
-            echo "No se encontró la tarea seleccionada.";
-        }
-    } else {
-        echo "No se encontró el proyecto.";
-    }
 } else {
-    echo "No se encontraron proyectos.";
+    echo "No se encontró la tarea seleccionada.";
 }
 ?>
