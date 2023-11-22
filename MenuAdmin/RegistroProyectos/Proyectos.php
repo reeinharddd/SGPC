@@ -69,5 +69,30 @@ class Proyecto extends conexion
         }
         return $newId;
     }
+    public function obtenerDetallesProyecto($idProyecto)
+    {
+        $conexion = new Conexion(); 
+
+        if ($conexion->connect()) {
+            $con = $conexion->getConexion();
+            $query = "SELECT * FROM Proyecto WHERE idProyecto = ?";
+            $stmt = $con->prepare($query);
+            $stmt->bind_param("i", $idProyecto);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result && $result->num_rows > 0) {
+                $detallesProyecto = $result->fetch_assoc();
+                return $detallesProyecto;
+            } else {
+                return null; 
+            }
+
+            $stmt->close();
+        }
+
+        $conexion->close();
+        return null; 
+    }
 }
 ?>

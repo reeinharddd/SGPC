@@ -16,11 +16,11 @@
             </li>
             <li><a href="Calendario/Calendario.php">Calendario</a></li>
 
-            <!-- Lista desplegable para Proyectos Activos -->
             <li class="active-tasks">
                 <span class="menu-item">
                     Proyectos Activos
-                    <img src="https://cdn.icon-icons.com/icons2/2248/PNG/512/arrow_down_bold_circle_icon_135936.png" alt="Flecha hacia abajo">
+                    <img src="https://cdn.icon-icons.com/icons2/2248/PNG/512/arrow_down_bold_circle_icon_135936.png"
+                        alt="Flecha hacia abajo">
                 </span>
                 <ul class="task-list">
                     <?php
@@ -33,17 +33,16 @@
                 </ul>
             </li>
 
-            <!-- Lista desplegable para Proyectos Terminados -->
 
 
-            <!-- Lista desplegable para Registro de Proyectos -->
             <li class="active-tasks">
                 <span class="menu-item">
-                    Registro de Proyectos
-                    <img src="https://cdn.icon-icons.com/icons2/2248/PNG/512/arrow_down_bold_circle_icon_135936.png" alt="Flecha hacia abajo">
+                    Gestion de Proyectos
+                    <img src="https://cdn.icon-icons.com/icons2/2248/PNG/512/arrow_down_bold_circle_icon_135936.png"
+                        alt="Flecha hacia abajo">
                 </span>
                 <ul class="task-list">
-                    <li><a href="RegistroProyectos/indexProyectos.php">Gestión de proyectos</a></li>
+                    <li><a href="RegistroProyectos/indexProyectos.php">Registro completo de proyectos</a></li>
                     <li><a href="RegistroProyectos/agregarProyecto.php">Agregar un Proyecto</a></li>
                     <li><a href="RegistroProyectos/modificarProyecto.php">Modificar un Proyecto</a></li>
                     <li><a href="RegistroProyectos/agregarTarea.php">Agregar una Tarea a un Proyecto</a></li>
@@ -51,11 +50,11 @@
                 </ul>
             </li>
 
-            <!-- Lista desplegable para Registro de Usuarios -->
             <li class="active-tasks">
                 <span class="menu-item">
                     Registro de Usuarios
-                    <img src="https://cdn.icon-icons.com/icons2/2248/PNG/512/arrow_down_bold_circle_icon_135936.png" alt="Flecha hacia abajo">
+                    <img src="https://cdn.icon-icons.com/icons2/2248/PNG/512/arrow_down_bold_circle_icon_135936.png"
+                        alt="Flecha hacia abajo">
                 </span>
                 <ul class="task-list">
                     <li><a href="RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
