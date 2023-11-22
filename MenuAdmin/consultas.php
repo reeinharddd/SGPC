@@ -1,5 +1,7 @@
 <?php
+
 include '../conexion.php';
+
 class consultas
 {
 
@@ -10,10 +12,9 @@ class consultas
         if ($conexion->connect()) {
             $con = $conexion->getConexion();
             $sql = "SELECT P.idProyecto, P.nombre, P.descripcion, P.ubicacion, P.fechaInicio, P.fechaFinal, P.estado 
-            FROM Proyecto P 
-            INNER JOIN UsuarioProyecto UP ON P.idProyecto = UP.idProyecto
-            WHERE UP.idUsuario = '" . $_SESSION['id'] . "' AND P.estado != 'FIN'
-            ORDER BY FIELD(P.estado, 'ACT', 'RET', 'PEN')";
+                FROM Proyecto P 
+                WHERE P.estado != 'FIN'
+                ORDER BY FIELD(P.estado, 'ACT', 'RET', 'PEN')";
             $result = $conexion->exeqSelect($sql);
             if ($result) {
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -27,44 +28,35 @@ class consultas
         $conexion->close();
         return $proyectos;
     }
+
     public function getTareas($proyecto)
     {
-
-
         $conexion = new conexion();
         $tareas = array();
 
         if ($conexion->connect()) {
             $con = $conexion->getConexion();
-            $usuario = $_SESSION['id'];
 
             $query = "SELECT
-              T.titulo AS NombreTarea,
-              T.descripcion AS DescripcionTarea,
-              T.estado,
-              T.idTarea AS idTarea,
-              PT.fechaInicio,
-              PT.fechaFinal
-            FROM
-              Proyecto AS P
-              INNER JOIN UsuarioProyecto AS UP ON P.idProyecto = UP.idProyecto
-              INNER JOIN UsuarioTarea AS UT ON UP.idUsuario = UT.idUsuario
-              INNER JOIN Tarea AS T ON UT.idTarea = T.idTarea
-              INNER JOIN ProyectoTarea AS PT ON P.idProyecto = PT.idProyecto AND T.idTarea = PT.idTarea
-            WHERE
-              UP.idUsuario = ?
-              AND P.idProyecto = ?
-              
-            ORDER BY PT.fechaFinal DESC";
+                  T.titulo AS NombreTarea,
+                  T.descripcion AS DescripcionTarea,
+                  T.estado,
+                  T.idTarea AS idTarea,
+                  PT.fechaInicio,
+                  PT.fechaFinal
+                FROM
+                  Proyecto AS P
+                  INNER JOIN ProyectoTarea AS PT ON P.idProyecto = PT.idProyecto
+                  INNER JOIN Tarea AS T ON PT.idTarea = T.idTarea
+                WHERE
+                  P.idProyecto = ?
+                ORDER BY PT.fechaFinal DESC";
 
             $stmt = $con->prepare($query);
-            $stmt->bind_param("ii", $usuario, $proyecto);
+            $stmt->bind_param("i", $proyecto);
             $stmt->execute();
             $result = $stmt->get_result();
 
-            if ($result === false) {
-                die("Error en la ejecución de la consulta: " . $stmt->error);
-            }
             if ($result) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     $tareas[] = $row;
@@ -81,7 +73,6 @@ class consultas
         return $tareas;
     }
 
-
     public function getComentarios($proyecto, $tarea)
     {
         $conexion = new conexion();
@@ -89,10 +80,10 @@ class consultas
         if ($conexion->connect()) {
             $con = $conexion->getConexion();
             $query = "SELECT *
-            FROM Comentario
-            WHERE idProyecto = $proyecto
-              AND idTarea = $tarea
-            ORDER BY fechaComentario ASC;";
+                FROM Comentario
+                WHERE idProyecto = $proyecto
+                  AND idTarea = $tarea
+                ORDER BY fechaComentario ASC;";
             $result = $conexion->exeqSelect($query);
             if ($result) {
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -107,6 +98,7 @@ class consultas
         $conexion->close();
         return $comentarios;
     }
+
     public function getUsuarioAsignado($idTarea)
     {
         $conexion = new conexion();
@@ -130,6 +122,7 @@ class consultas
             }
         }
     }
+
     public function getComentariosTarea($idTarea)
     {
         $conexion = new conexion();
@@ -162,7 +155,6 @@ class consultas
         return $comentarios;
     }
 
-
     public function getInfoProyecto($idProyecto)
     {
         $conexion = new conexion();
@@ -190,12 +182,7 @@ class consultas
         return $infoProyecto;
     }
 
-
-
-
-
-
-    public function obtenerPrimerasTareas($usuario, $proyecto, $cantidad)
+    public function obtenerPrimerasTareas($proyecto, $cantidad)
     {
         $conexion = new conexion();
         $tareas = array();
@@ -207,14 +194,13 @@ class consultas
 
             $query = "SELECT T.titulo AS NombreTarea, T.descripcion AS DescripcionTarea, T.idTarea, PT.fechaFinal, T.estado
                   FROM Tarea T
-                  INNER JOIN UsuarioTarea UT ON T.idTarea = UT.idTarea
                   INNER JOIN ProyectoTarea PT ON T.idTarea = PT.idTarea
-                  WHERE UT.idUsuario = ? AND T.idProyecto = ? AND PT.idProyecto = ?
+                  WHERE T.idProyecto = ? AND PT.idProyecto = ?
                   AND PT.fechaFinal BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
                   ORDER BY PT.fechaFinal ASC LIMIT $cantidad";
 
             $stmt = $con->prepare($query);
-            $stmt->bind_param("iii", $usuario, $proyecto, $proyecto);
+            $stmt->bind_param("ii", $proyecto, $proyecto);
             $stmt->execute();
             $result = $stmt->get_result();
 
@@ -233,6 +219,7 @@ class consultas
         $conexion->close();
         return $tareas;
     }
+
     public function obtenerNombreEstado($codigoEstado)
     {
         $conexion = new conexion();
@@ -262,6 +249,7 @@ class consultas
 
         return $nombreEstado;
     }
+
     public function getProyectoIdFromTarea($idTarea)
     {
         $conexion = new conexion();
@@ -285,6 +273,7 @@ class consultas
         $conexion->close();
         return $idProyecto;
     }
+
     public function getProyectosTerminados()
     {
         $conexion = new conexion();
@@ -292,10 +281,9 @@ class consultas
         if ($conexion->connect()) {
             $con = $conexion->getConexion();
             $sql = "SELECT P.idProyecto, P.nombre, P.descripcion, P.ubicacion, P.fechaInicio, P.fechaFinal, P.estado 
-        FROM Proyecto P 
-        INNER JOIN UsuarioProyecto UP ON P.idProyecto = UP.idProyecto
-        WHERE UP.idUsuario = '" . $_SESSION['id'] . "' AND P.estado = 'FIN'
-        ORDER BY P.fechaFinal DESC";
+            FROM Proyecto P 
+            WHERE P.estado = 'FIN'
+            ORDER BY P.fechaFinal DESC";
             $result = $conexion->exeqSelect($sql);
             if ($result) {
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -309,6 +297,7 @@ class consultas
         $conexion->close();
         return $proyectos;
     }
+
     public function getUsuariosPorTipoYProyecto($idProyecto, $tipoUsuario)
     {
         $conexion = new conexion();
@@ -381,4 +370,28 @@ class consultas
         $conexion->close();
         return $tarea;
     }
+    public function obtenerEstados()
+    {
+        $conexion = new conexion();
+        $estados = array();
+    
+        if ($conexion->connect()) {
+            $con = $conexion->getConexion();
+            $query = "SELECT codigo, nombre FROM Estado";
+            $result = $conexion->exeqSelect($query);
+    
+            if ($result) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $estados[$row['codigo']] = $row['codigo'] . " - " . $row['nombre'];
+                }
+                unset($result, $row);
+            } else {
+                echo "No se encontraron estados.";
+            }
+        }
+    
+        $conexion->close();
+        return $estados;
+    }
+    
 }

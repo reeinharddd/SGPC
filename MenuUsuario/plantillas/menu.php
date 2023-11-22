@@ -23,8 +23,7 @@
             <li class="active-tasks">
                 <span class="menu-item">
                     Proyectos Activos
-                    <img src="https://cdn.icon-icons.com/icons2/2248/PNG/512/arrow_down_bold_circle_icon_135936.png"
-                        alt="Flecha hacia abajo">
+                    <img src="plantillas/down-arrow.svg" alt="Flecha hacia abajo">
                 </span>
 
                 <ul class="task-list">

@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 
-if (!isset($_SESSION['user_name'])) {
+if (!isset($_SESSION['admin_name'])) {
     header('location:../Alertas/warning.html');
     exit;
 }
@@ -50,13 +50,20 @@ if ($tareaSeleccionada) {
                     <strong>Fecha Final:</strong>
                     <?= ($tareaSeleccionada['fechaFinal'] !== null) ? date("Y-m-d", strtotime($tareaSeleccionada['fechaFinal'])) : 'Sin fecha final'; ?>
                 </p>
-                <form action="marcar_completa.php" method="post" class="complete-task-section">
-                    <?php if ($tareaSeleccionada['estado'] !== 'FIN') : ?>
+                <form action="actualizar_estado.php" method="post" class="update-task-status-section">
+                    <label for="estadoTarea">Estado:</label>
+                    <select name="estadoTarea" id="estadoTarea">
+                        <?php
+                            $estados = $consultas->obtenerEstados(); 
+                            foreach ($estados as $codigo => $nombre) {
+                                echo '<option value="' . $codigo . '">' . $nombre . '</option>';
+                            }
+                          
+                            ?>
+                    </select>
+
                     <input type="hidden" name="idTarea" value="<?= $idTarea; ?>">
-                    <input type="submit" value="Marcar como Completa" class="complete-task-button">
-                    <?php else : ?>
-                    <p class="status-message">No puedes desmarcar una tarea ya enviada.</p>
-                    <?php endif; ?>
+                    <input type="submit" value="Actualizar Estado" class="update-task-status-button">
                 </form>
                 <p class="status <?= $consultas->obtenerNombreEstado($tareaSeleccionada['estado']); ?>">
                     <strong>Estado:</strong> <?= $consultas->obtenerNombreEstado($tareaSeleccionada['estado']); ?>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Error 418</title>
+  <link rel="stylesheet" href="../css/error.css" />
+</head>
+
+<body>
+  <h1 id="error-message">Mensaje de Error</h1>
+
+  <section class="error-container">
+    <span class="four"><span class="screen-reader-text">4</span></span>
+    <span class="zero"><span class="screen-reader-text">1</span></span>
+    <span class="four"><span class="screen-reader-text">8</span></span>
+  </section>
+  <div class="link-container">
+    <a href="javascript:history.go(-1);" class="more-link">Volver</a>
+  </div>
+  </div>
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Función para obtener parámetros de la URL
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return "";
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      // Obtener el mensaje de error de la URL
+      var mensajeError = getParameterByName("error");
+
+      // Mostrar el mensaje de error en algún lugar de tu HTML
+      if (mensajeError) {
+        var errorContainer = document.createElement("div");
+        errorContainer.style.color = "red";
+        errorContainer.style.fontWeight = "bold";
+        errorContainer.innerHTML = "Error: " + mensajeError;
+        document.body.appendChild(errorContainer);
+      }
+    });
+  </script>
+</body>
+
+</html>

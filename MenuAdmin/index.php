@@ -5,7 +5,20 @@
 session_start();
 
 if (!isset($_SESSION['admin_name'])) {
-   header('location:../Alertas/warning.html');
+    header('location:../Alertas/warning.html');
+    exit;
+}
+$current_page = basename($_SERVER['PHP_SELF']);
+include "consultas.php";
+$consultas = new Consultas();
+$proyectos = $consultas->getProyectos();
+
+if (!empty($proyectos)) {
+    $proyecto = $proyectos[0];
+    $_SESSION['idProyecto'] = $proyecto['idProyecto'];
+} else {
+    header('location:../Alertas/error.html');
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -18,97 +31,72 @@ if (!isset($_SESSION['admin_name'])) {
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="icon" href="../img/Logo1.png" type="image/png">
 </head>
-<header class="header">
-    <div class="logo">
-        <img src="../img/Logo1.png" alt="Logo de la empresa">
-    </div>
-    <div class="user-info">
-    <h3>Página Principal</h3>
-    </div>
-    <div class="user-info">
-        <img src="../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
-        <h3><?php echo $_SESSION['admin_name']; ?> <p>Administrador</p>
-        </h3>
-
-    </div>
-</header>
+<?PHP
+include "plantillas/header.php";
+include "plantillas/menu.php";
+?>
 
 
 
 
 
 <section>
-    <aside class="menu">
-        <ul>
-            <div class="head-menu">
-                <li><a href="Calendario/Calendario.php">Calendario</a></li>
-            </div>
-            <li><a href="RegistroProyectos/indexProyectos.php">Gestión de proyectos</a></li>
-            <li><a href="GestionDeTareas/indexTareas.php">Gestión de Tareas</a></li>
-            <li><a href="RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
-            <li><a href="Historial/index.html">Historial</a></li>
-            <li><a href="../InicioSesion/logout.php">Cerrar sesion</a></li>
-        </ul>
-    </aside>
+
     <main>
+
         <div class="project-list">
             <?php
-                include "../conexion.php";
+            foreach ($proyectos as $proyecto) {
 
-                $conexion = new conexion();
-                if ($conexion->connect()) {
-                    $con = $conexion->getConexion();
-                    $sql = "SELECT 
-                    P.idProyecto,
-                    P.nombre,
-                    P.descripcion,
-                    P.ubicacion,
-                    P.fechaInicio,
-                    P.fechaFinal,
-                    P.estado
-                  FROM Proyecto P
-                  INNER JOIN UsuarioProyecto UP ON P.idProyecto = UP.idProyecto
-                  WHERE UP.idUsuario";
+                echo "<div class='project-box' onclick='redirectToTasks(" . $proyecto["idProyecto"] . ")'>";
+                echo "<div class='project-header'>";
+                echo "<div class='project-title'>" . $proyecto["nombre"] . "</div>";
 
-                    $result = $conexion->exeqSelect($sql);
-
-                    if ($result) {
-
-                        while ($row = mysqli_fetch_assoc($result)) {
-                      
-                          echo "<div class='project-box'>";
-                      
-                          echo "<div class='project-header'>";
-                          echo "<div class='project-number'>" . $row["idProyecto"] . "</div>";
-                          echo "<div class='project-name'>" . $row["nombre"] . "</div>";
-                          echo "<div class='project-location'>" . $row['ubicacion'] . "</div>";
-                          echo "</div>";
-                      
-                          echo "<div class='project-dates'>";
-                          echo "<div class='project-date'>" . $row['fechaInicio'] . "</div>";
-                          echo "<div class='project-state'>" . $row['estado'] . "</div>"; 
-                          echo "<div class='project-date'>" . $row['fechaFinal'] . "</div>";
-                          echo "</div>";
-                      
-                          echo "<a href='proyectoDetalle.php?idProyecto=" . $row["idProyecto"] . "' class='details-button'>Ver detalles</a>";
-                      
-                          echo "</div>";
-                        
-                        }
-                      
-                        echo "</div>";
-                      
-                      } else {
-                      
-                        echo "No se encontraron proyectos.";
-                      
-                      }
+                $estadoClass = '';
+                switch ($proyecto['estado']) {
+                    case 'ACT':
+                        $estadoClass = 'active-state';
+                        break;
+                    case 'PEN':
+                        $estadoClass = 'pending-state';
+                        break;
+                    case 'FIN':
+                        $estadoClass = 'finished-state';
+                        break;
+                    case 'CAN':
+                        $estadoClass = 'canceled-state';
+                        break;
+                    case 'RET':
+                        $estadoClass = 'delayed-state';
+                        break;
                 }
-                ?>
+
+                echo "<div class='project-info'>";
+                echo "<div class='project-state $estadoClass'>" . $proyecto['estado'] . "</div>";
+                echo "</div>";
+
+                echo "<div class='project-dates'>";
+                echo "<div class='project-date-label'>Fecha Inicio:</div>";
+                echo "<div class='project-date'>" . $proyecto['fechaInicio'] . "</div>";
+                echo "<div class='project-date-label'>Fecha Fin:</div>";
+                echo "<div class='project-date'>" . $proyecto['fechaFinal'] . "</div>";
+                echo "</div>";
+
+                echo "</div>";
+                echo "</div>";
+            }
+            ?>
         </div>
+
     </main>
 </section>
-<div class="hero"></div>
+<script>
+function redirectToTasks(idProyecto) {
+    <?php echo "var url = 'Proyectos.php?idProyecto=' + idProyecto;"; ?>
+    window.location.href = url;
+}
+</script>
+
 </body>
 
 </html>

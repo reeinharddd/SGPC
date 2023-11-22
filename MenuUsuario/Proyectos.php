@@ -37,8 +37,6 @@ if ($proyectos) {
         $tareas = $consultas->getTareas($proyecto);
         $infoProyecto = $consultas->getInfoProyecto($proyecto);
         $primerasTareas = $consultas->obtenerPrimerasTareas($_SESSION['id'], $proyecto, 3);
-
-
     } else {
         echo "No se encontró el proyecto.";
     }
@@ -88,8 +86,8 @@ if ($proyectos) {
                     <h2>Tareas Próximas</h2>
 
                     <?php foreach ($primerasTareas as $tarea) : ?>
-                    <a href='detalleTarea.php?idTarea=<?= $tarea["idTarea"] ?>&idProyecto=<?= $proyecto["idProyecto"] ?>'
-                        class='upcoming-task <?= strtolower($tarea["estado"]) . "-state-left"; ?>'>
+                    <a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "'
+                        class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left'>
                         <div class='task-info'>
                             <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
                             <div class='task-data'>
@@ -122,7 +120,8 @@ if ($proyectos) {
                             foreach ($tareas as $tarea) {
                                 echo "<li class='task-item'>";
                                 $idProyecto = $proyecto['idProyecto'];
-                                echo "<a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "&idProyecto=" . $idProyecto . "' class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left task-link'>";
+                                echo "<a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "' class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left'>";
+
 
                                 echo "<div class='task-header'>";
                                 echo "<div class='task-name'>" . $tarea["NombreTarea"] . "</div>";
