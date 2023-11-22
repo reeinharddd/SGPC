@@ -8,5 +8,5 @@ $Myproyecto->setFechaInicio($_POST['F-inicio']);
 $Myproyecto->setFechaFinal($_POST['F-fin']);
 $Myproyecto->setEstado($_POST['estado']);
 $Myproyecto->setFullProyecto();
-header('location: ../AsignacionTareasP/indexAsignacion.php')
+header('location: ../GestionDeTareas/indexTareas.php')
 ?>

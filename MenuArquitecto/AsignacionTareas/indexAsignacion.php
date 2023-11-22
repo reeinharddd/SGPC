@@ -36,14 +36,14 @@ if (!isset($_SESSION['arqui_name'])) {
     <body>
         <div class="hero">
         <button><a href="../index.php">◄ Menú</a></button>
-            <p>Ingrese el ID del empleado al que quiere asignar una tarea, utilizando el ID de la tarea.</p>
+            <p>Ingrese el ID del empleado al que quiere asignar una tarea, utilizando el número de la tarea.</p>
             <form method="post" action="addAsignar.php" class="colortexto">
             <br>
 
                 <label>ID Empleado: *<input type="text" name="IDU" required 
                 placeholder="max. 40 caracteres"></label>
                 <br>
-                <label>ID Tarea: *<input type="text" name="IDT"></label>
+                <label>Número Tarea: *<input type="text" name="IDT"></label>
                 <br>
                 <input type="reset" value="Cancel">
                 <input type="submit" value="Send">

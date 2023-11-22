@@ -23,13 +23,26 @@ class Tareas extends conexion{
         $this->estado = $estado;
     }
 
+    public function setFechaInicio($fechaInicio){
+        $this->fechaInicio = $fechaInicio;
+    }
+
+    public function setFechaFinal($fechaFinal){
+        $this->fechaFinal = $fechaFinal;
+    }
+
     public function setIdProyecto($idProyecto){
         $this->idProyecto=$idProyecto;
     }
 
     public function setFullTarea(){
-        $query = "insert into tarea (titulo, descripcion, estado, idProyecto)
-        values ('".$this->titulo."', '".$this->descripcion."', '".$this->estado."', '".$this->idProyecto."')";
+        $query = "insert into tarea (titulo, descripcion, estado, fechaInicio, fechaFinal, idProyecto)
+        values ('".$this->titulo."',
+        '".$this->descripcion."',
+        '".$this->estado."',
+        '".$this->fechaInicio."',
+        '".$this->fechaFinal."',
+        '".$this->idProyecto."')";
         $result = $this->connect();
         if ($result == true){
             echo "Insercion Exitosa";

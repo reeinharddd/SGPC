@@ -46,7 +46,10 @@ if (!isset($_SESSION['arqui_name'])) {
                 <label>Descripción de la Tarea: *<input type="text" name="Des" required 
                 pattern="[A-Za-z\s'´ ()''/,.#]{2,50}" placeholder="max. 100 caracteres"></label>
                 <br>
-                
+                <label>Fecha de inicio: *<input type="date" name="F-inicio" id="fechaInicio" required></label>
+                <br>
+                <label>Fecha de finalización: *<input type="date" name="F-fin" id="fechaFin" required></label>
+                <br>
                 <label>Estado de la Tarea: *
                     <select name="estado">
                         <?php
@@ -73,12 +76,26 @@ if (!isset($_SESSION['arqui_name'])) {
                     </select>
                 </label>
                 <br>
-                <label>ID Proyecto: *<input type="number" name="IDtarea"></label>
+                <label>Número Proyecto: *<input type="text" name="IDtarea"></label>
                 <input type="reset" value="Cancel">
                 <br>
                 <input type="submit" value="Send">
             </form>
-           
+            <script>
+            document.getElementById("datos").addEventListener("submit", function(event) {
+            const fechaInicio = new Date(document.getElementById("fechaInicio").value);
+            const fechaFin = new Date(document.getElementById("fechaFin").value);
+            const fechaActual = new Date();
+
+            if (fechaInicio < fechaActual) {
+                alert("La fecha de inicio no puede ser anterior al día actual.");
+                event.preventDefault();
+            } else if (fechaFin < fechaInicio) {
+                alert("La fecha de fin no puede ser anterior a la fecha de inicio.");
+                event.preventDefault();
+            }
+            });
+            </script>
         </div>
         
     </body>
