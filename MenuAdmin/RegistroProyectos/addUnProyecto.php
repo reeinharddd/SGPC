@@ -10,7 +10,7 @@ $Myproyecto->setEstado($_POST['estado']);
 $newIdProyecto = $Myproyecto->setFullProyecto();
 
 if ($newIdProyecto > 0) {
-    header("Location: agregarUsuarios.php?idProyecto=$newIdProyecto");
+    header("Location: detalleUnProyecto.php?idProyecto=$newIdProyecto");
 } else {
     echo "Error al registrar el proyecto.";
 }
