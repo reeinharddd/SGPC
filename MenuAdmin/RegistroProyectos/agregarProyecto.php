@@ -87,15 +87,17 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
         </form>
         <script>
         document.getElementById("datos").addEventListener("submit", function(event) {
-            const fechaInicio = new Date(document.getElementById("fechaInicio").value);
-            const fechaFin = new Date(document.getElementById("fechaFin").value);
+            const fechaInicio = new Date(document.getElementById("fechaInicio").value +
+                "T00:00:00");
+            const fechaFin = new Date(document.getElementById("fechaFin").value +
+                "T00:00:00");
             const fechaActual = new Date();
 
-            if (fechaInicio < fechaActual) {
-                alert("La fecha de inicio no puede ser anterior al día actual.");
+            if (fechaInicio <= fechaActual) {
+                alert("La fecha de inicio debe ser posterior al día actual.");
                 event.preventDefault();
             } else if (fechaFin < fechaInicio) {
-                alert("La fecha de fin no puede ser anterior a la fecha de inicio.");
+                alert("La fecha de fin debe ser posterior o igual a la fecha de inicio.");
                 event.preventDefault();
             }
         });
