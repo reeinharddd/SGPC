@@ -21,58 +21,59 @@ class conexion
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function getConexion() {
+    public function getConexion()
+    {
         return $this->CON;
     }
 
     public function exeqInsert($query)
     {
-        if (mysqli_query($this->CON, $query) > 0) {
+        if (mysqli_query($this->CON, $query) === true) {
             $newid = mysqli_insert_id($this->CON);
             echo "Insercion Exitosa";
         } else {
             $newid = 0;
-            echo "Error: " . $query . "<br>" ;
+            echo "Error: " . $query . "<br>" . mysqli_error($this->CON);
         }
         return $newid;
-
     }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   public function exeqSelect($query)
-{
-    try {
-        $this->DATASET = mysqli_query($this->CON, $query);
-        if ($this->DATASET) {
-            return $this->DATASET;
-        } else {
-            throw new Exception("Error en la consulta: " . mysqli_error($this->CON));
+    public function exeqSelect($query)
+    {
+        try {
+            $this->DATASET = mysqli_query($this->CON, $query);
+            if ($this->DATASET) {
+                return $this->DATASET;
+            } else {
+                throw new Exception("Error en la consulta: " . mysqli_error($this->CON));
+            }
+        } catch (Exception $e) {
+            echo "Excepción: " . $e->getMessage();
+            return 0;
         }
-    } catch (Exception $e) {
-        echo "Excepción: " . $e->getMessage();
-        return 0;
     }
-}
 
 
 
-public function exeqUpdate($query)
-{
-    try {
-        $result = mysqli_query($this->CON, $query);
+    public function exeqUpdate($query)
+    {
+        try {
+            $result = mysqli_query($this->CON, $query);
 
-        if ($result !== false) {
-            $affectedRows = mysqli_affected_rows($this->CON);
-            return $affectedRows;
-        } else {
-            throw new Exception("Error en la consulta de actualización: " . mysqli_error($this->CON));
+            if ($result !== false) {
+                $affectedRows = mysqli_affected_rows($this->CON);
+                return $affectedRows;
+            } else {
+                throw new Exception("Error en la consulta de actualización: " . mysqli_error($this->CON));
+            }
+        } catch (Exception $e) {
+            echo "Excepción: " . $e->getMessage();
+            return 0;
         }
-    } catch (Exception $e) {
-        echo "Excepción: " . $e->getMessage();
-        return 0;
     }
-}
-public function close()
+    public function close()
     {
         if ($this->CON) {
             mysqli_close($this->CON);
@@ -82,12 +83,8 @@ public function close()
     {
         return mysqli_error($this->CON);
     }
-
-
 }
 
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-?>
