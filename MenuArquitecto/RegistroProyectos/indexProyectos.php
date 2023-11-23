@@ -3,8 +3,8 @@
 @include 'config.php';
 
 session_start();
-
-if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
+$current_page = basename($_SERVER['PHP_SELF']);
+if (!isset($_SESSION['arqui_name'])) {
     header('location:../../Alertas/warning.html');
 }
 ?>
@@ -15,46 +15,108 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestión de Proyectos</title>
-    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="../../css/proyectos.css" />
     <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
-<header class="header">
-<div class="logo">
-        <img src="../../img/Logo1.png" alt="Logo de la empresa">
-    </div>
-    <div class="user-info">
-            <h3>Registro de Proyectos</h3>
-        </div>
-    <div class="user-info">
-        <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
-        <h3><?php echo $_SESSION['arqui_name']; ?> <p>Arquitecto</p>
-        </h3>
 
-    </div>
-</header>
 
 <body>
+    <header class="header">
+        <?php if (isset($_SESSION['arqui_name']) && $current_page !== 'index.php') : ?>
+            <div class="back-link">
+                <a href="javascript:history.go(-1);">
+                    <img src="../plantillas/left-arrow.svg" alt="Flecha de regreso">
+                </a>
+            </div>
+        <?php endif; ?>
 
-    <div class="hero">
-        
+        <div class="logo">
+            <img src="../../img/Logo1.png" alt="Logo de la empresa">
+        </div>
+
+        <div class="user-info">
+            <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
+            <h3><?php echo $_SESSION['arqui_name']; ?>
+                <p>Administrador</p>
+            </h3>
+        </div>
+
+
+
+
+    </header>
+    <aside class="menu">
+        <ul>
+            <li <?php if ($current_page == 'index.php') echo 'class="current-page"'; ?>><a href="../index.php">Inicio</a>
+            </li>
+            <li><a href="Calendario/Calendario.php">Calendario</a></li>
+
+            <li class="active-tasks">
+                <span class="menu-item">
+                    Proyectos Activos
+                    <img src="../plantillas/down-arrow.svg" alt="Flecha hacia abajo" alt="Flecha hacia abajo">
+                </span>
+                <ul class="task-list">
+                    <?php
+                    if (isset($proyectos) && is_array($proyectos)) {
+                        foreach ($proyectos as $proyecto) {
+                            echo "<li><a href='Proyectos.php?idProyecto=" . $proyecto["idProyecto"] . "'>" . $proyecto["nombre"] . "</a></li>";
+                        }
+                    }
+                    ?>
+                </ul>
+            </li>
+
+
+
+            <li class="active-tasks">
+                <span class="menu-item">
+                    Gestion de Proyectos
+                    <img src="../plantillas/down-arrow.svg" alt="Flecha hacia abajo">
+                </span>
+                <ul class="task-list">
+                    <li><a href="indexProyectos.php">Registro completo de proyectos</a></li>
+                    <li><a href="agregarProyecto.php">Agregar un Proyecto</a></li>
+                    <li><a href="../modis/Proyectos.php">Modificar un Proye/cto</a></li>
+                    <li><a href="../modis/select.php">Agregar una Tarea a un Proyecto</a></li>
+                    <li><a href="../modis/proye.php">Asignar un Usuario a un Proyecto</a></li>
+                </ul>
+            </li>
+
+            <li class="active-tasks">
+                <span class="menu-item">
+                    Registro de Usuarios
+                    <img src="../plantillas/down-arrow.svg" alt="Flecha hacia abajo">
+                </span>
+                <ul class="task-list">
+                    <li><a href="../RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
+                    <li><a href="../RegistroUsuarios/mostrarUsuario.php">Modificar la informacion de un usuario</a></li>
+                </ul>
+            </li>
+            <li><a href="../proyectosTerminados.php">Proyectos Terminados</a></li>
+            <li><a href="Historial/index.html">Historial</a></li>
+            <li><a href="../../InicioSesion/logout.php">Cerrar sesion</a></li>
+        </ul>
+    </aside>
+
+
+    <main class="main-section">
+        <h1>Crear Proyecto
+        </h1>
         <form id="datos" method="post" action="addProyecto.php" class="colortexto">
-        <button><b><a href="../index.php">◄ Menú</a></b></button>
-        <br>
+            <br>
 
-            <label>Nombre del proyecto: * <input type="text" name="txtNombre" required
-                    placeholder="max. 100 caracteres"></label>
+            <label class="project-name">Nombre del proyecto: * <input type="text" name="txtNombre" required placeholder="max. 100 caracteres"></label>
             <br>
-            <label>Descripción del proyecto: * <input type="text" name="txtDes" required
-                    placeholder="max. 200 caracteres"></label>
+            <label class="project-description">Descripción del proyecto: * <input type="text" name="txtDes" required placeholder="max. 200 caracteres"></label>
             <br>
-            <label>Ubicación del proyecto: * <input type="text" name="txtUbi" required
-                    placeholder="max. 100 caracteres"></label>
+            <label class="project-location">Ubicación del proyecto: * <input type="text" name="txtUbi" required placeholder="max. 100 caracteres"></label>
             <br>
-            <label>Fecha de inicio: *<input type="date" name="F-inicio" id="fechaInicio" required></label>
+            <label class="project-date">Fecha de inicio: *<input type="date" name="F-inicio" id="fechaInicio" required></label>
             <br>
-            <label>Fecha de finalización: *<input type="date" name="F-fin" id="fechaFin" required></label>
+            <label class="project-date">Fecha de finalización: *<input type="date" name="F-fin" id="fechaFin" required></label>
             <br>
-            <label>Estado del proyecto: *
+            <label class="project-state">Estado del proyecto: *
                 <select name="estado">
                     <?php
                     include '../../conexion.php';
@@ -78,29 +140,31 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
                     }
                     ?>
                 </select>
-
             </label>
             <br>
 
-            <input type="reset" value="Cancel">
-            <input type="submit" value="Send">
+            <input type="reset" value="Limpiar" class="details-button">
+            <input type="submit" value="Crear" class="details-button">
         </form>
         <script>
-        document.getElementById("datos").addEventListener("submit", function(event) {
-            const fechaInicio = new Date(document.getElementById("fechaInicio").value);
-            const fechaFin = new Date(document.getElementById("fechaFin").value);
-            const fechaActual = new Date();
+            document.getElementById("datos").addEventListener("submit", function(event) {
+                const fechaInicio = new Date(document.getElementById("fechaInicio").value +
+                    "T00:00:00");
+                const fechaFin = new Date(document.getElementById("fechaFin").value +
+                    "T00:00:00");
+                const fechaActual = new Date();
 
-            if (fechaInicio < fechaActual) {
-                alert("La fecha de inicio no puede ser anterior al día actual.");
-                event.preventDefault();
-            } else if (fechaFin < fechaInicio) {
-                alert("La fecha de fin no puede ser anterior a la fecha de inicio.");
-                event.preventDefault();
-            }
-        });
+                if (fechaInicio <= fechaActual) {
+                    alert("La fecha de inicio debe ser posterior al día actual.");
+                    event.preventDefault();
+                } else if (fechaFin < fechaInicio) {
+                    alert("La fecha de fin debe ser posterior o igual a la fecha de inicio.");
+                    event.preventDefault();
+                }
+            });
         </script>
-    </div>
+
+    </main>
 
 </body>
 
