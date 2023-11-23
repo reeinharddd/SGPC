@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<button><a href="select.php">Regresar atrás</a></button>
     <?php
     session_start();
 

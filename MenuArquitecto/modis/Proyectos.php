@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<button><a href="../index.php">Regresar al menu</a></button>
     <?php
     session_start();
 
@@ -19,12 +20,13 @@
 
     include("../../conexion.php");
     $conexion = new conexion();
-
+    
     if ($conexion->connect()) {
         $queryProyectos = "SELECT * FROM Proyecto";
         $resultProyectos = $conexion->exeqSelect($queryProyectos);
 
         if ($resultProyectos->num_rows > 0) {
+            
             echo "<h2>Proyectos Activos</h2>";
             echo "<ul>";
             while ($rowProyecto = mysqli_fetch_array($resultProyectos)) {

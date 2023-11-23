@@ -57,7 +57,7 @@
                 $fechaFinalProyecto = $rowProyecto['fechaFinal'];
                 $estadoProyecto = $rowProyecto['estado'];
 
-                echo "<a href='../index.php'>Regresar al menu principal</a>";
+                echo "<a href='Proyectos.php'>Regresar atrás</a>";
                 echo "<h2>Modificar Proyecto</h2>";
                 echo "<form method='post'>";
                 echo "<label>Nombre del Proyecto: <input type='text' name='nombre' value='$nombreProyecto' required></label><br>";

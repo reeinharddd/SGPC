@@ -46,7 +46,7 @@
         ?>
 
         <form id="crearTareaForm" method="post" action="procesarTarea.php" class="colortexto">
-            <button><b><a href="../index.php">◄ Menú</a></b></button>
+            <button><b><a href="select.php">Regresar atrás</a></b></button>
             <br>
             <h2>Agregar Tarea al Proyecto: <?php echo $nombreProyecto; ?></h2>
             <label>Título: <input type="text" name="titulo" required></label><br>

@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<button><a href="../index.php">Regresar al menu</a></button>
     <?php
     session_start();
 
