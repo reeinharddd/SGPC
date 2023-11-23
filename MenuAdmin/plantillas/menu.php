@@ -55,7 +55,7 @@
                 </span>
                 <ul class="task-list">
                     <li><a href="RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
-                    <li><a href="RegistroUsuarios/modificarUsuario.php">Modificar los Permisos de un Usuario</a></li>
+                    <li><a href="RegistroUsuarios/mostrarUsuario.php">Modificar la informacion de un usuario</a></li>
                 </ul>
             </li>
             <li><a href="proyectosTerminados.php">Proyectos Terminados</a></li>
