@@ -35,7 +35,7 @@ if (!isset($_SESSION['arqui_name'])) {
     
     <body>
         <div class="hero">
-        <button><a href="../index.php">◄ Menú</a></button>
+        <button><a href="../../index.php">◄ Menú</a></button>
             <p>Ingrese el ID del empleado al que quiere asignar una tarea, utilizando el número de la tarea.</p>
             <form method="post" action="addAsignar.php" class="colortexto">
             <br>
