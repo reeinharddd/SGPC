@@ -59,7 +59,7 @@
                 </ul>
             </li>
             <li><a href="proyectosTerminados.php">Proyectos Terminados</a></li>
-            <li><a href="Historial/index.html">Historial</a></li>
+            <li><a href="Historial/index.php">Historial</a></li>
             <li><a href="../InicioSesion/logout.php">Cerrar sesion</a></li>
         </ul>
     </aside>

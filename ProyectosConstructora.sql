@@ -257,6 +257,141 @@ END;
 
 DELIMITER ;
 
+--Triggers para el historial.--
+--Para cuando se crea un proyecto--
+DELIMITER //
+CREATE TRIGGER ProyectoCreado AFTER INSERT ON Proyecto
+FOR EACH ROW
+BEGIN
+    INSERT INTO Modificacion (
+        descripcionModificacion,
+        fechaModificacion,
+        idProyecto,
+        idUsuario,
+        accion
+    )
+    VALUES (
+        CONCAT('Proyecto creado: ', NEW.nombre), 
+        CURDATE(), 
+        NEW.idProyecto,
+        1, 
+        'crear'
+    );
+END; //
+
+DELIMITER ;
+
+--Para cuando se modifica un proyecto
+DELIMITER //
+
+CREATE TRIGGER ProyectoModificado AFTER UPDATE ON Proyecto
+FOR EACH ROW
+BEGIN
+    IF OLD.nombre <> NEW.nombre THEN
+        INSERT INTO Modificacion (descripcionModificacion, fechaModificacion, idProyecto, idUsuario, accion)
+        VALUES (CONCAT('El nombre del proyecto cambió de ', OLD.nombre, ' a ', NEW.nombre), CURDATE(), NEW.idProyecto, 1, 'modificar');
+    END IF;
+    IF OLD.descripcion <> NEW.descripcion THEN
+        INSERT INTO Modificacion (descripcionModificacion, fechaModificacion, idProyecto, idUsuario, accion)
+        VALUES (CONCAT('La descripción del proyecto cambió de ', OLD.descripcion, ' a ', NEW.descripcion), CURDATE(), NEW.idProyecto, 1, 'modificar');
+    END IF;
+    IF OLD.ubicacion <> NEW.ubicacion THEN
+        INSERT INTO Modificacion (descripcionModificacion, fechaModificacion, idProyecto, idUsuario, accion)
+        VALUES (CONCAT('La ubicación del proyecto cambió de ', OLD.ubicacion, ' a ', NEW.ubicacion), CURDATE(), NEW.idProyecto, 1, 'modificar');
+    END IF;
+    IF OLD.fechaInicio <> NEW.fechaInicio THEN
+        INSERT INTO Modificacion (descripcionModificacion, fechaModificacion, idProyecto, idUsuario, accion)
+        VALUES (CONCAT('La fecha de inicio cambió de ', OLD.fechaInicio, ' a ', NEW.fechaInicio), CURDATE(), NEW.idProyecto, 1, 'modificar');
+    END IF;
+    IF OLD.fechaFinal <> NEW.fechaFinal THEN
+        INSERT INTO Modificacion (descripcionModificacion, fechaModificacion, idProyecto, idUsuario, accion)
+        VALUES (CONCAT('La fecha de finalización cambió de ', OLD.fechaFinal, ' a ', NEW.fechaFinal), CURDATE(), NEW.idProyecto, 1, 'modificar');
+    END IF;
+    IF OLD.estado <> NEW.estado THEN
+        INSERT INTO Modificacion (descripcionModificacion, fechaModificacion, idProyecto, idUsuario, accion)
+        VALUES (CONCAT('El estado del proyecto cambió de ', OLD.estado, ' a ', NEW.estado), CURDATE(), NEW.idProyecto, 1, 'modificar');
+    END IF;
+END; //
+
+DELIMITER ;
+
+--Para cuando se crea una tarea.
+
+DELIMITER //
+
+CREATE TRIGGER TareaCreada AFTER INSERT ON Tarea
+FOR EACH ROW
+BEGIN
+    INSERT INTO Modificacion (
+        descripcionModificacion,
+        fechaModificacion,
+        idUsuario,
+        accion
+    )
+    VALUES (
+        CONCAT('Tarea creada: ', NEW.titulo), -- Se usa el título de la tarea para la descripción
+        CURDATE(), -- Fecha y hora actuales
+        1, -- ID de usuario ficticio, asumiendo que no tienes esta información en la tabla 'Tarea'
+        'crear'
+    );
+END; //
+
+DELIMITER ;
+
+--Para cuando se modifica una tarea.
+
+DELIMITER //
+
+CREATE TRIGGER TareaModificada AFTER UPDATE ON Tarea
+FOR EACH ROW
+BEGIN
+    IF OLD.titulo <> NEW.titulo THEN
+        INSERT INTO Modificacion (descripcionModificacion, fechaModificacion, idUsuario, accion)
+        VALUES (CONCAT('El título de la tarea cambió de ', OLD.titulo, ' a ', NEW.titulo), CURDATE(),1, 'modificar');
+    END IF;
+    IF OLD.descripcion <> NEW.descripcion THEN
+        INSERT INTO Modificacion (descripcionModificacion, fechaModificacion,idUsuario, accion)
+        VALUES (CONCAT('La descripción de la tarea cambió de ', OLD.descripcion, ' a ', NEW.descripcion), CURDATE(),1, 'modificar');
+    END IF;
+    IF OLD.estado <> NEW.estado THEN
+        INSERT INTO Modificacion (descripcionModificacion, fechaModificacion,idUsuario, accion)
+        VALUES (CONCAT('El estado de la tarea cambió de ', OLD.estado, ' a ', NEW.estado), CURDATE(),1, 'modificar');
+    END IF;
+END; //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER AsignacionTareaUsuario AFTER INSERT ON UsuarioTarea
+FOR EACH ROW
+BEGIN
+    DECLARE nombreUsuario VARCHAR(30);
+    DECLARE tituloTarea VARCHAR(40);
+
+    -- Obtener el nombre del usuario
+    SELECT nombre INTO nombreUsuario FROM Usuario WHERE idUsuario = NEW.idUsuario;
+
+    -- Obtener el título de la tarea
+    SELECT titulo INTO tituloTarea FROM Tarea WHERE idTarea = NEW.idTarea;
+
+    -- Insertar en la tabla Modificación
+    INSERT INTO Modificacion (
+        descripcionModificacion,
+        fechaModificacion,
+        idUsuario,
+        accion
+    )
+    VALUES (
+        CONCAT('Tarea "', tituloTarea, '" asignada a ', nombreUsuario),
+        CURDATE(),
+        1,
+        'asignar'
+    );
+END; //
+
+DELIMITER ;
+
 
 ------------------------------------
 SET foreign_key_checks = 0;

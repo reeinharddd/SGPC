@@ -1,0 +1,48 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e0e0e1;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .HistoryTable {
+    width: 100%; /* La tabla ocupa el ancho completo del contenedor */
+    border-collapse: collapse; /* Elimina el espacio entre las celdas */
+    margin-left: 0; /* Elimina el margen izquierdo para alinear la tabla a la izquierda */
+    background-color: #fff; /* Fondo blanco para la tabla */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera para dar profundidad */
+    overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
+  }
+  
+  th, td {
+    text-align: left; /* Alinear el texto a la izquierda */
+    padding: 8px; /* Espaciado interior para celdas */
+  }
+  
+  th {
+    background-color: #ff6947; /* Color de fondo para los encabezados */
+    color: #ffffff; /* Texto blanco para los encabezados */
+    font-size: 1.1em; /* Un poco más grande que el texto de la celda */
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Color de fondo para filas pares */
+  }
+  
+  /* Estilos para el scroll */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

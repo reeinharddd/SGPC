@@ -10,7 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const fechaInfo = document.getElementById('fecha-info');
     const closeBtn = document.querySelector('.close-btn');
 
-    closeBtn.onclick = () => popup.style.display = 'none';
+    function closePopup() {
+        popup.style.display = 'none';
+    }
+
+    closeBtn.onclick = closePopup;
 
     function loadPopupContent(date) {
         const xhr = new XMLHttpRequest();
@@ -25,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         xhr.send('fecha=' + date);
     }
+
+    
     const loadCalendar = (date) => {
         const year = date.getFullYear();
         const month = date.getMonth();
@@ -36,7 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const dayElem = document.createElement('div');
             dayElem.classList.add('day');
             dayElem.textContent = i;
-            dayElem.onclick = () => {
+            dayElem.onclick = (event) => {
+                event.stopPropagation();
                 const selectedDate = `${year}-${month + 1}-${i}`; // Formato de fecha Año-Mes-Día
                 loadPopupContent(selectedDate);
                 popup.style.display = 'block';
