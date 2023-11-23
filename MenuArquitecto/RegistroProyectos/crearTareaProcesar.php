@@ -15,8 +15,8 @@ if (
     $conexion = new conexion();
 
     if ($conexion->connect()) {
-        $queryInsertarTarea = "INSERT INTO Tarea (titulo, descripcion, estado, fechaInicio, fechaFinal, idProyecto) 
-                               VALUES ('$titulo', '$descripcion', 'ACT', '$fechaInicio', '$fechaFinal',  $idProyecto)";
+        $queryInsertarTarea = "INSERT INTO Tarea (titulo, descripcion, estado,  idProyecto) 
+                               VALUES ('$titulo', '$descripcion', 'ACT', $idProyecto)";
         $idTarea = $conexion->exeqInsert($queryInsertarTarea);
 
         if (!$idTarea) {

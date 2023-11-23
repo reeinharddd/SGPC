@@ -1,6 +1,5 @@
 CREATE DATABASE sgpc;
-drop database sgpc;
-
+USE sgpc;
 CREATE TABLE TipoUsuario (
     idTu INT AUTO_INCREMENT PRIMARY KEY,
     rol VARCHAR(30) NOT NULL
@@ -98,7 +97,7 @@ CREATE TABLE Modificacion (
     FOREIGN KEY (idTarea) REFERENCES Tarea(idTarea),
     FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
 );
------------------------------------------------------------------------------------
+
 INSERT INTO TipoUsuario (rol) VALUES ('Administrador'), ('Arquitecto'), ('Empleado');
 
 INSERT INTO Estado (codigo, nombre) VALUES ('ACT','Activo'),('PEN','Pendiente'),('FIN','Finalizado'), ('CAN','Cancelado'), ('RET','Retrasado');
@@ -216,49 +215,7 @@ VALUES
        ('Comentario 6', '2023-07-23',3,5,6),
         ('Comentario 7', '2023-08-23',3,5,6),
          ('Comentario 8','2023-09-23',3,5,6);
------------------------------------------------------------------------------------
 
-SET_GLOBAL event_scheduler = ON;
-
-DELIMITER //
-
-CREATE EVENT actualizar_estado_tareas_event
-ON SCHEDULE EVERY 1 MINUTE
-DO
-BEGIN
-  UPDATE Tarea
-  SET estado = 'RET'
-  WHERE estado = 'ACT' AND idTarea IN (
-    SELECT PT.idTarea
-    FROM ProyectoTarea PT
-    JOIN Tarea T ON PT.idTarea = T.idTarea
-    WHERE PT.fechaFinal < CURDATE()
-  );
-END;
-
-//
-
-DELIMITER ;
-
-
-DELIMITER //
-
-CREATE EVENT actualizar_estado_proyecto_event
-ON SCHEDULE EVERY 1 MINUTE
-DO
-BEGIN
-  UPDATE Proyecto
-  SET estado = 'RET'
-  WHERE estado = 'ACT' AND fechaFinal < CURDATE();
-  
-END;
-
-//
-
-DELIMITER ;
-
---Triggers para el historial.--
---Para cuando se crea un proyecto--
 DELIMITER //
 CREATE TRIGGER ProyectoCreado AFTER INSERT ON Proyecto
 FOR EACH ROW
@@ -281,7 +238,7 @@ END; //
 
 DELIMITER ;
 
---Para cuando se modifica un proyecto
+
 DELIMITER //
 
 CREATE TRIGGER ProyectoModificado AFTER UPDATE ON Proyecto
@@ -315,7 +272,7 @@ END; //
 
 DELIMITER ;
 
---Para cuando se crea una tarea.
+
 
 DELIMITER //
 
@@ -329,16 +286,16 @@ BEGIN
         accion
     )
     VALUES (
-        CONCAT('Tarea creada: ', NEW.titulo), -- Se usa el título de la tarea para la descripción
-        CURDATE(), -- Fecha y hora actuales
-        1, -- ID de usuario ficticio, asumiendo que no tienes esta información en la tabla 'Tarea'
+        CONCAT('Tarea creada: ', NEW.titulo),
+        CURDATE(),
+        1, 
         'crear'
     );
 END; //
 
 DELIMITER ;
 
---Para cuando se modifica una tarea.
+
 
 DELIMITER //
 
@@ -369,13 +326,13 @@ BEGIN
     DECLARE nombreUsuario VARCHAR(30);
     DECLARE tituloTarea VARCHAR(40);
 
-    -- Obtener el nombre del usuario
+  
     SELECT nombre INTO nombreUsuario FROM Usuario WHERE idUsuario = NEW.idUsuario;
 
-    -- Obtener el título de la tarea
+
     SELECT titulo INTO tituloTarea FROM Tarea WHERE idTarea = NEW.idTarea;
 
-    -- Insertar en la tabla Modificación
+  
     INSERT INTO Modificacion (
         descripcionModificacion,
         fechaModificacion,
@@ -391,22 +348,3 @@ BEGIN
 END; //
 
 DELIMITER ;
-
-
-------------------------------------
-SET foreign_key_checks = 0;
-
--- Eliminar datos de las tablas
-DELETE FROM Comentario;
-DELETE FROM Modificacion;
-DELETE FROM UsuarioProyecto;
-DELETE FROM UsuarioTarea;
-DELETE FROM ProyectoTarea;
-DELETE FROM Tarea;
-DELETE FROM Proyecto;
-DELETE FROM Usuario;
-DELETE FROM Estado;
-DELETE FROM TipoUsuario;
-
--- Reactivar claves foráneas
-SET foreign_key_checks = 1;

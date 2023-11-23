@@ -12,13 +12,7 @@ include "consultas.php";
 $consultas = new Consultas();
 $proyectos = $consultas->getProyectos();
 
-if (!empty($proyectos)) {
-    $proyecto = $proyectos[0];
-    $_SESSION['idProyecto'] = $proyecto['idProyecto'];
-} else {
-    header('location:../Alertas/error.html');
-    exit;
-}
+
 
 ?>
 

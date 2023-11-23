@@ -100,7 +100,6 @@ if (!isset($_SESSION['admin_name'])) {
     </aside>
     <main>
         <?php
-        session_start();
 
         if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
             header('location:../../Alertas/warning.html');

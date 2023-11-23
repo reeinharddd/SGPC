@@ -8,6 +8,8 @@ if (!isset($_SESSION['admin_name'])) {
     header('location:../../Alertas/warning.html');
     exit;
 }
+
+$current_page = $_SERVER['PHP_SELF'];
 ?>
 
 <!DOCTYPE html>
