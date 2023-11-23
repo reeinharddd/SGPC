@@ -21,7 +21,11 @@
     $conexion = new conexion();
 
     if ($conexion->connect()) {
+            if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['idProyecto'])){
+                $idProyecto = $_GET['idProyecto'];
         $queryUsuarios = "SELECT * FROM Usuario";
+        $queryUsuarios = "SELECT * FROM Usuario WHERE idUsuario NOT IN
+            (SELECT idUsuario FROM UsuarioProyecto WHERE idProyecto = '$idProyecto')";
         $resultUsuarios = $conexion->exeqSelect($queryUsuarios);
 
         if ($resultUsuarios->num_rows > 0) {
@@ -41,6 +45,9 @@
         }
 
         $conexion->close();
+        }else{
+            echo "<p>Parámetros incorrectos</p>";
+        }
     } else {
         echo "<p>Error en la conexión a la base de datos.</p>";
     }

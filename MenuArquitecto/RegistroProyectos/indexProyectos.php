@@ -27,7 +27,7 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
         </div>
     <div class="user-info">
         <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
-        <h3><?php echo $_SESSION['admin_name']; ?> <p>Administrador</p>
+        <h3><?php echo $_SESSION['arqui_name']; ?> <p>Arquitecto</p>
         </h3>
 
     </div>

@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 
-if (!isset($_SESSION['admin_name'])) {
+if (!isset($_SESSION['arqui_name'])) {
     header('location:../Alertas/warning.html');
     exit;
 }
