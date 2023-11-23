@@ -1,6 +1,6 @@
 <?php
 include("Proyectos.php");
-
+$current_page = $_SERVER['PHP_SELF'];
 if (isset($_GET['idProyecto'])) {
     $idProyecto = $_GET['idProyecto'];
 

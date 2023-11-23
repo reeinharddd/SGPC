@@ -1,6 +1,6 @@
 <?php
 include("Proyectos.php");
-
+$current_page = $_SERVER['PHP_SELF'];
 if (isset($_GET['idProyecto'])) {
     $idProyecto = $_GET['idProyecto'];
 
@@ -9,7 +9,7 @@ if (isset($_GET['idProyecto'])) {
     $detalleProyecto = $proyecto->obtenerDetallesProyecto($idProyecto);
 
     $current_page = $_SERVER['PHP_SELF'];
-    
+
     if ($detalleProyecto) {
         $nombre = $detalleProyecto['nombre'];
         $descripcion = $detalleProyecto['descripcion'];

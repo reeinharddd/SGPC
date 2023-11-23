@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$current_page = $_SERVER['PHP_SELF'];
 if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
     header('location:../../Alertas/warning.html');
 }
