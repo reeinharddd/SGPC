@@ -23,11 +23,11 @@ if (!isset($_SESSION['admin_name'])) {
 <body>
     <header class="header">
         <?php if (isset($_SESSION['admin_name']) && $current_page !== 'index.php') : ?>
-        <div class="back-link">
-            <a href="javascript:history.go(-1);">
-                <img src="../plantillas/left-arrow.svg" alt="Flecha de regreso">
-            </a>
-        </div>
+            <div class="back-link">
+                <a href="javascript:history.go(-1);">
+                    <img src="../plantillas/left-arrow.svg" alt="Flecha de regreso">
+                </a>
+            </div>
         <?php endif; ?>
 
         <div class="logo">
@@ -47,8 +47,7 @@ if (!isset($_SESSION['admin_name'])) {
     </header>
     <aside class="menu">
         <ul>
-            <li <?php if ($current_page == 'index.php') echo 'class="current-page"'; ?>><a
-                    href="../index.php">Inicio</a>
+            <li <?php if ($current_page == 'index.php') echo 'class="current-page"'; ?>><a href="../index.php">Inicio</a>
             </li>
             <li><a href="Calendario/Calendario.php">Calendario</a></li>
 
@@ -101,25 +100,23 @@ if (!isset($_SESSION['admin_name'])) {
     </aside>
 
 
-    <main>
-
+    <main class="main-section">
+        <h1>Crear Proyecto
+        </h1>
         <form id="datos" method="post" action="addProyecto.php" class="colortexto">
             <br>
 
-            <label>Nombre del proyecto: * <input type="text" name="txtNombre" required
-                    placeholder="max. 100 caracteres"></label>
+            <label class="project-name">Nombre del proyecto: * <input type="text" name="txtNombre" required placeholder="max. 100 caracteres"></label>
             <br>
-            <label>Descripción del proyecto: * <input type="text" name="txtDes" required
-                    placeholder="max. 200 caracteres"></label>
+            <label class="project-description">Descripción del proyecto: * <input type="text" name="txtDes" required placeholder="max. 200 caracteres"></label>
             <br>
-            <label>Ubicación del proyecto: * <input type="text" name="txtUbi" required
-                    placeholder="max. 100 caracteres"></label>
+            <label class="project-location">Ubicación del proyecto: * <input type="text" name="txtUbi" required placeholder="max. 100 caracteres"></label>
             <br>
-            <label>Fecha de inicio: *<input type="date" name="F-inicio" id="fechaInicio" required></label>
+            <label class="project-date">Fecha de inicio: *<input type="date" name="F-inicio" id="fechaInicio" required></label>
             <br>
-            <label>Fecha de finalización: *<input type="date" name="F-fin" id="fechaFin" required></label>
+            <label class="project-date">Fecha de finalización: *<input type="date" name="F-fin" id="fechaFin" required></label>
             <br>
-            <label>Estado del proyecto: *
+            <label class="project-state">Estado del proyecto: *
                 <select name="estado">
                     <?php
                     include '../../conexion.php';
@@ -143,29 +140,28 @@ if (!isset($_SESSION['admin_name'])) {
                     }
                     ?>
                 </select>
-
             </label>
             <br>
 
-            <input type="reset" value="Cancel">
-            <input type="submit" value="Send">
+            <input type="reset" value="Limpiar" class="details-button">
+            <input type="submit" value="Crear" class="details-button">
         </form>
         <script>
-        document.getElementById("datos").addEventListener("submit", function(event) {
-            const fechaInicio = new Date(document.getElementById("fechaInicio").value +
-                "T00:00:00");
-            const fechaFin = new Date(document.getElementById("fechaFin").value +
-                "T00:00:00");
-            const fechaActual = new Date();
+            document.getElementById("datos").addEventListener("submit", function(event) {
+                const fechaInicio = new Date(document.getElementById("fechaInicio").value +
+                    "T00:00:00");
+                const fechaFin = new Date(document.getElementById("fechaFin").value +
+                    "T00:00:00");
+                const fechaActual = new Date();
 
-            if (fechaInicio <= fechaActual) {
-                alert("La fecha de inicio debe ser posterior al día actual.");
-                event.preventDefault();
-            } else if (fechaFin < fechaInicio) {
-                alert("La fecha de fin debe ser posterior o igual a la fecha de inicio.");
-                event.preventDefault();
-            }
-        });
+                if (fechaInicio <= fechaActual) {
+                    alert("La fecha de inicio debe ser posterior al día actual.");
+                    event.preventDefault();
+                } else if (fechaFin < fechaInicio) {
+                    alert("La fecha de fin debe ser posterior o igual a la fecha de inicio.");
+                    event.preventDefault();
+                }
+            });
         </script>
 
     </main>

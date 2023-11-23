@@ -119,6 +119,8 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
 
                     if ($resultUsuariosProyecto->num_rows > 0) {
                         echo "<h2>Usuarios en el Proyecto: $nombreProyecto</h2>";
+                        echo "<h3>seleccione uno</h3>";
+                       
                         echo "<ul>";
                         while ($rowUsuario = mysqli_fetch_array($resultUsuariosProyecto)) {
                             $idUsuario = $rowUsuario['idUsuario'];
