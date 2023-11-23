@@ -52,7 +52,7 @@ if (
         echo "<p>Fecha de Inicio: $fechaInicio</p>";
         echo "<p>Fecha de Finalización: $fechaFinal</p>";
 
-        echo "<a href='index.php'>Terminar</a>";
+        echo "<a href='../index.php'>Terminar</a>";
         echo "<a href='crearTareaForm.php?idUsuario=$idUsuario&idProyecto=$idProyecto'>Asignar Otra Tarea</a>";
         echo "<a href='asignarTareas.php?idProyecto=$idProyecto'>Elegir Otro Usuario</a>";
 
