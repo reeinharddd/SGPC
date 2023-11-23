@@ -42,6 +42,7 @@
                 <ul class="task-list">
                     <li><a href="RegistroProyectos/indexProyectos.php">Registro completo de proyectos</a></li>
                     <li><a href="RegistroProyectos/agregarProyecto.php">Agregar un Proyecto</a></li>
+                    <li><a href="modis/Proyectos.php">Modificar un Proyecto</a></li>
                     <li><a href="modis/select.php">Agregar una Tarea a un Proyecto</a></li>
                     <li><a href="modis/proye.php">Asignar un Usuario a un Proyecto</a></li>
                     <li><a href="GestionDeTareas/AsignacionTareas/select.php">Agregar una tarea a un Usuario</a></li>
