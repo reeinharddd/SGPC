@@ -24,23 +24,34 @@
         if (isset($_GET['idProyecto'])) {
             $idProyecto = $_GET['idProyecto'];
 
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['ubicacion']) && isset($_POST['fechaInicio']) && isset($_POST['fechaFinal']) && isset($_POST['estado'])) {
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['ubicacion']) && isset($_POST['fechaFinal']) && isset($_POST['estado'])) {
                 $nombre = $_POST['nombre'];
                 $descripcion = $_POST['descripcion'];
                 $ubicacion = $_POST['ubicacion'];
-                $fechaInicio = $_POST['fechaInicio'];
                 $fechaFinal = $_POST['fechaFinal'];
                 $estado = $_POST['estado'];
 
-                $queryActualizarProyecto = "UPDATE Proyecto 
-                                            SET nombre='$nombre', descripcion='$descripcion', ubicacion='$ubicacion', fechaInicio='$fechaInicio', fechaFinal='$fechaFinal', estado='$estado'
-                                            WHERE idProyecto=$idProyecto";
-                $resultado = $conexion->exeqUpdate($queryActualizarProyecto);
+                $queryFechaInicio = "SELECT fechaInicio FROM Proyecto WHERE idProyecto = $idProyecto";
+                $resultFechaInicio = $conexion->exeqSelect($queryFechaInicio);
 
-                if ($resultado) {
-                    echo "<p>Proyecto actualizado exitosamente.</p>";
-                } else {
-                    echo "<p>Error al actualizar el proyecto: " . mysqli_error($conexion->getConexion()) . "</p>";
+                if ($resultFechaInicio->num_rows > 0) {
+                    $rowFechaInicio = $resultFechaInicio->fetch_assoc();
+                    $fechaInicioProyecto = $rowFechaInicio['fechaInicio'];
+
+                    if (strtotime($fechaFinal) < strtotime($fechaInicioProyecto)) {
+                        echo "<p style='color: red;'>Error: La fecha de finalización no puede ser menor que la fecha de inicio.</p>";
+                    } else {
+                        $queryActualizarProyecto = "UPDATE Proyecto 
+                                                    SET nombre='$nombre', descripcion='$descripcion', ubicacion='$ubicacion', fechaInicio='$fechaInicioProyecto', fechaFinal='$fechaFinal', estado='$estado'
+                                                    WHERE idProyecto=$idProyecto";
+                        $resultado = $conexion->exeqUpdate($queryActualizarProyecto);
+
+                        if ($resultado) {
+                            echo "<p>Proyecto actualizado exitosamente.</p>";
+                        } else {
+                            echo "<p>Error al actualizar el proyecto: " . mysqli_error($conexion->getConexion()) . "</p>";
+                        }
+                    }
                 }
             }
 
@@ -61,9 +72,27 @@
                 echo "<label>Nombre del Proyecto: <input type='text' name='nombre' value='$nombreProyecto' required></label><br>";
                 echo "<label>Descripción del Proyecto: <input type='text' name='descripcion' value='$descripcionProyecto' required></label><br>";
                 echo "<label>Ubicación del Proyecto: <input type='text' name='ubicacion' value='$ubicacionProyecto' required></label><br>";
-                echo "<label>Fecha de Inicio: <input type='date' name='fechaInicio' value='$fechaInicioProyecto' required></label><br>";
+
+                $fechaInicioFormateada = date("d/m/Y", strtotime($fechaInicioProyecto));
+                echo "<label>Fecha de Inicio: $fechaInicioFormateada</label>";
+                echo "<input type='hidden' name='fechaInicio' value='$fechaInicioProyecto'><br>";
+
                 echo "<label>Fecha de Finalización: <input type='date' name='fechaFinal' value='$fechaFinalProyecto' required></label><br>";
-                echo "<label>Estado del Proyecto: <input type='text' name='estado' value='$estadoProyecto' required></label><br>";
+
+                echo "<p style='color: red;'>Nota: La fecha de inicio no puede ser modificada.</p>";
+
+                echo "<label>Estado del Proyecto: ";
+                echo "<select name='estado'>";
+                $queryEstados = "SELECT codigo, nombre FROM Estado";
+                $resultEstados = $conexion->exeqSelect($queryEstados);
+                while ($rowEstado = mysqli_fetch_array($resultEstados)) {
+                    $codigoEstado = $rowEstado['codigo'];
+                    $nombreEstado = $rowEstado['nombre'];
+                    $selected = ($codigoEstado == $estadoProyecto) ? "selected" : "";
+                    echo "<option value='$codigoEstado' $selected>$nombreEstado</option>";
+                }
+                echo "</select></label><br>";
+
                 echo "<input type='submit' value='Guardar Cambios'>";
                 echo "</form>";
             } else {

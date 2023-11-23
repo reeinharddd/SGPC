@@ -18,12 +18,13 @@ if ($conexion->connect()) {
                                             VALUES ('$idUsuario', '$idProyecto')";
             $resultUsuarioProyecto = $conexion->exeqInsert($queryInsertarUsuarioProyecto);
 
-            if (!$resultUsuarioProyecto) {
+            if ($resultUsuarioProyecto < 0) {
                 echo "Error al asignar usuario al proyecto: " . mysqli_error($conexion->getConexion());
             }
         }
 
-        echo "Usuarios asignados exitosamente al proyecto.";
+        header("Location: mostrarAsignacion.php?idProyecto=$idProyecto");
+        exit();
     } else {
         echo "Datos del formulario incompletos.";
     }

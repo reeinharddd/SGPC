@@ -32,8 +32,10 @@ if ($conexion->connect()) {
 
             if (!$resultProyectoTarea) {
                 echo "Error al insertar en ProyectoTarea: " . mysqli_error($conexion->getConexion());
+                header("Location: mostrarTarea.php?idTarea=$idTarea");
             } else {
-                echo "Inserción exitosa en Tarea y ProyectoTarea.";
+                header("Location: mostrarTarea.php?idTarea=$idTarea");
+                exit();
             }
         }
     } else {

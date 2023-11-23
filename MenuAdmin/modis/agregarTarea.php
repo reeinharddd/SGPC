@@ -7,6 +7,14 @@
     <title>SGPC - Agregar Tarea</title>
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="icon" href="../../img/Logo1.png" type="image/png">
+    <script>
+    function mostrarAlerta(elemento, maximo) {
+        if (elemento.value.length > maximo) {
+            alert(`El campo no puede tener más de ${maximo} caracteres.`);
+            elemento.value = elemento.value.substring(0, maximo);
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -49,10 +57,21 @@
             <button><b><a href="../index.php">◄ Menú</a></b></button>
             <br>
             <h2>Agregar Tarea al Proyecto: <?php echo $nombreProyecto; ?></h2>
-            <label>Título: <input type="text" name="titulo" required></label><br>
-            <label>Descripción: <input type="text" name="descripcion" required></label><br>
-            <label>Fecha de Inicio: <input type="date" name="fechaInicio" required></label><br>
-            <label>Fecha de Finalización: <input type="date" name="fechaFinal" required></label><br>
+            <label>Título (máximo 40 caracteres): <input type="text" name="titulo" maxlength="40"
+                    oninput="mostrarAlerta(this, 40)" required></label><br>
+            <label>Descripción (máximo 100 caracteres): <input type="text" name="descripcion" maxlength="100"
+                    oninput="mostrarAlerta(this, 100)" required></label><br>
+
+            <?php
+            $fechaInicioProyecto = $rowProyecto['fechaInicio'];
+            $fechaHoy = date('Y-m-d');
+            echo "<label>Fecha de Inicio (debe ser después de $fechaInicioProyecto y $fechaHoy): <input type='date' name='fechaInicio' min='$fechaInicioProyecto' value='$fechaHoy' required></label><br>";
+            ?>
+
+            <?php
+            $fechaFinProyecto = $rowProyecto['fechaFinal'];
+            echo "<label>Fecha de Finalización (debe ser antes de $fechaFinProyecto): <input type='date' name='fechaFinal' max='$fechaFinProyecto' required></label><br>";
+            ?>
 
             <?php
             $queryEstados = "SELECT codigo, nombre FROM Estado";
