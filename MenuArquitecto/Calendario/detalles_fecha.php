@@ -4,7 +4,7 @@
 
 session_start();
 
-if (!isset($_SESSION['user_name'])) {
+if (!isset($_SESSION['arqui_name'])) {
    header('location:../../Alertas/warning.html');
 }
 ?>
@@ -30,7 +30,7 @@ if (!isset($_SESSION['user_name'])) {
                     $sql = "SELECT P.idProyecto, P.nombre, P.descripcion, P.ubicacion, P.fechaInicio, P.fechaFinal, P.estado 
                         FROM Proyecto P 
                         INNER JOIN UsuarioProyecto UP ON P.idProyecto = UP.idProyecto
-                        WHERE UP.idUsuario = ".$_SESSION['id']." AND P.fechaInicio <= '".$fechaSeleccionada."' AND P.fechaFinal >= '".$fechaSeleccionada."'";
+                        WHERE P.fechaInicio <= '".$fechaSeleccionada."' AND P.fechaFinal >= '".$fechaSeleccionada."'";
 
                     $result = $conexion->exeqSelect($sql);
                     if ($result) {

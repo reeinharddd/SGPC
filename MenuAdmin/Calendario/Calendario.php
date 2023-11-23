@@ -19,23 +19,20 @@ if (!isset($_SESSION['admin_name'])) {
     <link rel="icon" href="../../img/Logo1.png" type = "image/png">
 </head>
 <body>
-    <header class = "header">
-        <div><img src="../../img/Logo1.png" alt="" width="100px" height="100px"></div>
-        <input type="checkbox" id = "toggle">
-        <label for="toggle"> <img src="../../img/menu.svg" alt="menu"></label>
-        <nav class = "navigation">
-          <ul>
-            <li><a href="../index.php">Inicio</a></li>
-            <li><a href="#">Proyectos</a>
-                <ul>
-                    <li><a href="../Proyectos.php">Proyectos vigentes</a></li>
-                    <li><a href="../AllProyectos.php">Proyectos completados</a></li>
-                </ul>
-              </li>
-              <li><a href="../Contactos.php">Contacto</a></li>
-          </ul>
-        </nav>
-      </header>
+<header class="header">
+    <div class="logo">
+        <img src="../../img/Logo1.png" alt="Logo de la empresa">
+    </div>
+    <div class="user-info">
+        <h3>Calendario</h3>
+    </div>
+    <div class="user-info">
+        <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
+        <h3><?php echo $_SESSION['admin_name']; ?> <p>Administrador</p>
+        </h3>
+
+    </div>
+</header>
 
     <div id="calendar-container">
         <button id="prev-month">←</button>

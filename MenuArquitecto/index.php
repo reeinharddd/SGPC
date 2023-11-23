@@ -42,6 +42,7 @@ if (!isset($_SESSION['arqui_name'])) {
           <li><a href="AsignacionEmpleados/indexAsignacionE.php">Asignar empleados</a></li>
           <li><a href="GestionDeTareas/indexTareas.php">Registrar tareas</a></li>
           <li><a href="RegistroProyectos/indexProyectos.php">Registrar Proyectos</a></li>
+          <li><a href="Historial/index.php">Historial</a></li>
           <li><a href="../InicioSesion/logout.php">Cerrar sesión</a></li>
         </ul>
       </aside>

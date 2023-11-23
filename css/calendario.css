@@ -75,6 +75,9 @@ button:hover {
     background: white;
     border-radius: 5px;
     text-align: center;
+    max-height: 700px; 
+    width: 1000px;
+    overflow-y: auto;
 }
 
 .close-btn {
