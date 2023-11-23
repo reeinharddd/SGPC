@@ -46,7 +46,7 @@
 
                     echo "<tr>";
                     echo "<td>$tituloTarea</td><td>$descripcionTarea</td><td>$estadoTarea</td><td>$fechaInicio</td><td>$fechaFinal</td>";
-                    echo "<td><a href='modificarTarea.php?idTarea=$idTarea'>Modificar</a></td>";
+                    echo "<td><a href='modificarTarea.php?idTarea=$idTarea && idProyecto=$idProyecto'>Modificar</a></td>";
                     echo "</tr>";
                 }
                 echo "</table>";

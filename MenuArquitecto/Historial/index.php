@@ -33,6 +33,7 @@ if (!isset($_SESSION['arqui_name'])) {
 
         </div>
     </header>
+    <button><a href="../index.php">Regresar al menu</a></button>
     <main>                
         <?php
         include "../../conexion.php";

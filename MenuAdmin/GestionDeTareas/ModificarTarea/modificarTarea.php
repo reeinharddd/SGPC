@@ -24,6 +24,7 @@
 
     if ($conexion->connect()) {
         $idTarea = isset($_GET['idTarea']) ? $_GET['idTarea'] : null;
+        $idProyecto = isset($_GET['idProyecto']) ? $_GET['idProyecto'] : null;
 
         if ($idTarea !== null) {
             // Obtener los detalles de la tarea y del proyectoTarea
@@ -47,8 +48,30 @@
                 echo "<form id='modificarTareaForm' method='post' action='procesarModificacionTarea.php'>";
                 echo "<label>Título: <input type='text' name='titulo' value='$tituloTarea'></label><br>";
                 echo "<label>Descripción: <input type='text' name='descripcion' value='$descripcionTarea'></label><br>";
-                echo "<label>Estado: <input type='text' name='estado' value='$estadoTarea'></label><br>";
-                echo "<label>Fecha de Inicio: <input type='date' name='fechaInicio' value='$fechaInicio'></label><br>";
+                echo "<select name='estado'>";
+                    
+                    include ('../../conexion.php');
+                    $conexion = new conexion();
+                    if ($conexion->connect()) {
+                        $con = $conexion->getConexion();
+
+                        $query = "SELECT * FROM Estado";
+                        $resultado = $conexion->exeqSelect($query);
+                        var_dump($resultado);
+
+                        if ($resultado) {
+                            while ($row = mysqli_fetch_array($resultado)) {
+                                echo "<option value='" . $row['codigo'] . "'>" . $row['nombre'] . "</option>";
+                            }
+                        } else {
+                            echo "Error en la consulta: " . mysqli_error($con);
+                        }
+                    } else {
+                        echo "Error en la conexión: " . mysqli_error($con);
+                    }
+                    
+                echo "</select>";
+                echo "<br><label>Fecha de Inicio: <input type='date' name='fechaInicio' value='$fechaInicio'></label><br>";
                 echo "<label>Fecha de Finalización: <input type='date' name='fechaFinal' value='$fechaFinal'></label><br>";
                 // Añadir más campos según la estructura de tu base de datos
                 echo "<input type='hidden' name='idProyecto' value='$idProyecto'>";

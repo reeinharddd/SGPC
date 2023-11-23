@@ -112,6 +112,11 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
         echo "<input type='submit' value='Crear Tarea'>";
         echo "</form>";
 
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $fechaInicio = $_POST['fechaInicio'];
+            $fechaFinal = $_POST['fechaFinal'];
+        
+
         echo "<script>
             document.querySelector('.task-form').addEventListener('submit', function (event) {
                 const fechaInicio = new Date(document.getElementById('fechaInicio').value);
@@ -133,6 +138,7 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
                 }
             });
         </script>";
+        }
     } else {
         echo "<p class='error-message'>ID del usuario o del proyecto no proporcionado.</p>";
     }
