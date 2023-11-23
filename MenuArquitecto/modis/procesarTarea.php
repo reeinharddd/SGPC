@@ -31,7 +31,7 @@ if ($conexion->connect()) {
             $resultProyectoTarea = $conexion->exeqInsert($queryInsertarProyectoTarea);
 
             if (!$resultProyectoTarea) {
-                echo "Error al insertar en ProyectoTarea: " . mysqli_error($conexion->getConexion());
+                echo "<a href='../index.php'> Regresar al menu " . mysqli_error($conexion->getConexion());
             } else {
                 echo "Inserción exitosa en Tarea y ProyectoTarea.";
             }

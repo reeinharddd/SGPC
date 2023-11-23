@@ -39,6 +39,7 @@ if (isset($_GET['idProyecto'])) {
 
 
     <a href="../index.php">Terminar con la creación (Volver al index)</a>
+    <br>
     <a href="agregarProyecto.php">Agregar otro proyecto?</a>
 
 </body>

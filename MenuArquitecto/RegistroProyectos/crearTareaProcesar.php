@@ -15,8 +15,8 @@ if (
     $conexion = new conexion();
 
     if ($conexion->connect()) {
-        $queryInsertarTarea = "INSERT INTO Tarea (titulo, descripcion, estado, idProyecto) 
-                               VALUES ('$titulo', '$descripcion', 'ACT', $idProyecto)";
+        $queryInsertarTarea = "INSERT INTO Tarea (titulo, descripcion, estado, fechaInicio, fechaFinal, idProyecto) 
+                               VALUES ('$titulo', '$descripcion', 'ACT', '$fechaInicio', '$fechaFinal',  $idProyecto)";
         $idTarea = $conexion->exeqInsert($queryInsertarTarea);
 
         if (!$idTarea) {
@@ -52,7 +52,7 @@ if (
         echo "<p>Fecha de Inicio: $fechaInicio</p>";
         echo "<p>Fecha de Finalización: $fechaFinal</p>";
 
-        echo "<a href='index.php'>Terminar</a>";
+        echo "<a href='../index.php'>Terminar</a>";
         echo "<a href='crearTareaForm.php?idUsuario=$idUsuario&idProyecto=$idProyecto'>Asignar Otra Tarea</a>";
         echo "<a href='asignarTareas.php?idProyecto=$idProyecto'>Elegir Otro Usuario</a>";
 

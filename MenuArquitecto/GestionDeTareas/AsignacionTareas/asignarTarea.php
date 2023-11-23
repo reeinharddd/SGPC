@@ -9,13 +9,13 @@ include("../../conexion.php");
 $conexion = new conexion();
 
 if ($conexion->connect()) {
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['usuarios']) && isset($_POST['idProyecto'])) {
-        $idProyecto = $_POST['idProyecto'];
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['usuarios']) && isset($_POST['idUsuario'])) {
+        $idProyecto = $_POST['idUsuario'];
         $usuariosSeleccionados = $_POST['usuarios'];
 
         foreach ($usuariosSeleccionados as $idUsuario) {
-            $queryInsertarUsuarioProyecto = "INSERT INTO UsuarioProyecto (idUsuario, idProyecto) 
-                                            VALUES ('$idUsuario', '$idProyecto')";
+            $queryInsertarUsuarioProyecto = "INSERT INTO UsuarioTarea (idUsuario, idTarea) 
+                                            VALUES ('$idUsuario', '$idTarea')";
             $resultUsuarioProyecto = $conexion->exeqInsert($queryInsertarUsuarioProyecto);
 
             if (!$resultUsuarioProyecto) {
