@@ -76,8 +76,8 @@ if (!isset($_SESSION['admin_name'])) {
                     <img src="../plantillas/down-arrow.svg" alt="Flecha hacia abajo">
                 </span>
                 <ul class="task-list">
-                    <li><a href="indexProyectos.php">Registro completo de proyectos</a></li>
-                    <li><a href="agregarProyecto.php">Agregar un Proyecto</a></li>
+                    <li><a href="../RegindexProyectos.php">Registro completo de proyectos</a></li>
+                    <li><a href="../RegistroProyectos/">Agregar un Proyecto</a></li>
                     <li><a href="../modis/Proyectos.php">Modificar un Proye/cto</a></li>
                     <li><a href="../modis/select.php">Agregar una Tarea a un Proyecto</a></li>
                     <li><a href="../modis/proye.php">Asignar un Usuario a un Proyecto</a></li>
@@ -90,12 +90,12 @@ if (!isset($_SESSION['admin_name'])) {
                     <img src="../plantillas/down-arrow.svg" alt="Flecha hacia abajo">
                 </span>
                 <ul class="task-list">
-                    <li><a href="../RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
-                    <li><a href="../RegistroUsuarios/mostrarUsuario.php">Modificar la informacion de un usuario</a></li>
+                    <li><a href="RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
+                    <li><a href="RegistroUsuarios/mostrarUsuario.php">Modificar la informacion de un usuario</a></li>
                 </ul>
             </li>
             <li><a href="../proyectosTerminados.php">Proyectos Terminados</a></li>
-            <li><a href="Historial/index.html">Historial</a></li>
+            <li><a href="../Historial/index.php">Historial</a></li>
             <li><a href="../../InicioSesion/logout.php">Cerrar sesion</a></li>
         </ul>
     </aside>

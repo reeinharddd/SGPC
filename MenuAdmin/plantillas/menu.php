@@ -47,15 +47,26 @@
                     <li><a href="modis/proye.php">Asignar un Usuario a un Proyecto</a></li>
                 </ul>
             </li>
-
             <li class="active-tasks">
+                <span class="menu-item">
+                    Gestion de Tareas
+                    <img src="plantillas/down-arrow.svg" alt="Flecha hacia abajo">
+                </span>
+                <ul class="task-list">
+                    <li><a href="GestionDeTareas/AsignacionTareas/select.php">Asignar Tarea a un usuario</a></li>
+                    <li><a href="GestionDeTareas/ModificarTarea/menuProyectos.php">Modificar Tarea</a></li>
+                </ul>
+            </li>
+
+            <li class=" active-tasks">
                 <span class="menu-item">
                     Registro de Usuarios
                     <img src="plantillas/down-arrow.svg" alt="Flecha hacia abajo">
                 </span>
                 <ul class="task-list">
                     <li><a href="RegistroUsuarios/register_form.php">Registrar Usuarios</a></li>
-                    <li><a href="RegistroUsuarios/mostrarUsuario.php">Modificar la informacion de un usuario</a></li>
+                    <li><a href="RegistroUsuarios/mostrarUsuario.php">Modificar la informacion de un
+                            usuario</a></li>
                 </ul>
             </li>
             <li><a href="proyectosTerminados.php">Proyectos Terminados</a></li>

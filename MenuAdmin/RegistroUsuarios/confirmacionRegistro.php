@@ -52,7 +52,7 @@ if (!isset($_SESSION['admin_name'])) {
             <li <?php if ($current_page == 'index.php') echo 'class="current-page"'; ?>><a
                     href="../index.php">Inicio</a>
             </li>
-            <li><a href="Calendario/Calendario.php">Calendario</a></li>
+            <li><a href="../Calendario/Calendario.php">Calendario</a></li>
 
             <li class="active-tasks">
                 <span class="menu-item">
@@ -78,7 +78,7 @@ if (!isset($_SESSION['admin_name'])) {
                     <img src="../plantillas/down-arrow.svg" alt="Flecha hacia abajo">
                 </span>
                 <ul class="task-list">
-                    <li><a href="indexProyectos.php">Registro completo de proyectos</a></li>
+                    <li><a href="../RegindexProyectos.php">Registro completo de proyectos</a></li>
                     <li><a href="agregarProyecto.php">Agregar un Proyecto</a></li>
                     <li><a href="../modis/Proyectos.php">Modificar un Proye/cto</a></li>
                     <li><a href="../modis/select.php">Agregar una Tarea a un Proyecto</a></li>
@@ -97,7 +97,7 @@ if (!isset($_SESSION['admin_name'])) {
                 </ul>
             </li>
             <li><a href="../proyectosTerminados.php">Proyectos Terminados</a></li>
-            <li><a href="Historial/index.html">Historial</a></li>
+            <li><a href="../Historial/index.php">Historial</a></li>
             <li><a href="../../InicioSesion/logout.php">Cerrar sesion</a></li>
         </ul>
     </aside>
