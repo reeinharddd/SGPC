@@ -30,7 +30,7 @@ class conexion
     {
         if (mysqli_query($this->CON, $query) === true) {
             $newid = mysqli_insert_id($this->CON);
-            echo "Insercion Exitosa";
+            
         } else {
             $newid = 0;
             echo "Error: " . $query . "<br>" . mysqli_error($this->CON);
