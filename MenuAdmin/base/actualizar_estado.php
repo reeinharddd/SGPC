@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idTarea = $_POST['idTarea'];
     $estadoSeleccionado = $_POST['estadoTarea'];
 
-    include '../conexion.php';
+    include '../../conexion.php';
 
     $conexion = new conexion();
     if ($conexion->connect()) {

@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['admin_name'])) {
-    header('location:../Alertas/warning.html');
+    header('location:../../Alertas/warning.html');
     exit;
 }
 
@@ -21,19 +21,19 @@ $proyectos = $consultas->getProyectosTerminados();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="icon" href="../img/Logo1.png" type="image/png">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
 
 <body>
     <?php
-    include "plantillas/header.php";
+    include "../plantillas/header.php";
 
     ?>
     <section>
 
         <?php
-        include "plantillas/menu.php";
+        include "../plantillas/menu.php";
         ?>
         <main>
 

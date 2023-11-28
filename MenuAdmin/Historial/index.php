@@ -21,20 +21,10 @@ if (!isset($_SESSION['admin_name'])) {
 </head>
 
 <body>
-    <header class="header">
-        <div class="logo">
-            <img src="../../img/Logo1.png" alt="Logo de la empresa">
-        </div>
-        <div class="user-info">
-            <h3>Historial de modificaciones</h3>
-        </div>
-        <div class="user-info">
-            <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
-            <h3><?php echo $_SESSION['admin_name']; ?> <p>Administrador</p>
-            </h3>
-
-        </div>
-    </header>
+    <?PHP
+include "../plantillas/header.php";
+include "../plantillas/menu.php";
+?>
     <main>
         <?php
         include "../../conexion.php";

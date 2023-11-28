@@ -68,10 +68,13 @@
             handleNavigation('verTareas');
         });
 
-        $('#verUsuarios').click(function(e) {
-            e.preventDefault();
-            handleNavigation('verUsuarios', 'usuariosProyecto.php');
-        });
+      $('#verUsuarios').click(function(e) {
+    e.preventDefault();
+    var url = 'usuariosProyecto.php?idProyecto=<?php echo $idProyecto; ?>';
+    console.log(url);
+    handleNavigation('verUsuarios', url);
+});
+
         $('#volver').click(function(e) {
             e.preventDefault();
             history.back();
