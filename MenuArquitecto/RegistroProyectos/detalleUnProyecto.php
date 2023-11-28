@@ -27,7 +27,11 @@ if (isset($_GET['idProyecto'])) {
 </head>
 
 <body>
-
+<?php
+include('../plantillas/header.php');
+include('../plantillas/menu.php');
+?>
+<main>
     <h1>Detalles del Proyecto creado</h1>
 
     <p><strong>Nombre:</strong> <?= $nombre ?></p>
@@ -41,7 +45,7 @@ if (isset($_GET['idProyecto'])) {
     <a href="../index.php">Terminar con la creación (Volver al index)</a>
     <br>
     <a href="agregarProyecto.php">Agregar otro proyecto?</a>
-
+</main>
 </body>
 
 </html>

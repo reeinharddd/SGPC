@@ -2,10 +2,10 @@
 session_start();
 
 if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
-    header('location:../../Alertas/warning.html');
+    header('location:../Alertas/warning.html');
 }
 
-include("../../../conexion.php");
+include("../../conexion.php");
 $conexion = new conexion();
 
 if ($conexion->connect()) {
@@ -39,7 +39,7 @@ if ($conexion->connect()) {
             $resultProyectoTarea = $conexion->exeqInsert($queryInsertarProyectoTarea);
 
             if (!$resultUsuarioTarea || !$resultProyectoTarea) {
-                echo "<a href='../../index.php'> Regresar al menu " . mysqli_error($conexion->getConexion());
+                echo "<a href='../index.php'> Regresar al menu " . mysqli_error($conexion->getConexion());
             } else {
                 echo "Inserción exitosa en Tarea, UsuarioTarea y ProyectoTarea.";
             }

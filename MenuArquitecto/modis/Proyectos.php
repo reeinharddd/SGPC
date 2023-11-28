@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+if (!isset($_SESSION['admin_name']) && (!isset($_SESSION['arqui_name']))) {
+    header('location:../Alertas/warning.html');
+    exit;
+}
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +17,11 @@
 </head>
 
 <body>
-<button><a href="../index.php">Regresar al menu</a></button>
+<?php
+include('../plantillas/header.php');
+include('../plantillas/menu.php');
+?>
+<main>
     <?php
     session_start();
 
@@ -45,6 +56,7 @@
         echo "<p>Error en la conexión a la base de datos.</p>";
     }
     ?>
+</main>
 </body>
 
 </html>

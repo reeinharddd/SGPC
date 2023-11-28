@@ -14,7 +14,7 @@
         <?php if (isset($_SESSION['arqui_name']) && $current_page !== 'index.php') : ?>
             <div class="back-link">
                 <a href="javascript:history.go(-1);">
-                    <img src="plantillas/left-arrow.svg" alt="Flecha de regreso">
+                    <img src="left-arrow.svg" alt="Flecha de regreso">
                 </a>
             </div>
         <?php endif; ?>

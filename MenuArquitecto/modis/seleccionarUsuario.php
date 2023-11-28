@@ -10,7 +10,11 @@
 </head>
 
 <body>
-<button><a href="proye.php">Regresar atrás</a></button>
+<?php
+include('../plantillas/header.php');
+include('../plantillas/menu.php');
+?>
+<main>
     <?php
     session_start();
 
@@ -53,6 +57,7 @@
         echo "<p>Error en la conexión a la base de datos.</p>";
     }
     ?>
+</main>
 </body>
 
 </html>

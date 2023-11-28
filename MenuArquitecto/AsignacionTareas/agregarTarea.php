@@ -5,21 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC - Agregar Tarea</title>
-    <link rel="stylesheet" href="../../../css/main.css">
-    <link rel="icon" href="../../../img/Logo1.png" type="image/png">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
 
 <body>
+    <?php
+    include('../plantillas/header.php');
+    include('../plantillas/menu.php');
+    ?>
+    <main>
     <div class="hero">
         <?php
         session_start();
 
         if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
-            header('location:../../Alertas/warning.html');
+            header('location:../Alertas/warning.html');
             exit();
         }
 
-        include("../../../conexion.php");
+        include("../../conexion.php");
         $conexion = new conexion();
 
         if ($conexion->connect()) {
@@ -48,7 +53,7 @@
         ?>
 
         <form id="crearTareaForm" method="post" action="procesarTarea.php" class="colortexto">
-            <button><b><a href="select2.php">Regresar atrás</a></b></button>
+            
             <br>
             <h2>Agregar Tarea al Proyecto: <?php echo $nombreProyecto; ?></h2>
             <label>Título: <input type="text" name="titulo" required></label><br>
@@ -79,6 +84,7 @@
             <input type="submit" value="Crear Tarea">
         </form>
     </div>
+    </main>
 </body>
 
 </html>

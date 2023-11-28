@@ -21,30 +21,11 @@ if (!isset($_SESSION['arqui_name'])) {
 
 
 <body>
-    <header class="header">
-        <?php if (isset($_SESSION['arqui_name']) && $current_page !== 'index.php') : ?>
-            <div class="back-link">
-                <a href="javascript:history.go(-1);">
-                    <img src="../plantillas/left-arrow.svg" alt="Flecha de regreso">
-                </a>
-            </div>
-        <?php endif; ?>
-
-        <div class="logo">
-            <img src="../../img/Logo1.png" alt="Logo de la empresa">
-        </div>
-
-        <div class="user-info">
-            <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
-            <h3><?php echo $_SESSION['arqui_name']; ?>
-                <p>Administrador</p>
-            </h3>
-        </div>
-
-
-
-
-    </header>
+    <?php
+    include ('../plantillas/header.php');
+    include('../plantillas/menu.php');
+    ?>
+    <main>
     <aside class="menu">
         <ul>
             <li <?php if ($current_page == 'index.php') echo 'class="current-page"'; ?>><a href="../index.php">Inicio</a>
@@ -165,7 +146,7 @@ if (!isset($_SESSION['arqui_name'])) {
         </script>
 
     </main>
-
+    </main>
 </body>
 
 </html>

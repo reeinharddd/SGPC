@@ -11,6 +11,11 @@
 
 <body>
     <?php
+    include('../plantillas/header.php');
+    include('../plantillas/menu.php');
+    ?>
+    <main>
+    <?php
     session_start();
 
     if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
@@ -104,6 +109,7 @@
         echo "<p>Error en la conexión a la base de datos.</p>";
     }
     ?>
+    </main>
 </body>
 
 </html>
