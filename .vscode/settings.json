@@ -1,3 +1,12 @@
 {
-  "php.version": "8.3"
+  "php.version": "8.3",
+  "files.autoSave": "afterDelay",
+  "editor.renderWhitespace": "selection",
+  "editor.cursorStyle": "line-thin",
+  "editor.wordWrap": "bounded",
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "editor.autoIndent": "advanced",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": false,
+  "editor.colorDecoratorsActivatedOn": "hover"
 }
