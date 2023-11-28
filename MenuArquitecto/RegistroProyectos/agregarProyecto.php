@@ -18,27 +18,18 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
     <link rel="stylesheet" href="../../css/main.css" />
     <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
-<header class="header">
-    <div class="logo">
-        <img src="../../img/Logo1.png" alt="Logo de la empresa">
-    </div>
-    <div class="user-info">
-        <h3>Registro de Proyectos</h3>
-    </div>
-    <div class="user-info">
-        <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
-        <h3><?php echo $_SESSION['arqui_name']; ?> <p>Arquitecto</p>
-        </h3>
 
-    </div>
-</header>
 
 <body>
-
+<?php
+include('../plantillas/header.php');
+include('../plantillas/menu.php');
+?>
+<main>
     <div class="hero">
 
         <form id="datos" method="post" action="addUnProyecto.php" class="colortexto">
-            <button><b><a href="../index.php">◄ Menú</a></b></button>
+            
             <br>
 
             <label>Nombre del proyecto: * <input type="text" name="txtNombre" required
@@ -101,7 +92,7 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
         });
         </script>
     </div>
-
+</main>
 </body>
 
 </html>

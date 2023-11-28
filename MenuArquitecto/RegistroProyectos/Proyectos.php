@@ -5,7 +5,7 @@
 session_start();
 
 if (!isset($_SESSION['arqui_name'])) {
-    header('location:../Alertas/warning.html');
+    header('location:../../Alertas/warning.html');
 }
 ?>
 <?php

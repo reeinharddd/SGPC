@@ -10,6 +10,11 @@
 </head>
 
 <body>
+    <?php
+    include ('../plantillas/header.php');
+    include ('../plantillas/menu.php');
+    ?>
+    <main>
     <div class="hero">
         <?php
         session_start();
@@ -76,6 +81,7 @@
             <input type="submit" value="Crear Tarea">
         </form>
     </div>
+    </main>
 </body>
 
 </html>

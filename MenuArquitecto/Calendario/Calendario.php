@@ -20,20 +20,11 @@ if (!isset($_SESSION['arqui_name'])) {
 </head>
 
 <body>
-<header class="header">
-    <div class="logo">
-        <img src="../../img/Logo1.png" alt="Logo de la empresa">
-    </div>
-    <div class="user-info">
-        <h3>Calendario</h3>
-    </div>
-    <div class="user-info">
-        <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
-        <h3><?php echo $_SESSION['arqui_name']; ?> <p>Arquitecto</p>
-        </h3>
-
-    </div>
-</header>
+    <?php
+    include('../plantillas/header.php');
+    include('../plantillas/menu.php');
+    ?>
+    <main>
 
     <div id="calendar-container">
         <button id="prev-month">←</button>
@@ -52,5 +43,6 @@ if (!isset($_SESSION['arqui_name'])) {
 
     
     <div><script src="script.js"></script></div>
+</main>
 </body>
 </html>
