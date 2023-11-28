@@ -1,17 +1,11 @@
 <?php
-
-
-
-
-
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 session_start();
 
 if (!isset($_SESSION['user_name'])) {
-    header('location:../Alertas/warning.html');
+    header('location:../../Alertas/warning.html');
     exit;
 }
 
@@ -37,17 +31,17 @@ if ($idProyecto !== null) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios del Proyecto</title>
-    <link rel="stylesheet" href="../css/proyectos.css">
-    <link rel="icon" href="../img/Logo1.png" type="image/png">
+    <link rel="stylesheet" href="../../css/proyectos.css">
+    <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
 
 <body>
     <?php
-    include "plantillas/header.php";
-    include "plantillas/miniBar.php";
+    include "../plantillas/header.php";
+    include "../plantillas/miniBar.php";
     ?>
     <section>
-        <?php include "plantillas/menu.php"; ?>
+        <?php include "../plantillas/menu.php"; ?>
         <main>
             <div class="project-list">
                 <div class="usuarios-section">

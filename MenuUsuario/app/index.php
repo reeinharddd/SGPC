@@ -3,14 +3,16 @@
 session_start();
 
 if (!isset($_SESSION['user_name'])) {
-    header('location:../Alertas/warning.html');
+    header('location:../../Alertas/warning.html');
     exit;
 }
 
 $current_page = basename($_SERVER['PHP_SELF']);
 include "consultas.php";
 $consultas = new Consultas();
-$proyectos = $consultas->getProyectosTerminados();  
+$proyectos = $consultas->getProyectos();
+
+
 
 ?>
 
@@ -21,19 +23,19 @@ $proyectos = $consultas->getProyectosTerminados();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="icon" href="../img/Logo1.png" type="image/png">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
 
 <body>
     <?php
-    include "plantillas/header.php";
+    include "../plantillas/header.php";
 
     ?>
     <section>
 
         <?php
-        include "plantillas/menu.php";
+        include "../plantillas/menu.php";
         ?>
         <main>
 
@@ -85,9 +87,9 @@ $proyectos = $consultas->getProyectosTerminados();
 
     </section>
     <script>
-    function redirectToTasks(idProyecto) {
-        window.location.href = 'Proyectos.php?idProyecto=' + idProyecto;
-    }
+        function redirectToTasks(idProyecto) {
+            window.location.href = 'Proyectos.php?idProyecto=' + idProyecto;
+        }
     </script>
 
 </body>
