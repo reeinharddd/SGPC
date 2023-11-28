@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC</title>
-    <link rel="stylesheet" href="../css/proyectos.css">
-    <link rel="icon" href="../img/Logo1.png" type="image/png">
+    <link rel="stylesheet" href="../../css/proyectos.css">
+    <link rel="icon" href="../../img/Logo1.png" type="image/png">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
     #header {
@@ -30,7 +30,6 @@
         background-color: yellow;
     }
 
-    /* Agregado para deshabilitar el enlace */
     #miniBar a.disabled {
         pointer-events: none;
         color: grey;

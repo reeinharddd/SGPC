@@ -20,20 +20,9 @@ if (!isset($_SESSION['user_name'])) {
 </head>
 
 <body>
-<header class="header">
-    <div class="logo">
-        <img src="../../img/Logo1.png" alt="Logo de la empresa">
-    </div>
-    <div class="user-info">
-        <h3>Calendario</h3>
-    </div>
-    <div class="user-info">
-        <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
-        <h3><?php echo $_SESSION['user_name']; ?> <p>Usuario</p>
-        </h3>
-
-    </div>
-</header>
+<?php
+    include "../plantillas/header.php";
+    ?> <section>
 
     <div id="calendar-container">
         <button id="prev-month">←</button>

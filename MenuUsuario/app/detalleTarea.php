@@ -3,7 +3,7 @@ ob_start();
 session_start();
 
 if (!isset($_SESSION['user_name'])) {
-    header('location:../Alertas/warning.html');
+    header('location:../../Alertas/warning.html');
     exit;
 }
 
@@ -28,14 +28,14 @@ if ($tareaSeleccionada) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC</title>
-    <link rel="stylesheet" href="../css/detalleTarea.css">
-    <link rel="icon" href="../img/Logo1.png" type="image/png">
+    <link rel="stylesheet" href="../../css/detalleTarea.css">
+    <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
 
 <body>
     <?php
-        include "plantillas/header.php";
-        include "plantillas/menu.php";
+        include "../plantillas/header.php";
+        include "../plantillas/menu.php";
         ?>
 
     <main>

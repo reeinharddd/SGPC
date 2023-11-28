@@ -99,7 +99,7 @@ if ($tareaSeleccionada) {
             <form action="agregar_comentario.php" method="post">
                 <textarea name="comentario" placeholder="Escribe tu comentario aquí..." required></textarea>
                 <input type="hidden" name="idTarea" value="<?= $idTarea; ?>">
-                <input type="submit" value="Enviar Comentario">
+              <p>  <input type="submit" value="Enviar Comentario"> </p>
             </form>
         </div>
     </main>

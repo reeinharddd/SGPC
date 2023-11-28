@@ -4,7 +4,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idTarea = $_POST['idTarea'];
 
-    include '../conexion.php';
+    include '../../conexion.php';
 
     $conexion = new conexion();
     if ($conexion->connect()) {
