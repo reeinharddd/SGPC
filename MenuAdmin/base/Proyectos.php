@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 function getTaskStateClass($estado)
 {
     switch ($estado) {
@@ -31,13 +33,11 @@ $consultas = new Consultas();
 $proyectos = $consultas->getProyectos();
 if ($proyectos) {
     $proyecto = isset($_GET['idProyecto']) ? $_GET['idProyecto'] : null;
-    $idProyecto = isset($_SESSION['idProyecto']) ? $_SESSION['idProyecto'] : ($proyecto ? $proyecto : ($proyectos ? $proyectos[0]['idProyecto'] : null));
-    $_SESSION['idProyecto'] = $idProyecto;
 
     if ($proyecto !== null) {
         $tareas = $consultas->getTareas($proyecto);
-        $infoProyecto = $consultas->getInfoProyecto($idProyecto);
-        $primerasTareas = $consultas->obtenerPrimerasTareas($idProyecto, 3);
+        $infoProyecto = $consultas->getInfoProyecto($proyecto);
+        $primerasTareas = $consultas->obtenerPrimerasTareas($proyecto, 3);
     } else {
         echo "No se encontró el proyecto.";
     }

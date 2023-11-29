@@ -153,7 +153,7 @@ class consultas
                 }
                 unset($result, $row);
             } else {
-                echo "No se encontraron comentarios.";
+               // echo "No se encontraron comentarios.";
             }
 
             $stmt->close();

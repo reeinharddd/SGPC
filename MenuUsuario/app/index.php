@@ -24,7 +24,8 @@ $proyectos = $consultas->getProyectos();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC</title>
     <link rel="stylesheet" href="../../css/main.css">
-    <link rel="icon" href="../../img/Logo1.png" type="image/png">
+   <link rel="icon" href="../../img/bricks.svg" type="image/svg+xml">
+
 </head>
 
 <body>
