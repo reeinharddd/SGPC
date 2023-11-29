@@ -43,8 +43,9 @@
         <div id="miniBar">
             <a href="#" id="verTareas" class="<?php echo ($current_page === 'Proyectos.php') ? 'disabled' : ''; ?>">Ver
                 Tareas</a>
-            <a href="#" id="verUsuarios" class="<?php echo ($current_page === 'usuariosProyecto.php') ? 'disabled' : ''; ?>">Ver
-                Usuarios</a>
+            <a href="#" id="verUsuarios" class="<?php echo ($current_page === 'usuariosProyecto.php') ? 'disabled' : ''; ?>"
+    data-idproyecto="<?php echo $infoProyecto['idProyecto']; ?>">Ver Usuarios</a>
+
         </div>
     </div>
 
@@ -67,10 +68,11 @@
                 handleNavigation('verTareas');
             });
 
-            $('#verUsuarios').click(function(e) {
-                e.preventDefault();
-                handleNavigation('verUsuarios', 'usuariosProyecto.php');
-            });
+           $('#verUsuarios').click(function(e) {
+    e.preventDefault();
+    var idProyecto = $(this).data('idproyecto');
+    handleNavigation('verUsuarios', 'usuariosProyecto.php?idProyecto=' + idProyecto);
+});
             $('#volver').click(function(e) {
                 e.preventDefault();
                 history.back();

@@ -13,7 +13,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 include 'consultas.php';
 $consultas = new Consultas();
 
-$idProyecto = $_SESSION['idProyecto'];
+$idProyecto = $_GET['idProyecto'] ?? null;
 
 if ($idProyecto !== null) {
     $arquitectos = $consultas->getUsuariosPorTipoYProyecto($idProyecto, 2);
