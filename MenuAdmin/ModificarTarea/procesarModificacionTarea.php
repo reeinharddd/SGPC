@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
     exit();
 }
 
-include("../../../conexion.php");
+include("../../conexion.php");
 $conexion = new conexion();
 
 if ($conexion->connect()) {
