@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC</title>
-    <link rel="stylesheet" href="../../css/proyectos.css">
-    <link rel="icon" href="../../img/Logo1.png" type="image/png">
+    <link rel="stylesheet" href="../../css/plantillas.css">
+    <link rel="icon" href="../../img/bricks.svg" type="image/svg+xml">
 </head>
 
 <body>
@@ -21,8 +21,13 @@
         <?php endif; ?>
 
         <div class="logo">
-            <img src="../../img/Logo1.png" alt="Logo de la empresa">
+            <img src="../../img/bricks.svg" alt="Logo de la empresa">
+            <span class="company-name">SGPC</span>
+
         </div>
+         <?php if ($current_page == 'index.php') : ?>
+        <button class="about-button">¿Qué es esta aplicación?</button>
+        <?php endif; ?>
 
         <div class="user-info">
             <img src="../../img/account-icon-user-icon-vector-graphics_292645-552.avif" alt="Nombre del usuario">
@@ -32,9 +37,7 @@
         </div>
 
 
-        <?php if ($current_page == 'index.php') : ?>
-        <button class="about-button">¿Qué es esta aplicación?</button>
-        <?php endif; ?>
+       
 
     </header>
 </body>

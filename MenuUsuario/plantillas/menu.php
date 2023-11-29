@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGPC</title>
-    <link rel="stylesheet" href="../../css/proyectos.css">
-    <link rel="icon" href="../../img/Logo1.png" type="image/png">
-
+   <title>SGPC</title>
+    <link rel="stylesheet" href="../../css/plantillas.css">
+    <link rel="icon" href="../../img/bricks.svg" type="image/svg+xml">
+   
 
 </head>
 

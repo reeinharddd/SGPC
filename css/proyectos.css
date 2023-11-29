@@ -76,62 +76,15 @@ body {
   color: #fff;
 }
 
-.menu {
-  margin-top: 73.1px;
-  background: rgb(32, 30, 31);
-  color: #e0e0e1;
-  width: 200px;
-  padding: 0 10px;
-  position: fixed;
-  top: 0;
-  left: 0px;
-  height: 100%;
-  overflow-y: auto;
-  transition: left 0.3s;
-  z-index: 900;
-  display: flex;
-  flex-direction: column;
-  border-right: 3px solid #ff6947;
-}
 
-.menu-item {
-  line-height: 50px;
-  padding-left: 10px;
-}
 
-.menu ul {
-  list-style: none;
-  padding: 0;
-  width: 100%;
-}
 
-.menu ul li {
-  margin-bottom: 0px;
-}
 
-.menu ul li[role="separator"] {
-  height: 1.5px;
-  background-color: #ff6947;
-  margin: 10px 0;
-}
 
-.active-task span {
-  text-align: center;
-}
 
-.menu ul li a {
-  color: #e0e0e1;
-  text-decoration: none;
-  font-size: 16px;
-  display: block;
-  padding: 10px;
-  margin: 0px;
-  position: relative;
-}
 
-.menu ul li a:hover {
-  background-color: #e0e0e087;
-}
+
+
 
 main {
   margin-left: 220px;
@@ -376,47 +329,11 @@ main {
   background-color: #ff9800;
 }
 
-.active-tasks {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
 
-.active-tasks .menu-item {
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 4px;
-  background-color: rgb(32, 30, 31);
-  color: #e0e0e1;
-  font-size: 14px;
-}
 
-.active-tasks .task-list {
-  margin-top: 8px;
-  background-color: rgb(32, 30, 31);
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: none;
-  z-index: 1;
-}
 
-.menu-item img {
-  width: 16px;
-  height: 16px;
-  margin-left: 5px;
-}
 
-.active-tasks .task-list a {
-  display: block;
-  padding: 8px;
-  color: #e0e0e1;
-  text-decoration: none;
-}
 
-.active-tasks:hover .task-list {
-  display: block;
-}
 
 .project-number {
   font-size: 16px;
@@ -503,15 +420,9 @@ main {
   height: 30px;
 }
 
-.current-page {
-  background-color: #f0f0f061;
-  font-weight: bold;
-}
 
-.task-list {
-  list-style: none;
-  padding: 0;
-}
+
+
 
 .task-item {
   background-color: #f8f8f9;
@@ -527,10 +438,6 @@ main {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.task-link {
-  text-decoration: none;
-  color: #333;
-}
 
 .task-header {
   display: flex;

@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC</title>
-    <link rel="stylesheet" href="../../css/proyectos.css">
-    <link rel="icon" href="../../img/Logo1.png" type="image/png">
+    <link rel="stylesheet" href="../../css/plantillas.css">
+    <link rel="icon" href="../../img/bricks.svg" type="image/svg+xml">
 </head>
 
 <body>
@@ -39,8 +39,8 @@
                     <img src="../plantillas/down-arrow.svg" alt="Flecha hacia abajo">
                 </span>
                 <ul class="task-list">
-                    <li><a href="../GestionDeTareas/AsignacionTareas/select.php">Asignar Tarea a un usuario</a></li>
-                    <li><a href="../GestionDeTareas/ModificarTarea/menuProyectos.php">Modificar Tarea</a></li>
+                    <li><a href="../AsignacionTareas/select.php">Asignar Tarea a un usuario</a></li>
+                    <li><a href="../ModificarTarea/menuProyectos.php">Modificar Tarea</a></li>
                 </ul>
             </li>
 

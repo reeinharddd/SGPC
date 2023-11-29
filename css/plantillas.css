@@ -1,682 +1,622 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
-  font-family: "Poppins";
+  font-family: 'Libre Franklin', sans-serif;
 }
 
-body { 
+body {
+  background-color: #e0e0e1;
+  margin-top: 77px;
+}
 
-  background-color: #e0e0e1; 
-  
-  margin-top: 100px; 
-  
-  } 
-  
-   
-   
-  
-  .header { 
-  
-  display: flex; 
-  
-  justify-content: space-between; 
-  
-  align-items: center; 
-  
-  background: rgb(32, 30, 31); 
-  
-  padding: 10px; 
-  
-  position: fixed; 
-  
-  top: 0; 
-  
-  left: 0; 
-  
-  right: 0; 
-  
-  z-index: 1000; 
-  
-  border-bottom: 3px solid #ff6947; 
-  
-  } 
-  
-   
-   
-  
-  .header .user-info { 
-  
-  display: flex; 
-  
-  align-items: center; 
-  
-  color: #e0e0e1; 
-  
-  } 
-  
-   
-   
-  
-  .user-info img { 
-  
-  width: 50px; 
-  
-  height: 50px; 
-  
-  border-radius: 50%; 
-  
-  margin-right: 10px; 
-  
-  } 
-  
-   
-   
-  
-  .user-info h3 { 
-  
-  font-size: 18px; 
-  
-  margin: 0; 
-  
-  } 
-  
-   
-   
-  
-  .user-info p { 
-  
-  font-size: 14px; 
-  
-  margin: 0; 
-  
-  } 
-  
-   
-   
-  
-  .logo img { 
-  
-  width: 50px; 
-  
-  height: 50px; 
-  
-  } 
-  
-   
-  
-  .mini-bar { 
-  
-  display: flex; 
-  
-  justify-content: space-around; 
-  
-  background-color: #f0f0f0; 
-  
-  padding: 10px; 
-  
-  } 
-  
-   
-   
-  
-  .mini-bar-option { 
-  
-  text-decoration: none; 
-  
-  color: #333; 
-  
-  font-weight: bold; 
-  
-  font-size: 16px; 
-  
-  padding: 5px 10px; 
-  
-  border-radius: 5px; 
-  
-  } 
-  
-   
-   
-  
-  .mini-bar-option:hover { 
-  
-  background-color: #ddd; 
-  
-  } 
-  
-   
-   
-  
-  
-  
-  .mini-bar-option.active { 
-  
-  background-color: #ff6947; 
-  
-  color: #fff; 
-  
-  } 
-  
-   
-   
-  
-  .menu { 
-  
-  margin-top: 73.1px; 
-  
-  background: rgb(32, 30, 31); 
-  
-  color: #e0e0e1; 
-  
-  width: 200px; 
-  
-  padding: 0 10px; 
-  
-  position: fixed; 
-  
-  top: 0; 
-  
-  left: 0px; 
-  
-  height: 100%; 
-  
-  overflow-y: auto; 
-  
-  transition: left 0.3s; 
-  
-  z-index: 900; 
-  
-  display: flex; 
-  
-  flex-direction: column; 
-  
-  border-right: 3px solid #ff6947; 
-  
-  } 
-  
-  .menu-item { 
-  
-  line-height: 50px; 
-  
-  padding-left: 10px; 
-  
-  } 
-  
-   
-   
-  
-  .menu ul { 
-  
-  list-style: none; 
-  
-  padding: 0; 
-  
-  width: 100%; 
-  
-  } 
-  
-   
-   
-  
-  .menu ul li { 
-  
-  margin-bottom: 0px; 
-  
-  } 
-  
-  .menu ul li[role="separator"] { 
-  
-  height: 1.5px; 
-  
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(32, 30, 31);
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border-bottom: 3px solid #ff6947;
+}
+
+.header .user-info {
+  display: flex;
+  align-items: center;
+  color: #e0e0e1;
+}
+
+.user-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-info h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.user-info p {
+  font-size: 14px;
+  margin: 0;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.company-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff6947;
+}
+
+.mini-bar {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+.mini-bar-option {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.mini-bar-option:hover {
+  background-color: #ddd;
+}
+
+.mini-bar-option.active {
   background-color: #ff6947;
-  
-  margin: 10px 0; 
-  
-  } 
-  
-  .active-task span { 
-  
-  text-align: center; 
-  
-  } 
-  
-   
-   
-  
-  .menu ul li a { 
-  
-  color: #e0e0e1; 
-  
-  text-decoration: none; 
-  
-  font-size: 16px; 
-  
-  display: block; 
-  
-  padding: 10px; 
-  
-  margin: 0px; 
-  
-  position: relative; 
-  
-  } 
-  
-  .menu ul li a:hover { 
-  
-  background-color: #e0e0e087; 
-  
-  } 
-  
-   
-   
-  
-  main { 
-  
-  margin-left: 220px; 
-  
-  padding: 20px; 
-  
-  } 
-  
-   
-   
-  
-  .project-list { 
-  
-  display: flex; 
-  
-  flex-wrap: wrap; 
-  
-  gap: 20px; 
-  
-  } 
-  
-   
-   
-  
-  .project-box { 
-  
-  background-color: #f8f8f9; 
-  
-  cursor: pointer; 
-  
-  border: 1px solid #ccc; 
-  
-  border-radius: 15px; 
-  
-  margin: 10px; 
-  
-  padding: 15px; 
-  
-  width: 200px; 
-  
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  
-  } 
-  
-   
-   
-  
-  .project-header { 
-  
-  display: flex; 
-  
-  flex-direction: column; 
-  
-  } 
-  
-  .project-title { 
-  
-  font-size: 18px; 
-  
-  font-weight: bold; 
-  
-  margin-bottom: 5px; 
-  
-  } 
-  
-  .project-info { 
-  
-  display: flex; 
-  
-  flex-direction: row; 
-  
-  justify-content: space-between; 
-  
-  align-items: center; 
-  
-  } 
-  
-  .project-state { 
-  
-  font-size: 14px; 
-  
-  padding: 5px; 
-  
-  border-radius: 5px; 
-  
-  color: #fff; 
-  
-  font-weight: bold; 
-  
-  } 
-  
-   
-   
-  
-  .active-state { 
-  
-  background-color: #4caf50; 
-  
-  } 
-  
-   
-   
-  
-  .pending-state { 
-  
-  background-color: #ffc107; 
-  
-  } 
-  
-   
-   
-  
-  .finished-state { 
-  
-  background-color: #2196f3; 
-  
-  } 
-  
-   
-   
-  
-  .canceled-state { 
-  
-  background-color: #f44336; 
-  
-  } 
-  
-   
-   
-  
-  .delayed-state { 
-  
-  background-color: #ff9800; 
-  
-  }  
-  
-  .active-tasks { 
-  
-  display: flex; 
-  
-  flex-direction: column; 
-  
-  position: relative; 
-  
-  } 
-  
-   
-   
-  
-  .active-tasks .menu-item { 
-  
-  cursor: pointer; 
-  
-  padding: 8px; 
-  
-  border-radius: 4px; 
-  
-  background-color: rgb(32, 30, 31); 
-  
-  color: #e0e0e1; 
-  
-  font-size: 14px; 
-  
-  } 
-  
-   
-   
-  
-  .active-tasks .task-list { 
-  
-  margin-top: 8px;  
-  
-  background-color: rgb(32, 30, 31); 
-  
-  border-top: none; 
-  
-  border-radius: 0 0 4px 4px; 
-  
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  
-  display: none; 
-  
-  z-index: 1; 
-  
-  } 
-  
-   
-   
-  
-  .menu-item img { 
-  
-  width: 16px; 
-  
-  height: 16px; 
-  
+  color: #fff;
+}
+
+.menu {
+  margin-top: 73.1px;
+  background: rgb(32, 30, 31);
+  color: #e0e0e1;
+  width: 220px;
+  padding: 0px;
+  position: fixed;
+  top: 0;
+  left: 0px;
+  height: 100%;
+  overflow-y: auto;
+  transition: left 0.3s;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  border-right: 3px solid #ff6947;
+}
+
+.menu-item {
+  line-height: 50px;
+  padding-left: 10px;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+   margin-top: 0; 
+}
+
+.menu ul li {
+  margin-bottom: 0px;
+   position: relative;
+  padding: 6px;
+   transition: background-color 0.3s ease-in-out; /* Agregado para suavizar la transición de color de fondo */
+ 
+}
+
+.menu ul li[role="separator"] {
+  height: 1.5px;
+  background-color: #ff6947;
+  margin: 0px;
+  padding: 0px
+}
+
+.active-task span {
+  text-align: center;
+}
+
+.menu ul li a {
+  color: #e0e0e1;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 10px;
+  margin: 0px;
+  position: relative;
+}
+.menu ul li:hover {
+  background-color: #e0e0e02d; /* Color de fondo más suave al hacer hover */ /* Bordes más redondeados */
+}
+.menu ul li::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #ff6947; /* Cambiado a color naranja */
+  transform-origin: right; /* Cambiado a origen derecho */
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+.menu ul li:hover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px; /* Grosor de la línea */
+  background-color: #ff6947; /* Color de la línea */
+  transform-origin: left; /* La línea comenzará desde el lado izquierdo */
+  transform: scaleX(0); /* La línea estará inicialmente invisible */
+  transition: transform 0.3s ease-in-out; /* Animación de la línea al hacer hover */
+}
+.menu ul li:hover::after {
+  transform: scaleX(1); /* La línea se hace visible al hacer hover */
+}
+.menu ul li:hover::before {
+  transform-origin: left; /* Mantener el origen izquierdo para la animación de aparición */
+  transform: scaleX(1);
+}
+.menu a {
+  position: relative;
+  color: #e0e0e1; /* Color del texto */
+  text-decoration: none;
+  display: inline-block;
+}
+.menu a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #ff6947, #ff8a70); /* Cambiado a degradado de naranja */
+   z-index: 1;
+  transform: scaleX(0);
+  transform-origin: right; /* Cambiado a origen derecho */
+   transition: transform 0.5s ease-in-out;
+}
+
+.menu a:hover::before {
+  transform: scaleX(1);
+   transform-origin: left; /* Mantener el origen izquierdo para la animación de aparición */
+  
+}
+
+
+
+
+
+.project-banner {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  padding: 40px;
+  background: url("../img/building_construction_frame_223639_3840x2160.jpg")
+    no-repeat center center fixed;
+  background-size: cover;
+}
+
+.project-banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.19);
+}
+
+.project-banner h1,
+.project-banner p {
+  z-index: 1;
+}
+
+.project-banner h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.project-banner p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.project-list {
+  margin-top: 20px;
+  display: flex;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+.days-message {
+  font-size: 14px;
+  color: red;
+  margin-top: 5px;
+}
+
+.upcoming-tasks-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #edebeb;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #f8f8f9;
+}
+
+.upcoming-task {
+  text-decoration: none;
+  color: #333;
+  margin-bottom: 10px;
+  border: 1px solid #f1eeee;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f8f9;
+}
+
+.task-title,
+.task-due-date,
+.days-remaining,
+.task-status {
+  flex: 1;
+}
+.task-state {
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.task-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-data:not(:last-child) {
+  margin-right: 10px;
+}
+
+.days-remaining {
+  font-weight: bold;
+  color: red;
+}
+
+.upcoming-task:hover {
+  background-color: #ddd;
+}
+
+.task-titles {
+  font-weight: bold;
+}
+
+.task-due-date {
+  font-size: 14px;
+  margin-top: 5px;
+  color: #ff0000;
+}
+
+.task-status {
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 4px;
+}
+.right-section .task-state {
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 4px;
+  display: inline-block;
+  max-width: 5%;
+}
+.right-section .active-state,
+.right-section .pending-state,
+.right-section .finished-state,
+.right-section .canceled-state,
+.right-section .delayed-state {
+  width: auto;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.right-section {
+  flex: 2;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.right-section h2 {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: px;
+}
+
+.left-section h2 {
+  text-align: center;
+}
+
+.task-card {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.task-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.task-description {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.project-box {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 15px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.project-box:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.project-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.project-info {
+  font-size: 16px;
+  color: #555;
+}
+
+.project-info span {
+  font-weight: bold;
+}
+
+.project-state {
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.active-state {
+  background-color: #4caf50;
+  margin-right: 50px;
+}
+
+.pending-state {
+  background-color: #ffc107;
+}
+
+.finished-state {
+  background-color: #2196f3;
+}
+
+.canceled-state {
+  background-color: #f44336;
+}
+
+.delayed-state {
+  background-color: #ff9800;
+}
+
+.active-tasks {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.active-tasks .menu-item {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: rgb(32, 30, 31);
+  color: #e0e0e1;
+  font-size: 14px;
+}
+
+.active-tasks .task-list {
+  margin-top: 8px;
+  background-color: rgb(32, 30, 31);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 1;
+}
+
+.menu-item img {
+  width: 16px;
+  height: 16px;
   margin-left: 5px;
-  } 
-  
-   
-   
-  
-  .active-tasks .task-list a { 
-  
-  display: block; 
-  
-  padding: 8px; 
-  
-  color: #e0e0e1; 
-  
-  text-decoration: none; 
-  
-  } 
-  
-   
-   
-  
-  .active-tasks:hover .task-list { 
-  
-  display: block; 
-  
-  } 
-  
-   
-   
-  
-  .project-number { 
-  
-  font-size: 16px; 
-  
-  } 
-  
-   
-   
-  
-  .project-name { 
-  
-  font-size: 16px; 
-  
-  } 
-  
-   
-   
-  
-  .project-location { 
-  
-  font-size: 12px; 
-  
-  } 
-  
-   
-   
-  
-  .project-dates { 
-  
-  font-size: 12px; 
-  
-  color: rgba(0, 0, 0, 0.6); 
-  
-  margin-top: 5px; 
-  
-  } 
-  
-   
-   
-  
-  .project-date, 
-  
-  .project-state { 
-  
-  font-size: 14px; 
-  
-  } 
-  
-   
-   
-  
-  .project-info h3 { 
-  
-  font-size: 18px; 
-  
-  margin: 0; 
-  
-  } 
-  
-   
-   
-  
-  .project-info p { 
-  
-  font-size: 14px; 
-  
-  margin: 5px 0; 
-  
-  } 
-  
-   
-   
-  
-  .details-button { 
-  
-  background-color: #ff6947; 
-  
-  color: #e0e0e1; 
-  
-  border: none; 
-  
-  padding: 10px; 
-  
-  margin-top: 10px; 
-  
-  cursor: pointer; 
-  
-  text-decoration: none; 
-  
-  } 
-  
-   
-   
-  
-  .details-button:hover { 
-  
-  background-color: #ff8a70; 
-  
-  } 
-  
-   
-   
-  
-  .about-button { 
-  
-  background-color: #ff6947; 
-  
-  color: #e0e0e1; 
-  
-  border: none; 
-  
-  padding: 10px; 
-  
-  margin-top: 10px; 
-  
-  cursor: pointer; 
-  
-  text-decoration: none; 
-  
-  } 
-  
-   
-   
-  
-  .about-button:hover::after { 
-  
-  content: "Esta es una descripciÃ³n de la aplicaciÃ³n"; 
-  
-  background-color: rgba(0, 0, 0, 0.7); 
-  
-  color: #fff; 
-  
-  position: absolute; 
-  
-  left: 85%; 
-  
-  padding: 10px; 
-  
-  display: none; 
-  
-  margin-top: 27px; 
-  
-  } 
-  
-   
-   
-  
-  .about-button:hover::after { 
-  
-  display: block; 
-  
-  } 
-  
-  .back-link { 
-  
-  margin-right: 20px; 
-  
-  cursor: pointer; 
-  
-  } 
-  
-   
-   
-  
-  .back-link img { 
-  
-  width: 30px; 
-  
-  height: 30px; 
-  
-  } 
-  
-   
-   
-  
-  .current-page { 
-  
-  background-color: #f0f0f061; 
-  
-  font-weight: bold; 
-  
-  } 
-  
-   
-   
+}
+
+
+.active-tasks .task-list a {
+  display: block;
+  padding: 8px;
+  color: #e0e0e1;
+  text-decoration: none;
+}
+
+.active-tasks:hover .task-list {
+  display: block;
+}
+
+.project-number {
+  font-size: 16px;
+}
+
+.project-name {
+  font-size: 16px;
+}
+
+.project-location {
+  font-size: 12px;
+}
+
+.project-dates {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 5px;
+}
+
+.project-date,
+.project-state {
+  font-size: 14px;
+}
+
+.project-info h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.project-info p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.details-button {
+  background-color: #ff6947;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.details-button:hover {
+  background-color: #ff8a70;
+}
+
+.about-button {
+  background-color: #ff6947;
+  color: #e0e0e1;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 25px;
+}
+
+
+.about-button:hover::after {
+  content: "Esta es una descripción de la aplicación";
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  position: absolute;
+  left: 42%;
+  padding: 10px;
+  display: none;
+  margin-top: 27px;
+  
+}
+
+.about-button:hover::after {
+  display: block;
+}
+
+.back-link {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.back-link img {
+  width: 30px;
+  height: 30px;
+}
+
+.current-page {
+  font-weight: bold;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-item {
+  background-color: #f8f8f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.task-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.task-link {
+  text-decoration: none;
+  color: #333;
+}
+
+.task-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.task-description {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
