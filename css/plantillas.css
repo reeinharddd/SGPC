@@ -4,10 +4,7 @@
   font-family: 'Libre Franklin', sans-serif;
 }
 
-body {
-  background-color: #e0e0e1;
-  margin-top: 77px;
-}
+
 
 .header {
   display: flex;
@@ -207,10 +204,6 @@ body {
 
 
 
-.project-list {
-  margin-top: 20px;
-  display: flex;
-}
 
 
 

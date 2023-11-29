@@ -40,7 +40,7 @@ include "../plantillas/menu.php";
         $resultProyectos = $conexion->exeqSelect($queryProyectos);
 
         if ($resultProyectos->num_rows > 0) {
-            echo "<h2>Proyectos Activos</h2>";
+            echo "<h2>Seleccione un Proyecto Activo</h2>";
             echo "<ul>";
             while ($rowProyecto = mysqli_fetch_array($resultProyectos)) {
                 $idProyecto = $rowProyecto['idProyecto'];
