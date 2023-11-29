@@ -6,20 +6,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC - Menú de Proyectos</title>
-    <link rel="stylesheet" href="../../../css/main.css">
-    <link rel="icon" href="../../../img/Logo1.png" type="image/png">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
-
+<?php
+include "../../InicioSesion/login.php";
+include "../plantillas/header.php";
+include "../plantillas/menu.php";
+?>
 <body>
+    <main>
     <?php
-    session_start();
-
     if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
         header('location:../../Alertas/warning.html');
         exit();
     }
 
-    include("../../../conexion.php");
     $conexion = new conexion();
 
     if ($conexion->connect()) {
@@ -45,6 +47,7 @@
         echo "<p>Error en la conexión a la base de datos.</p>";
     }
     ?>
+    </main>
 </body>
 
 </html>

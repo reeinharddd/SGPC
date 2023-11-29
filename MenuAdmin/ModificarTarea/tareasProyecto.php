@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC - Tareas del Proyecto</title>
-    <link rel="stylesheet" href="../../../css/main.css">
-    <link rel="icon" href="../../../img/Logo1.png" type="image/png">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
 
 <body>
@@ -18,8 +18,11 @@
         header('location:../../Alertas/warning.html');
         exit();
     }
-
-    include("../../../conexion.php");
+    include "../plantillas/header.php";
+    include "../plantillas/menu.php";
+    include("../../conexion.php");
+    ?>
+    <main><?php
     $conexion = new conexion();
 
     if ($conexion->connect()) {
@@ -62,6 +65,7 @@
         echo "<p>Error en la conexión a la base de datos.</p>";
     }
     ?>
+    </main>
 </body>
 
 </html>

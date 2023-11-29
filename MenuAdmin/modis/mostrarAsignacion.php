@@ -61,7 +61,7 @@ include "../plantillas/menu.php";
                         echo "<p>No hay usuarios asignados en esta operación.</p>";
                     }
 
-                    echo "<a href='../index.php'>Volver al Menú Principal</a><br>";
+                    echo "<a href='../base/index.php'>Volver al Menú Principal</a><br>";
                     echo "<a href='seleccionarUsuario.php?idProyecto=$idProyecto'>Asignar Otros Usuarios</a>";
                 } else {
                     echo "<p>No se encontró el proyecto.</p>";

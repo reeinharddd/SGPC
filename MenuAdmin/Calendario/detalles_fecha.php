@@ -51,7 +51,7 @@ if (!isset($_SESSION['admin_name'])) {
                             echo "<div class='project-date'>" . $row['fechaFinal'] . "</div>";
                             echo "</div>";
 
-                            echo "<a href='../Proyectos.php?idProyecto=" . $row["idProyecto"] . "' class='details-button'>Ver detalles</a>";
+                            echo "<a href='../base/Proyectos.php?idProyecto=" . $row["idProyecto"] . "' class='details-button'>Ver detalles</a>";
 
                             echo "</div>";
                         }

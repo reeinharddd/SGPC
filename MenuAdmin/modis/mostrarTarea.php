@@ -75,7 +75,7 @@ include "../plantillas/menu.php";
                             echo "<p><strong>Fecha de Inicio del Proyecto:</strong> $fechaInicioProyecto</p>";
                             echo "<p><strong>Fecha de Finalización del Proyecto:</strong> $fechaFinalProyecto</p>";
 
-                            echo "<a href='../index.php'>Volver al Menú Principal</a><br>";
+                            echo "<a href='../base/index.php'>Volver al Menú Principal</a><br>";
                             echo "<a href='agregarTarea.php?idProyecto=$idProyecto'>Registrar Otra Tarea</a>";
                         } else {
                             echo "<p>No se encontró información del proyecto.</p>";

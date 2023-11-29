@@ -12,7 +12,8 @@
 <body>
     <aside class="menu">
         <ul>
-            <li <?php if ($current_page == 'index.php') echo 'class="current-page"'; ?>><a href="../base/index.php">Inicio</a>
+            <li <?php $current_page = basename($_SERVER['PHP_SELF']);
+            if ($current_page == 'index.php') echo 'class="current-page"'; ?>><a href="../base/index.php">Inicio</a>
             </li>
             <li><a href="../Calendario/Calendario.php">Calendario</a></li>
 
