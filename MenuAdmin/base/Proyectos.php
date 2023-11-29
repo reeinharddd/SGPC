@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 function getTaskStateClass($estado)
 {
     switch ($estado) {
@@ -37,7 +35,7 @@ if ($proyectos) {
     if ($proyecto !== null) {
         $tareas = $consultas->getTareas($proyecto);
         $infoProyecto = $consultas->getInfoProyecto($proyecto);
-        $primerasTareas = $consultas->obtenerPrimerasTareas($proyecto, 3);
+        $primerasTareas = $consultas->obtenerPrimerasTareas($_SESSION['id'], $proyecto, 3);
     } else {
         echo "No se encontró el proyecto.";
     }
@@ -55,7 +53,7 @@ if ($proyectos) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyectos</title>
     <link rel="stylesheet" href="../../css/proyectos.css">
-    <link rel="icon" href="../../img/Logo1.png" type="image/png">
+    <link rel="icon" href="../../img/bricks.svg" type="image/svg+xml">
 </head>
 
 <body>
@@ -87,54 +85,57 @@ if ($proyectos) {
                     <h2>Tareas Próximas</h2>
 
                     <?php foreach ($primerasTareas as $tarea) : ?>
-                    echo "<a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "'
-                        class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left'>";
-                        class='task-info'>
-                        <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
-                        <div class='task-data'>
-                            <div class="fechas">
-                                <span class="label">Fecha final:</span>
-                                <span class="date"><?= $tarea["fechaInicio"] . ' - ' . $tarea["fechaFinal"]; ?></span>
+                    <a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "'
+                        class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left'>
+                        <div class='task-info'>
+                            <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
+                            <div class='task-data'>
+                                <div class="fechas">
+                                    <span class="label">Fecha final:</span>
+                                    <span
+                                        class="date"><?= $tarea["fechaInicio"] . ' - ' . $tarea["fechaFinal"]; ?></span>
+                                </div>
                             </div>
+                            <div class='task-data'>
+                                <span class='days-remaining'></span>
+                                <span class='days-message'>días para la fecha final</span>
+                            </div>
+                            <div class='task-data'><?= $tarea["estado"] ?></div>
                         </div>
-                        <div class='task-data'>
-                            <span class='days-remaining'></span>
-                            <span class='days-message'>días para la fecha final</span>
-                        </div>
-                        <div class='task-data'><?= $tarea["estado"] ?></div>
+                    </a>
+                    <?php endforeach; ?>
                 </div>
-                </a>
-                <?php endforeach; ?>
-            </div>
 
 
 
 
 
 
-            <div class="right-section">
-                <h2>Todas las tareas</h2>
-                <ul class="task-list">
-                    <?php
-                    if (isset($tareas)) {
-                        foreach ($tareas as $tarea) {
-                            echo "<li class='task-item'>";
-                            $idProyecto = $proyecto['idProyecto'];
-                            echo "<a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "' class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left'>";
+                <div class="right-section">
+                    <h2>Todas las tareas</h2>
+                    <ul class="task-list">
+                        <?php
+                        if (isset($tareas)) {
+                            foreach ($tareas as $tarea) {
+                                echo "<li class='task-item'>";
+                                $idProyecto = $infoProyecto['idProyecto'];
+;
+                                echo "<a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "' class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left'>";
 
-                            echo "<div class='task-header'>";
-                            echo "<div class='task-name'>" . $tarea["NombreTarea"] . "</div>";
-                            echo "<div class='task-description'>" . $tarea['DescripcionTarea'] . "</div>";
-                            echo "<div class='task-state " . getTaskStateClass($tarea["estado"]) . "'>" .
-                                $tarea["estado"] . "</div>";
-                            echo "</div>";
-                            echo "</a>";
-                            echo "</li>";
+
+                                echo "<div class='task-header'>";
+                                echo "<div class='task-name'>" . $tarea["NombreTarea"] . "</div>";
+                                echo "<div class='task-description'>" . $tarea['DescripcionTarea'] . "</div>";
+                                echo "<div class='task-state " . getTaskStateClass($tarea["estado"]) . "'>" .
+                                    $tarea["estado"] . "</div>";
+                                echo "</div>";
+                                echo "</a>";
+                                echo "</li>";
+                            }
                         }
-                    }
-                    ?>
-                </ul>
-            </div>
+                        ?>
+                    </ul>
+                </div>
 
 
 

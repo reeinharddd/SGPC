@@ -182,7 +182,7 @@ class consultas
         return $infoProyecto;
     }
 
-    public function obtenerPrimerasTareas($proyecto, $cantidad)
+    public function obtenerPrimerasTareas($usuario, $proyecto, $cantidad)
     {
         $conexion = new conexion();
         $tareas = array();
@@ -192,8 +192,9 @@ class consultas
 
             $fechaActual = date('Y-m-d');
 
-            $query = "SELECT T.titulo AS NombreTarea, T.descripcion AS DescripcionTarea, T.idTarea, PT.fechaFinal, T.estado
+            $query = "SELECT T.titulo AS NombreTarea, T.descripcion AS DescripcionTarea, T.idTarea, PT.fechaFinal, PT.fechaInicio, T.estado
                   FROM Tarea T
+                  INNER JOIN UsuarioTarea UT ON T.idTarea = UT.idTarea
                   INNER JOIN ProyectoTarea PT ON T.idTarea = PT.idTarea
                   WHERE T.idProyecto = ? AND PT.idProyecto = ?
                   AND PT.fechaFinal BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
