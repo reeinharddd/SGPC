@@ -1,680 +1,93 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
-  font-family: "Poppins";
+  font-family: 'Libre Franklin', sans-serif;
 }
 
 body {
   background-color: #e0e0e1;
-  margin: 0; /* Elimina el margen predeterminado del cuerpo */
-  overflow: hidden; /* Oculta el desplazamiento vertical en la página completa */
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgb(32, 30, 31);
-  padding: 10px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  border-bottom: 3px solid #ff6947;
-}
-
-.header .user-info {
-  display: flex;
-  align-items: center;
-  color: #e0e0e1;
-}
-
-.user-info img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.user-info h3 {
-  font-size: 18px;
   margin: 0;
-}
-
-.user-info p {
-  font-size: 14px;
-  margin: 0;
-}
-
-.logo img {
-  width: 50px;
-  height: 50px;
-}
-/* Estilos para la mini barra */
-/* Estilos para la mini barra */
-.mini-bar {
-  display: flex;
-  justify-content: space-around;
-  background-color: #f0f0f0;
-  padding: 10px;
-}
-
-.mini-bar-option {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.mini-bar-option:hover {
-  background-color: #ddd;
-}
-
-/* Estilo para la opción activa */
-.mini-bar-option.active {
-  background-color: #ff6947;
-  color: #fff;
-}
-
-.menu {
-  margin-top: 73.1px;
-  background: rgb(32, 30, 31);
-  color: #e0e0e1;
-  width: 200px;
-  padding: 0 10px;
-  position: fixed;
-  top: 0;
-  left: 0px;
-  height: 100%;
-  overflow-y: auto;
-  transition: left 0.3s;
-  z-index: 900;
-  display: flex;
-  flex-direction: column;
-  border-right: 3px solid #ff6947;
-}
-.menu-item {
-  line-height: 50px;
-  padding-left: 10px;
-}
-
-.menu ul {
-  list-style: none;
-  padding: 0;
-  width: 100%;
-}
-
-.menu ul li {
-  margin-bottom: 0px;
-}
-.menu ul li[role="separator"] {
-  height: 1.5px; /* Altura del separador */
-  background-color: #ff6947; /* Color del separador */
-  margin: 10px 0; /* Ajusta el margen para separar visualmente */
-}
-.active-task span {
-  text-align: center;
-}
-
-.menu ul li a {
-  color: #e0e0e1;
-  text-decoration: none;
-  font-size: 16px;
-  display: block;
-  padding: 10px;
-  margin: 0px;
-  position: relative;
-}
-.menu ul li a:hover {
-  background-color: #e0e0e087;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 main {
-  max-width: 1200px; /* Ancho máximo del contenido */
-  max-height: 700px; /* Agrega desplazamiento vertical si el contenido excede la altura máxima */
-  margin-left: 250px;
-  margin-top: 77px;
-  padding: 0 20px;
-  margin-bottom: 25px;
-}
-
-.project-banner {
-  position: relative;
-  text-align: center;
-  color: #fff;
-  padding: 40px;
-  background: url("../img/building_construction_frame_223639_3840x2160.jpg")
-    no-repeat center center fixed;
-  background-size: cover;
-}
-.project-banner-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.19
-  ); /* Puedes ajustar el valor alfa para la opacidad */
-}
-.project-banner h1,
-.project-banner p {
-  z-index: 1; /* Coloca el texto por encima de la imagen de fondo */
-}
-
-.project-banner h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-.project-banner p {
-  font-size: 16px;
-  margin: 5px 0;
-}
-
-.project-list {
-  margin-top: 20px;
-  /* Ajusta según sea necesario */
-}
-.project-list {
-  display: flex;
-}
-.left-section {
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-}
-.days-message {
-  font-size: 14px;
-  color: red;
-  margin-top: 5px;
-}
-.upcoming-tasks-container {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-.upcoming-task {
-  text-decoration: none;
-  color: #333;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
+  margin-left: 220px;
+  margin-top: 75px;
+  padding: 20px;
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #e0e0e1; /* Cambiado el color de fondo */
+}
+
+header,
+footer {
   padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.task-title,
-.task-due-date,
-.days-remaining,
-.task-status {
-  flex: 1;
-}
-.task-info {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.task-data:not(:last-child) {
-  margin-right: 10px;
-}
-.days-remaining {
-  font-weight: bold;
-  color: red;
-}
-
-.upcoming-task:hover {
-  background-color: #ddd;
-}
-
-.task-titles {
-  font-weight: bold;
-}
-
-.task-due-date {
-  font-size: 14px;
-  margin-top: 5px;
-  color: #ff0000;
-}
-
-.task-status {
-  font-size: 14px;
-  margin-top: 5px;
-  color: #007bff;
-}
-
-.right-section {
-  flex: 2; /* La sección derecha ocupará el doble del espacio que la izquierda */
-  padding: 20px; /* Ajusta según sea necesario */
-  overflow-y: auto; /* Añade desplazamiento vertical si el contenido es demasiado largo */
-}
-
-.task-card {
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 300px; /* Ajusta el ancho según sea necesario */
-}
-
-.task-title {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.task-description {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.project-box {
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 8px; /* Bordes más redondeados */
-  margin: 10px;
-  padding: 15px;
-  width: 300px; /* Ajusta el ancho según sea necesario */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff; /* Fondo blanco */
-  transition: box-shadow 0.3s ease-in-out;
-}
-.project-box:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.project-header {
-  display: flex;
-  flex-direction: column;
-}
-.project-title {
-  font-size: 20px; /* Tamaño de fuente más grande */
-  font-weight: bold;
-  margin-bottom: 10px; /* Mayor espacio inferior */
-}
-.project-info {
-  font-size: 16px; /* Tamaño de fuente para la información de la tarea */
-  color: #555; /* Color de texto más oscuro */
-}
-
-.project-info span {
-  font-weight: bold;
-}
-.project-state {
-  font-size: 14px;
-  padding: 5px;
-  border-radius: 5px;
+  background-color: #2c2c2c;
   color: #fff;
-  font-weight: bold;
 }
 
-.active-state {
-  background-color: #4caf50; /* Green */
-}
-
-.pending-state {
-  background-color: #ffc107; /* Yellow */
-}
-
-.finished-state {
-  background-color: #2196f3; /* Blue */
-}
-
-.canceled-state {
-  background-color: #f44336; /* Red */
-}
-
-.delayed-state {
-  background-color: #ff9800; /* Orange */
-}
-/* Estilos para la lista desplegable */
-.active-tasks {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.active-tasks .menu-item {
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 4px;
-  background-color: rgb(32, 30, 31);
-  color: #e0e0e1;
-  font-size: 14px;
-}
-
-.active-tasks .task-list {
-  margin-top: 8px; /* Espacio entre el menú y la lista de tareas */
-  background-color: rgb(32, 30, 31);
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: none;
-  z-index: 1;
-}
-
-.menu-item img {
-  width: 16px; /* Ajusta el ancho del icono según sea necesario */
-  height: 16px; /* Ajusta la altura del icono según sea necesario */
-  margin-left: 5px; /* Ajusta el espacio entre el texto y el icono según sea necesario */
-}
-
-.active-tasks .task-list a {
-  display: block;
-  padding: 8px;
-  color: #e0e0e1;
-  text-decoration: none;
-}
-
-.active-tasks:hover .task-list {
-  display: block;
-}
-
-.project-number {
-  font-size: 16px;
-}
-
-.project-name {
-  font-size: 16px;
-}
-
-.project-location {
-  font-size: 12px;
-}
-
-.project-dates {
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.6);
-  margin-top: 5px;
-}
-
-.project-date,
-.project-state {
-  font-size: 14px;
-}
-
-.project-info h3 {
-  font-size: 18px;
-  margin: 0;
-}
-
-.project-info p {
-  font-size: 14px;
-  margin: 5px 0;
-}
-
-.details-button {
+.complete-task-button,
+input[type="submit"] {
   background-color: #ff6947;
   color: #fff;
   border: none;
   padding: 10px;
-  margin-top: 15px; /* Mayor espacio superior */
-  cursor: pointer;
-  text-decoration: none;
   border-radius: 5px;
-  display: inline-block;
-  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
 }
 
-.details-button:hover {
-  background-color: #ff8a70;
-}
-
-.about-button {
-  background-color: #ff6947;
-  color: #e0e0e1;
-  border: none;
-  padding: 10px;
+.status-message {
+  color: red;
   margin-top: 10px;
-  cursor: pointer;
-  text-decoration: none;
 }
 
-.about-button:hover::after {
-  content: "Esta es una descripción de la aplicación";
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  position: absolute;
-  left: 85%;
-  padding: 10px;
-  display: none;
-  margin-top: 27px;
-}
-
-.about-button:hover::after {
-  display: block;
-}
-.back-link {
-  margin-right: 20px;
-  cursor: pointer;
-}
-
-.back-link img {
-  width: 30px;
-  height: 30px;
-}
-
-.current-page {
-  background-color: #f0f0f061;
-  font-weight: bold;
-}
-
-.task-list {
-  list-style: none;
-  padding: 0;
-}
-.task-item {
-  background-color: #e0e0e1;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  padding: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease-in-out;
-}
-.task-item:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-.task-link {
-  text-decoration: none;
-  color: #333;
-}
-.task-header {
-  display: flex;
-  flex-direction: column;
-}
-
-.task-name {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.task-description {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-/*---------------------------*/
-/* Estilos para la sección de comentarios */
-.add-comment-section {
-  max-width: 100%; /* Ajusta el ancho según sea necesario */
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  max-height: calc(50vh - 200px);
-}
-
-.add-comment-section h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.add-comment-section form {
-  display: flex;
-  flex-direction: column;
-}
-
-.add-comment-section textarea {
-  height: 5px; /* Ajusta la altura según sea necesario */
-  margin-bottom: 10px;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  resize: none;
-}
-
-.add-comment-section input[type="submit"] {
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.add-comment-section input[type="submit"]:hover {
-  background-color: #45a049;
-}
-/* Estilos para la sección de comentarios */
-.comments-section {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  max-height: calc(50vh - 200px); /* Ajusta según sea necesario */
-  overflow-y: auto;
-}
-
-.comments-section,
-.add-comment-section {
-  width: 100%; /* Ajusta el ancho al 100% */
-  box-sizing: border-box;
-  padding: 15px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
-.comments-section h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
+.divider {
+  border-top: 1px solid #ccc;
+  margin: 20px 0; /* Añadido espacio vertical */
 }
 
 .comment {
-  border-bottom: 1px solid #ddd;
-  padding: 10px;
-}
-
-.comment p {
-  margin: 5px 0;
-}
-
-/* Estilos para comentarios del usuario actual */
-.comment.user-comment {
-  background-color: #f0f8ff; /* Puedes ajustar el color según tu preferencia */
-  border-radius: 8px; /* Agrega bordes redondeados para comentarios del usuario actual */
-}
-
-.comment.user-comment p {
-  text-align: right;
-}
-
-.comment.user-comment p strong {
-  color: #007bff; /* Puedes ajustar el color según tu preferencia */
-}
-/* ... (código existente) ... */
-
-/* ... (código existente) ... */
-
-/* Estilos para la sección de detalles de la tarea */
-.task-details {
-  /* Ajusta el margen superior e inferior según sea necesario */
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  max-height: 100vh; /* La altura máxima será el 100% de la altura de la ventana */
-  overflow-y: auto;
-}
-
-/* Estilos para la sección de encabezado */
-.header-section {
-  margin-bottom: 20px;
-}
-
-.header-section h2 {
-  font-size: 24px;
-  margin-bottom: 5px; /* Espacio adicional */
-}
-
-.date {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 5px; /* Espacio adicional */
-}
-
-/* Estilos para el estado de la tarea */
-.status {
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-.status.pending {
-  color: #ffc107; /* Color para tareas pendientes */
-}
-
-.status.finished {
-  color: #2196f3; /* Color para tareas completadas */
-}
-
-.status.canceled {
-  color: #f44336; /* Color para tareas canceladas */
-}
-
-.status.delayed {
-  color: #ff9800; /* Color para tareas retrasadas */
-}
-
-/* Línea divisora */
-.divider {
+  background-color: #e0e0e1;
   border: 1px solid #ddd;
-  margin: 0px 0;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 15px;
+}
+.comments-section {
+  max-height: 153px; /* Establecer una altura máxima */
+  overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
 }
 
-/* Estilos para la descripción del proyecto */
-.project-description p {
-  font-size: 16px;
-  line-height: 1.6;
+.comments-section h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.user-comment {
+  border: 1px solid #ff6947;
 }
 
-/* Estilos para la sección de comentarios */
-
-/* Estilos para la sección de completar tarea */
-.complete-task-section {
-  text-align: right;
+.add-comment-section {
+  display: flex;
+  flex-direction: column;
   margin-top: 20px;
-  padding-top: 20px; /* Espaciado superior */
-  border-top: 1px solid #ddd; /* Línea superior */
+  max-height: 300px; /* Establecer una altura máxima */
+  overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
 }
 
-/* ... (código existente) ... */
+.add-comment-section h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.comment-section-content {
+  flex-grow: 1;
+}
+textarea {
+  width: calc(100% - 20px); /* Ajustar el ancho para considerar el relleno */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box; /* Ajustar el modelo de caja para considerar el relleno y el borde */
+}
