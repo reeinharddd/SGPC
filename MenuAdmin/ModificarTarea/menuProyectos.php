@@ -1,4 +1,4 @@
-<!-- menuProyectos.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +19,7 @@
         exit();
     }
 
-    include("../../../conexion.php");
+    include("../../conexion.php");
     $conexion = new conexion();
 
     if ($conexion->connect()) {

@@ -58,21 +58,27 @@ class conexion
 
 
     public function exeqUpdate($query)
-    {
-        try {
-            $result = mysqli_query($this->CON, $query);
+{
+    try {
+        $result = mysqli_query($this->CON, $query);
 
-            if ($result !== false) {
-                $affectedRows = mysqli_affected_rows($this->CON);
-                return $affectedRows;
+        if ($result !== false) {
+            $affectedRows = mysqli_affected_rows($this->CON);
+            
+            if ($affectedRows > 0) {
+                return $affectedRows; // Se realizaron cambios
             } else {
-                throw new Exception("Error en la consulta de actualización: " . mysqli_error($this->CON));
+                return 0; // No se realizaron cambios, pero no es un error
             }
-        } catch (Exception $e) {
-            echo "Excepción: " . $e->getMessage();
-            return 0;
+        } else {
+            throw new Exception("Error en la consulta de actualización: " . mysqli_error($this->CON));
         }
+    } catch (Exception $e) {
+        echo "Excepción: " . $e->getMessage();
+        return 0;
     }
+}
+
     public function close()
     {
         if ($this->CON) {

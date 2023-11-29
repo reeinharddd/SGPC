@@ -19,7 +19,7 @@
         exit();
     }
 
-    include("../../../conexion.php");
+    include("../../conexion.php");
     $conexion = new conexion();
 
     if ($conexion->connect()) {

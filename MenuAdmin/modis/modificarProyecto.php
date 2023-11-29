@@ -63,11 +63,16 @@ include "../plantillas/menu.php";
                                                     WHERE idProyecto=$idProyecto";
                             $resultado = $conexion->exeqUpdate($queryActualizarProyecto);
 
-                            if ($resultado) {
-                                echo "<p>Proyecto actualizado exitosamente.</p>";
-                            } else {
-                                echo "<p>Error al actualizar el proyecto: " . mysqli_error($conexion->getConexion()) . "</p>";
-                            }
+                            if ($resultado !== false) {
+    if ($resultado > 0) {
+        echo "<p>Proyecto actualizado exitosamente.</p>";
+    } else {
+        echo "<p>Ningún cambio realizado en el proyecto.</p>";
+    }
+} else {
+    echo "<p>Error al actualizar el proyecto: " . mysqli_error($conexion->getConexion()) . "</p>";
+}
+
                         }
                     }
                 }
