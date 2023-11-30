@@ -1,5 +1,4 @@
 <?php
-
 @include 'config.php';
 
 session_start();
@@ -19,14 +18,14 @@ if (!isset($_SESSION['admin_name'])) {
     <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
 
-
 <body>
     <?PHP
 include "../plantillas/header.php";
 include "../plantillas/menu.php";
 ?>
     <main>
-        <?php include("../../conexion.php");
+        <?php
+        include("../../conexion.php");
         $conexion = new conexion();
         if ($conexion->connect()) {
             if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['idProyecto'])) {
@@ -42,8 +41,11 @@ include "../plantillas/menu.php";
                     while ($rowUsuario = mysqli_fetch_array($resultUsuarios)) {
                         $idUsuario = $rowUsuario['idUsuario'];
                         $nombreUsuario = $rowUsuario['nombre'];
+                        $apellidoPat = $rowUsuario['apellidoPat'];
+                        $apellidoMat = $rowUsuario['apellidoMat'];
 
-                        echo "<label><input type='checkbox' name='usuarios[]' value='$idUsuario'> $nombreUsuario</label><br>";
+                        // Mostrar la información completa del usuario
+                        echo "<label><input type='checkbox' name='usuarios[]' value='$idUsuario'> $nombreUsuario $apellidoPat $apellidoMat</label><br>";
                     }
                     echo "<input type='hidden' name='idProyecto' value='$idProyecto'>";
                     echo "<input type='submit' value='Asignar Usuarios'>";
