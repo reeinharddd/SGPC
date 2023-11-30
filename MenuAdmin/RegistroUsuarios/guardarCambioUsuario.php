@@ -30,14 +30,16 @@ if ($conexion->connect()) {
                                        contrasena = '$contrasena',
                                        idTipoUsuario = '$tipoUsuario'
                                    WHERE idUsuario = $idUsuario";
-
+        if (preg_match('/^\d+/', $idUsuario, $coincidencias)) {
+            $id = $coincidencias[0];
+        }
         $resultActualizarUsuario = $conexion->exeqUpdate($queryActualizarUsuario);
         if ($resultActualizarUsuario !== false) {
             if ($resultActualizarUsuario === 1) {
                 header('location: cambiosRealizados.php');
                 exit;
             } else {
-                echo "<p>No se realizaron cambios en el usuario.</p>";
+                header("Location: editarUsuario.php?idUsuario=$id");
             }
         } else {
             echo "<p>Error al actualizar la información del usuario: " . $conexion->getLastError() . "</p>";

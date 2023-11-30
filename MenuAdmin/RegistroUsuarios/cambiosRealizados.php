@@ -32,7 +32,7 @@ include "../plantillas/menu.php";
         <p>Los cambios en la información del usuario se guardaron correctamente.</p>
 
         <button><a href='mostrarUsuario.php'>Cambiar información de otro usuario</a></button>
-        <button><a href='../index.php'>Ir al índice</a></button>
+        <button><a href='../base/index.php'>Ir al índice</a></button>
     </main>
 
 </body>

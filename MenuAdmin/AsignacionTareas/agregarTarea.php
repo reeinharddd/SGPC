@@ -23,7 +23,6 @@
     <main>
     <div class="hero">
         <?php
-        include "../../inicioSesion/login.php";
         include "../plantillas/header.php";
         include "../plantillas/menu.php";
        

@@ -47,7 +47,7 @@ include "../plantillas/menu.php";
     
     ?>
         <button><a href="register_form.php">Registrar otro usuario</a></button>
-        <button><a href="../index.php">Regresar al menu principal</a></button>
+        <button><a href="../base/index.php">Regresar al menu principal</a></button>
     </main>
 </body>
 

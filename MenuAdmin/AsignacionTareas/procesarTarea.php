@@ -36,7 +36,7 @@ if ($conexion->connect()) {
             $resultProyectoTarea = $conexion->exeqInsert($queryInsertarProyectoTarea);
 
             if (!$resultUsuarioTarea || !$resultProyectoTarea) {
-                echo "<a href='../../index.php'> Regresar al menu " . mysqli_error($conexion->getConexion());
+                header("Location: ../base/index.php");
             } else {
                 echo "Inserción exitosa en Tarea, UsuarioTarea y ProyectoTarea.";
             }
