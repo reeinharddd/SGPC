@@ -25,29 +25,27 @@ if (isset($_GET['idProyecto'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../css/proyectos.css" />
-
+    <title>Detalles del Proyecto</title>
+    <link rel="stylesheet" href="../../css/full.css" />
 </head>
 
 <body>
-    <?PHP
-include "../plantillas/header.php";
-include "../plantillas/menu.php";
-?>
+    <?php
+    include "../plantillas/header.php";
+    include "../plantillas/menu.php";
+    ?>
     <main>
-        <h1>Detalles del Proyecto creado</h1>
+        <h1 class="details-title">Detalles del Proyecto creado</h1>
 
-        <p><strong>Nombre:</strong> <?= $nombre ?></p>
-        <p><strong>Descripción:</strong> <?= $descripcion ?></p>
-        <p><strong>Ubicación:</strong> <?= $ubicacion ?></p>
-        <p><strong>Fecha de Inicio:</strong> <?= $fechaInicio ?></p>
-        <p><strong>Fecha Final:</strong> <?= $fechaFinal ?></p>
-        <p><strong>Estado:</strong> <?= $estado ?></p>
+        <p class="details-info"><strong>Nombre:</strong> <?= $nombre ?></p>
+        <p class="details-info"><strong>Descripción:</strong> <?= $descripcion ?></p>
+        <p class="details-info"><strong>Ubicación:</strong> <?= $ubicacion ?></p>
+        <p class="details-info"><strong>Fecha de Inicio:</strong> <?= $fechaInicio ?></p>
+        <p class="details-info"><strong>Fecha Final:</strong> <?= $fechaFinal ?></p>
+        <p class="details-info"><strong>Estado:</strong> <?= $estado ?></p>
 
-
-        <a href="../index.php">Terminar con la creación (Volver al index)</a>
-        <a href="agregarProyecto.php">Agregar otro proyecto?</a>
+        <a href="../base/index.php" class="details-button btn-reset">Terminar con la creación (Volver al index)</a>
+        <a href="agregarProyecto.php" class="details-button btn-submit">Agregar otro proyecto?</a>
     </main>
 </body>
 

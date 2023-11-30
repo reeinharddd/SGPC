@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC</title>
-    <link rel="stylesheet" href="../css/proyectos.css">
+    <link rel="stylesheet" href="../css/plantillas.css">
     <link rel="icon" href="../img/Logo1.png" type="image/png">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
         #header {
-            background-color: #f1f1f1;
+            background-color: #e0e0e1;
             padding: 20px;
             text-align: center;
         }
@@ -22,12 +22,11 @@
             font-weight: bold;
         }
 
-        #miniBar a:hover {
-            color: blue;
-        }
-
+       
         .highlighted {
-            background-color: yellow;
+            background-color: #ff6947;
+            border-radius: 20px;
+            padding: 10px
         }
 
         /* Agregado para deshabilitar el enlace */

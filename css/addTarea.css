@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  font-family: 'Libre Franklin', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #e0e0e1;
+}
+
+main {
+  margin-left: 220px;
+  margin-top: 75px;
+}
+
+.proyecto-link {
+    max-width: 45%;
+    display: block;
+    background-color: #f8f8f9; /* Naranja */
+    border: 2px solid #ff6947; /* Naranja */
+    padding: 10px;
+    margin: 10px 0;
+    text-decoration: none;
+    color:  rgba(0, 0, 0, 0.6); /* Blanco */
+    border-radius: 10px;
+    transition: background-color 0.3s ease-out, color 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out;
+    margin-left: 15px;
+}
+
+.proyecto-link:hover {
+    background-color:#ff6947; /* Blanco */
+    color: #f8f8f9; /* Naranja */
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.proyecto-info {
+    margin-bottom: 10px;
+    font-size: 14px; /* Tamaño de fuente reducido */
+}

@@ -280,33 +280,7 @@
 
 
 
-.project-header {
-  display: flex;
-  flex-direction: column;
-}
 
-.project-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.project-info {
-  font-size: 16px;
-  color: #555;
-}
-
-.project-info span {
-  font-weight: bold;
-}
-
-.project-state {
-  font-size: 14px;
-  padding: 5px;
-  border-radius: 5px;
-  color: #fff;
-  font-weight: bold;
-}
 
 .active-state {
   background-color: #4caf50;
@@ -372,55 +346,13 @@
   display: block;
 }
 
-.project-number {
-  font-size: 16px;
-}
 
-.project-name {
-  font-size: 16px;
-}
 
-.project-location {
-  font-size: 12px;
-}
 
-.project-dates {
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.6);
-  margin-top: 5px;
-}
 
-.project-date,
-.project-state {
-  font-size: 14px;
-}
 
-.project-info h3 {
-  font-size: 18px;
-  margin: 0;
-}
 
-.project-info p {
-  font-size: 14px;
-  margin: 5px 0;
-}
 
-.details-button {
-  background-color: #ff6947;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  margin-top: 15px;
-  cursor: pointer;
-  text-decoration: none;
-  border-radius: 5px;
-  display: inline-block;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.details-button:hover {
-  background-color: #ff8a70;
-}
 
 .about-button {
   background-color: #ff6947;

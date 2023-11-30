@@ -16,24 +16,23 @@ if (isset($_GET['idProyecto'])) {
         $fechaFinal = $detalleProyecto['fechaFinal'];
         $codigoEstado = $detalleProyecto['estado'];
         $estado = obtenerNombreEstado($codigoEstado);
-
 ?>
         <!DOCTYPE html>
-        <html lang="en">
+        <html lang="es">
 
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Detalles del Proyecto</title>
-            <link rel="stylesheet" href="../../css/proyectos.css" />
-
+            <link rel="stylesheet" href="../../css/full.css" />
+            <link rel="stylesheet" href="../../css/custom-styles.css" /> <!-- Agrega tus estilos personalizados aquí -->
         </head>
 
         <body>
-             <?PHP
-include "../plantillas/header.php";
-include "../plantillas/menu.php";
-?>
+            <?PHP
+            include "../plantillas/header.php";
+            include "../plantillas/menu.php";
+            ?>
 
             <main>
                 <h1>Detalles del Proyecto creado</h1>
@@ -60,7 +59,8 @@ include "../plantillas/menu.php";
 } else {
     echo "ID de proyecto no proporcionado en la URL.";
 }
-function obtenerNombreEstado($codigoEstado) {
+function obtenerNombreEstado($codigoEstado)
+{
     $conexion = new conexion();
     if ($conexion->connect()) {
         $con = $conexion->getConexion();
@@ -77,5 +77,4 @@ function obtenerNombreEstado($codigoEstado) {
         return "Error en la conexión";
     }
 }
-?>
 ?>
