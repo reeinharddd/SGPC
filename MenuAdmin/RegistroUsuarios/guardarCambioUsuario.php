@@ -21,27 +21,31 @@ if ($conexion->connect()) {
         $contrasena = $_POST['contrasena'];
         $tipoUsuario = $_POST['tipoUsuario'];
 
-        $queryActualizarUsuario = "UPDATE Usuario 
-                                   SET nombre = '$nombre', 
-                                       apellidoPat = '$apellidoPaterno', 
-                                       apellidoMat = '$apellidoMaterno', 
-                                       numTel = '$telefono', 
-                                       email = '$email', 
-                                       contrasena = '$contrasena', 
-                                       idTipoUsuario = '$tipoUsuario' 
+        $queryActualizarUsuario = "UPDATE Usuario
+                                   SET nombre = '$nombre',
+                                       apellidoPat = '$apellidoPaterno',
+                                       apellidoMat = '$apellidoMaterno',
+                                       numTel = '$telefono',
+                                       email = '$email',
+                                       contrasena = '$contrasena',
+                                       idTipoUsuario = '$tipoUsuario'
                                    WHERE idUsuario = $idUsuario";
 
         $resultActualizarUsuario = $conexion->exeqUpdate($queryActualizarUsuario);
+        if ($resultActualizarUsuario !== false) {
+            if ($resultActualizarUsuario === 1) {
+                header('location: cambiosRealizados.php');
+                exit;
+            } else {
+                echo "<p>No se realizaron cambios en el usuario.</p>";
+            }
+        } else {
+            echo "<p>Error al actualizar la información del usuario: " . $conexion->getLastError() . "</p>";
 
-        if ($resultActualizarUsuario) {
-            header('location: cambiosRealizados.php');
-    exit;} else {
-            echo "<p>Error al actualizar la información del usuario: " . mysqli_error($conexion->getConexion()) . "</p>";
         }
     } else {
         echo "<p>Parámetros incorrectos.</p>";
     }
-
     $conexion->close();
 } else {
     echo "<p>Error en la conexión a la base de datos.</p>";

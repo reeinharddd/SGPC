@@ -1,3 +1,13 @@
+ <?php
+    session_start();
+
+    if (!isset($_SESSION['admin_name'])) {
+        header('location:../../Alertas/warning.html');
+        exit();
+    }
+     $current_page = basename($_SERVER['PHP_SELF']);
+        
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,17 +20,13 @@
 </head>
 
 <body>
+    <main>
     <div class="hero">
         <?php
         include "../../inicioSesion/login.php";
         include "../plantillas/header.php";
         include "../plantillas/menu.php";
-        session_start();
-
-        if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
-            header('location:../../Alertas/warning.html');
-            exit();
-        }
+       
 
         include("../../conexion.php");
         $conexion = new conexion();
@@ -51,7 +57,6 @@
         ?>
 
         <form id="crearTareaForm" method="post" action="procesarTarea.php" class="colortexto">
-            <button><b><a href="../../index.php">◄ Menú</a></b></button>
             <br>
             <h2>Agregar Tarea al Proyecto: <?php echo $nombreProyecto; ?></h2>
             <label>Título: <input type="text" name="titulo" required></label><br>
@@ -82,6 +87,7 @@
             <input type="submit" value="Crear Tarea">
         </form>
     </div>
+    </main>
 </body>
 
 </html>

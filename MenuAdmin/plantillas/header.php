@@ -12,8 +12,7 @@
 <body>
     <header class="header">
         <?php
-        $current_page = basename($_SERVER['PHP_SELF']);
-        if (isset($_SESSION['admin_name']) && $current_page !== 'index.php') : ?>
+       if (isset($_SESSION['admin_name']) && $current_page !== 'index.php') : ?>
             <div class="back-link">
                 <a href="javascript:history.go(-1);">
                     <img src="../plantillas/left-arrow.svg" alt="Flecha de regreso">

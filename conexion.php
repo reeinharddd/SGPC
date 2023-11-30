@@ -64,7 +64,6 @@ class conexion
 
         if ($result !== false) {
             $affectedRows = mysqli_affected_rows($this->CON);
-            
             if ($affectedRows > 0) {
                 return $affectedRows; // Se realizaron cambios
             } else {

@@ -45,8 +45,8 @@ include "../plantillas/menu.php";
                     $apellidoPaterno = $rowUsuario['apellidoPat'];
                     $apellidoMaterno = $rowUsuario['apellidoMat'];
 
-                    echo "<li><a href='editarUsuario.php?idUsuario=$idUsuario'>$nombreUsuario $apellidoPaterno
-                    $apellidoMaterno</a></li>";
+                   echo "<li><a href='editarUsuario.php?idUsuario=$idUsuario'>$nombreUsuario $apellidoPaterno $apellidoMaterno</a></li>";
+
                 }
                 echo "</ul>";
             } else {

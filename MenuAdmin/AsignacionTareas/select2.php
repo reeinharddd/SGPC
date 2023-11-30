@@ -1,3 +1,13 @@
+ <?php
+    session_start();
+
+    if (!isset($_SESSION['admin_name'])) {
+        header('location:../../Alertas/warning.html');
+        exit();
+    }
+     $current_page = basename($_SERVER['PHP_SELF']);
+        
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,13 +20,7 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-
-    if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
-        header('location:../../Alertas/warning.html');
-        exit();
-    }
+   <?php
 
     include("../../conexion.php");
     include "../plantillas/header.php";
@@ -41,6 +45,8 @@
 
             if ($resultUsuariosProyecto->num_rows > 0) {
                 echo "<h2>Usuarios en el Proyecto</h2>";
+                 echo "<h3>Seleccione al usuario al que desea asignarle una tarea</h3>";
+                
                 echo "<ul>";
                 while ($rowUsuario = mysqli_fetch_array($resultUsuariosProyecto)) {
                     $idUsuario = $rowUsuario['idUsuario'];

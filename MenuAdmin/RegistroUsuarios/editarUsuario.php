@@ -1,4 +1,5 @@
 <?php
+$mensaje_actualizacion = ""; // Variable para almacenar el mensaje de actualización
 
 @include 'config.php';
 
@@ -27,7 +28,9 @@ include "../plantillas/header.php";
 include "../plantillas/menu.php";
 ?>
     <main><?php
-
+if (!empty($mensaje_actualizacion)) {
+        echo "<p>$mensaje_actualizacion</p>";
+    }
             include '../../conexion.php';
             $conexion = new conexion();
 

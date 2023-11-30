@@ -1,3 +1,13 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION['admin_name'])) {
+        header('location:../../Alertas/warning.html');
+        exit();
+    }
+     $current_page = basename($_SERVER['PHP_SELF']);
+        
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,12 +21,6 @@
 
 <body>
     <?php
-    session_start();
-
-    if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
-        header('location:../../Alertas/warning.html');
-        exit();
-    }
 
     include("../../conexion.php");
     include "../plantillas/header.php";
@@ -32,6 +36,7 @@
 
         if ($resultProyectos->num_rows > 0) {
             echo "<h2>Proyectos Activos</h2>";
+              echo "<h3>Seleccione uno</h3>";
             echo "<ul>";
             while ($rowProyecto = mysqli_fetch_array($resultProyectos)) {
                 $idProyecto = $rowProyecto['idProyecto'];

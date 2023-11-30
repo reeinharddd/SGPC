@@ -2,7 +2,7 @@
 session_start();
 $current_page = $_SERVER['PHP_SELF'];
 
-if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
+if (!isset($_SESSION['admin_name'])) {
     header('location:../../Alertas/warning.html');
 }
 ?>
@@ -23,7 +23,7 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
 include "../plantillas/header.php";
 include "../plantillas/menu.php";
 ?>
-    <main class="main-section">
+    <main>
         <?php
     if (isset($_GET['idProyecto'])) {
         $idProyecto = $_GET['idProyecto'];
@@ -39,16 +39,17 @@ include "../plantillas/menu.php";
                 $rowProyecto = $resultProyecto->fetch_assoc();
                 $nombreProyecto = $rowProyecto['nombre'];
 
-                $queryUsuarios = "SELECT u.*, t.rol as nombreTipoUsuario
-FROM Usuario u
-INNER JOIN TipoUsuario t ON u.idTipoUsuario = t.idTu";
+                  $queryUsuarios = "SELECT u.*, t.rol as nombreTipoUsuario
+                                  FROM Usuario u
+                                  INNER JOIN TipoUsuario t ON u.idTipoUsuario = t.idTu
+                                  WHERE u.idTipoUsuario != 1";
                 $resultUsuarios = $conexion->exeqSelect($queryUsuarios);
 
                 if ($resultUsuarios->num_rows > 0) {
                     echo "<h1 class='project-title'>Agregar Usuarios al Proyecto: $nombreProyecto</h1>";
                     echo "<form action='procesarUsuarios.php' method='post'>";
                     echo "<input type='hidden' name='idProyecto' value='$idProyecto'>";
-
+  $tipoUsuarioActual = "";
                     while ($rowUsuario = mysqli_fetch_array($resultUsuarios)) {
                         $idUsuario = $rowUsuario['idUsuario'];
                         $nombreUsuario = $rowUsuario['nombre'];
@@ -57,6 +58,11 @@ INNER JOIN TipoUsuario t ON u.idTipoUsuario = t.idTu";
                         $numTel = $rowUsuario['numTel'];
                         $email = $rowUsuario['email'];
                         $nombreTipoUsuario = $rowUsuario['nombreTipoUsuario'];
+                         if ($nombreTipoUsuario != $tipoUsuarioActual) {
+                            // Imprimir divisor si el tipo de usuario cambió
+                            echo "<hr>";
+                            $tipoUsuarioActual = $nombreTipoUsuario;
+                        }
 
                         echo "<label class='user-checkbox'><input type='checkbox' name='usuarios[]' value='$idUsuario'>
         $nombreUsuario $apellidoPat $apellidoMat - Teléfono: $numTel - Email: $email - Tipo Usuario:

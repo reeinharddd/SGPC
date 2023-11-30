@@ -1,4 +1,61 @@
-<!-- modificarTarea.php -->
+  <?php
+  ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+    session_start();
+
+    if (!isset($_SESSION['admin_name']) ) {
+        header('location:../../Alertas/warning.html');
+        exit();
+    }
+    $current_page = $_SERVER['PHP_SELF'];
+
+
+include("../../conexion.php");
+$conexion = new conexion();
+
+$mensaje_actualizacion = ""; 
+if ($conexion->connect()) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['idTarea']) && isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['estado']) && isset($_POST['fechaInicio']) && isset($_POST['fechaFinal'])) {
+        $idTarea = $_POST['idTarea'];
+        $titulo = $_POST['titulo'];
+        $descripcion = $_POST['descripcion'];
+        $estado = $_POST['estado'];
+        $fechaInicio = $_POST['fechaInicio'];
+        $fechaFinal = $_POST['fechaFinal'];
+
+        // Actualizar la tarea
+        $queryActualizarTarea = "UPDATE Tarea 
+                                 SET titulo = '$titulo', descripcion = '$descripcion', estado = '$estado'
+                                 WHERE idTarea = $idTarea";
+        $resultActualizarTarea = $conexion->exeqUpdate($queryActualizarTarea);
+
+        // Actualizar ProyectoTarea
+        $queryActualizarProyectoTarea = "UPDATE ProyectoTarea 
+                                         SET fechaInicio = '$fechaInicio', fechaFinal = '$fechaFinal'
+                                         WHERE idTarea = $idTarea";
+        $resultActualizarProyectoTarea = $conexion->exeqUpdate($queryActualizarProyectoTarea);
+
+        if ($resultActualizarTarea !== false && $resultActualizarProyectoTarea !== false) {
+            if ($resultActualizarTarea > 0 || $resultActualizarProyectoTarea > 0) {
+                $mensaje_actualizacion = "Actualización exitosa de la tarea.";
+            } else {
+                $mensaje_actualizacion = "Ningún cambio realizado en la tarea.";
+            }
+        } else {
+            $mensaje_actualizacion = "Error en la actualización de la tarea: " . $conexion->getLastError();
+        }
+
+
+        $conexion->close();
+    } else {
+ //echo "Error en la conexión a la base de datos: " . $conexion->getLastError();    
+ }
+}
+
+
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,20 +68,14 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-
-    if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
-        header('location:../../Alertas/warning.html');
-        exit();
-    }
-
-    include("../../conexion.php");
+  <?php
     include "../plantillas/header.php";
     include "../plantillas/menu.php";
     ?>
     <main> <?php
-    $conexion = new conexion();
+      if ($mensaje_actualizacion !== "") {
+                echo '<p>' . $mensaje_actualizacion . '</p>';
+            }  
 
     if ($conexion->connect()) {
         $idTarea = isset($_GET['idTarea']) ? $_GET['idTarea'] : null;
@@ -49,24 +100,28 @@
 
                 // Aquí puedes mostrar un formulario con los detalles actuales de la tarea
                 echo "<h2>Modificar Tarea: $tituloTarea</h2>";
-                echo "<form id='modificarTareaForm' method='post' action='procesarModificacionTarea.php'>";
+                echo "<form id='modificarTareaForm' method='post' action=''>";
                 echo "<label>Título: <input type='text' name='titulo' value='$tituloTarea'></label><br>";
                 echo "<label>Descripción: <input type='text' name='descripcion' value='$descripcionTarea'></label><br>";
                 echo "<select name='estado'>";
-                    
-                    include ('../../conexion.php');
+                 
                     $conexion = new conexion();
                     if ($conexion->connect()) {
                         $con = $conexion->getConexion();
 
                         $query = "SELECT * FROM Estado";
                         $resultado = $conexion->exeqSelect($query);
-                        var_dump($resultado);
 
                         if ($resultado) {
-                            while ($row = mysqli_fetch_array($resultado)) {
-                                echo "<option value='" . $row['codigo'] . "'>" . $row['nombre'] . "</option>";
-                            }
+                             while ($row = mysqli_fetch_array($resultado)) {
+            $codigoEstado = $row['codigo'];
+            $nombreEstado = $row['nombre'];
+
+            // Verificar si es el estado actual y seleccionarlo
+            $selected = ($estadoTarea == $codigoEstado) ? "selected" : "";
+
+            echo "<option value='$codigoEstado' $selected>$nombreEstado</option>";
+        }
                         } else {
                             echo "Error en la consulta: " . mysqli_error($con);
                         }
