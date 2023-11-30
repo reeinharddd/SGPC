@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC - Menú de Proyectos</title>
-    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/Proyec.css">
     <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
 <?php
@@ -25,19 +25,24 @@ include "../plantillas/menu.php";
     $conexion = new conexion();
 
     if ($conexion->connect()) {
-        $queryProyectos = "SELECT idProyecto, nombre FROM Proyecto";
+       $queryProyectos = "SELECT * FROM Proyecto WHERE estado NOT IN ('FIN', 'CAN')";
         $resultProyectos = $conexion->exeqSelect($queryProyectos);
 
         if ($resultProyectos->num_rows > 0) {
             echo "<h2>Seleccione un Proyecto:</h2>";
-            echo "<ul>";
+    echo "<div class='project-list-container'>";
             while ($rowProyecto = mysqli_fetch_array($resultProyectos)) {
                 $idProyecto = $rowProyecto['idProyecto'];
                 $nombreProyecto = $rowProyecto['nombre'];
 
-                echo "<li><a href='tareasProyecto.php?idProyecto=$idProyecto'>$nombreProyecto</a></li>";
+               
+        echo "<div class='project-item'>";
+        echo "<a href='tareasProyecto.php?idProyecto=$idProyecto'>";
+        echo "<h3>$nombreProyecto</h3>";
+        echo "</a>";
+        echo "</div>";
             }
-            echo "</ul>";
+    echo "</div>";
         } else {
             echo "<p>No hay proyectos disponibles.</p>";
         }

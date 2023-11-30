@@ -15,7 +15,7 @@ if (!isset($_SESSION['admin_name'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestión de Proyectos</title>
-    <link rel="stylesheet" href="../../css/proyectos.css" />
+    <link rel="stylesheet" href="../../css/Proyec.css" />
     <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
 
@@ -36,19 +36,26 @@ include "../plantillas/menu.php";
         $conexion = new conexion();
 
         if ($conexion->connect()) {
-            $queryProyectos = "SELECT * FROM Proyecto";
+             $queryProyectos = "SELECT * FROM Proyecto WHERE estado NOT IN ('FIN', 'CAN')";
             $resultProyectos = $conexion->exeqSelect($queryProyectos);
 
             if ($resultProyectos->num_rows > 0) {
                 echo "<h2>Seleccione un Proyecto Activo</h2>";
-                echo "<ul>";
+    echo "<div class='project-list-container'>";
                 while ($rowProyecto = mysqli_fetch_array($resultProyectos)) {
                     $idProyecto = $rowProyecto['idProyecto'];
                     $nombreProyecto = $rowProyecto['nombre'];
 
-                    echo "<li><a href='agregarTarea.php?idProyecto=$idProyecto'>$nombreProyecto</a></li>";
+                   
+
+
+                    echo "<div class='project-item'>";
+        echo "<a href='agregarTarea.php?idProyecto=$idProyecto'>";
+        echo "<h3>$nombreProyecto</h3>";
+        echo "</a>";
+        echo "</div>";
                 }
-                echo "</ul>";
+    echo "</div>";
             } else {
                 echo "<p>No hay proyectos activos.</p>";
             }

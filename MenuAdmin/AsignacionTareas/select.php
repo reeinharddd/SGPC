@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGPC - Proyectos</title>
-    <link rel="stylesheet" href="../../css/proyectos.css">
+    <link rel="stylesheet" href="../../css/Proyec.css">
     <link rel="icon" href="../../img/Logo1.png" type="image/png">
 </head>
 
@@ -31,28 +31,28 @@
     $conexion = new conexion();
 
     if ($conexion->connect()) {
-        $queryProyectos = "SELECT DISTINCT idProyecto FROM UsuarioProyecto"; // Usar DISTINCT para evitar duplicados
+        $queryProyectos = "SELECT * FROM Proyecto WHERE estado NOT IN ('FIN', 'CAN')";
+
         $resultProyectos = $conexion->exeqSelect($queryProyectos);
 
         if ($resultProyectos->num_rows > 0) {
             echo "<h2>Proyectos Activos</h2>";
               echo "<h3>Seleccione uno</h3>";
-            echo "<ul>";
+    echo "<div class='project-list-container'>";
             while ($rowProyecto = mysqli_fetch_array($resultProyectos)) {
-                $idProyecto = $rowProyecto['idProyecto'];
+                
+        $idProyecto = $rowProyecto['idProyecto'];
+        $nombreProyecto = $rowProyecto['nombre'];
+                // Wrap each project title in a container with a link
+        echo "<div class='project-item'>";
+        echo "<a href='select2.php?idProyecto=$idProyecto'>";
+        echo "<h3>$nombreProyecto</h3>";
+        echo "</a>";
+        echo "</div>";
 
-                // Obtener el nombre del proyecto usando el idProyecto
-                $queryNombreProyecto = "SELECT nombre FROM Proyecto WHERE idProyecto = $idProyecto";
-                $resultNombreProyecto = $conexion->exeqSelect($queryNombreProyecto);
-
-                if ($resultNombreProyecto->num_rows > 0) {
-                    $nombreProyecto = mysqli_fetch_assoc($resultNombreProyecto)['nombre'];
-                    echo "<li><a href='select2.php?idProyecto=$idProyecto'>$nombreProyecto</a></li>";
-                } else {
-                    echo "<li><a href='#'>Proyecto Desconocido</a></li>";
-                }
+               
             }
-            echo "</ul>";
+    echo "</div>";
         } else {
             echo "<p>No hay proyectos activos.</p>";
         }
