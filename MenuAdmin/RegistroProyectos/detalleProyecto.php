@@ -14,7 +14,8 @@ if (isset($_GET['idProyecto'])) {
         $ubicacion = $detalleProyecto['ubicacion'];
         $fechaInicio = $detalleProyecto['fechaInicio'];
         $fechaFinal = $detalleProyecto['fechaFinal'];
-        $estado = $detalleProyecto['estado'];
+        $codigoEstado = $detalleProyecto['estado'];
+        $estado = obtenerNombreEstado($codigoEstado);
 
 ?>
         <!DOCTYPE html>
@@ -34,7 +35,7 @@ include "../plantillas/header.php";
 include "../plantillas/menu.php";
 ?>
 
-            <main class="main-section">
+            <main>
                 <h1>Detalles del Proyecto creado</h1>
 
                 <p class="project-name"><strong>Nombre:</strong> <?= $nombre ?></p>
@@ -59,4 +60,22 @@ include "../plantillas/menu.php";
 } else {
     echo "ID de proyecto no proporcionado en la URL.";
 }
+function obtenerNombreEstado($codigoEstado) {
+    $conexion = new conexion();
+    if ($conexion->connect()) {
+        $con = $conexion->getConexion();
+
+        $query = "SELECT nombre FROM Estado WHERE codigo = '$codigoEstado'";
+        $resultado = $conexion->exeqSelect($query);
+
+        if ($resultado && $row = mysqli_fetch_array($resultado)) {
+            return $row['nombre'];
+        } else {
+            return "Desconocido";
+        }
+    } else {
+        return "Error en la conexión";
+    }
+}
+?>
 ?>

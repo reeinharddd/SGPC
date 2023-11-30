@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
     header('location:../../Alertas/warning.html');
 }
 
-include("../../../conexion.php");
+include("../../conexion.php");
 $conexion = new conexion();
 
 if ($conexion->connect()) {

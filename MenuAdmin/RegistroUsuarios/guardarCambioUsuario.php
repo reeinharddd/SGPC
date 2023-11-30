@@ -41,7 +41,6 @@ if ($conexion->connect()) {
             }
         } else {
             echo "<p>Error al actualizar la información del usuario: " . $conexion->getLastError() . "</p>";
-
         }
     } else {
         echo "<p>Parámetros incorrectos.</p>";

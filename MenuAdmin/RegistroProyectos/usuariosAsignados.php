@@ -55,7 +55,7 @@ include "../plantillas/menu.php";
         }
 
         echo "<a href='../index.php' class='details-button'>Terminar</a>";
-        echo "<a href='asignarTareas.php?idProyecto=$idProyecto' class='details-button'>Continuar</a>";
+        echo "<a href='asignarTareas.php?idProyecto=$idProyecto' class='details-button'>Continuar asignando tareas a usuarios</a>";
 
         $conexion->close();
     } else {

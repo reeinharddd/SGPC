@@ -32,6 +32,12 @@ include "../plantillas/menu.php";
         $conexion = new conexion();
 
         if ($conexion->connect()) {
+             $queryUsuariosAsignados = "SELECT idUsuario FROM UsuarioProyecto WHERE idProyecto = $idProyecto";
+                $resultUsuariosAsignados = $conexion->exeqSelect($queryUsuariosAsignados);
+                $usuariosAsignados = [];
+                while ($rowAsignado = mysqli_fetch_array($resultUsuariosAsignados)) {
+                    $usuariosAsignados[] = $rowAsignado['idUsuario'];
+                }
             $queryProyecto = "SELECT * FROM Proyecto WHERE idProyecto = $idProyecto";
             $resultProyecto = $conexion->exeqSelect($queryProyecto);
 
@@ -58,17 +64,18 @@ include "../plantillas/menu.php";
                         $numTel = $rowUsuario['numTel'];
                         $email = $rowUsuario['email'];
                         $nombreTipoUsuario = $rowUsuario['nombreTipoUsuario'];
-                         if ($nombreTipoUsuario != $tipoUsuarioActual) {
-                            // Imprimir divisor si el tipo de usuario cambió
-                            echo "<hr>";
-                            $tipoUsuarioActual = $nombreTipoUsuario;
-                        }
+                          if (!in_array($idUsuario, $usuariosAsignados)) {
+                                if ($nombreTipoUsuario != $tipoUsuarioActual) {
+                                    // Imprimir divisor si el tipo de usuario cambió
+                                    echo "<hr>";
+                                    $tipoUsuarioActual = $nombreTipoUsuario;
+                                }
 
                         echo "<label class='user-checkbox'><input type='checkbox' name='usuarios[]' value='$idUsuario'>
         $nombreUsuario $apellidoPat $apellidoMat - Teléfono: $numTel - Email: $email - Tipo Usuario:
         $nombreTipoUsuario</label><br>";
                     }
-
+                    }
                     echo "<input type='submit' value='Agregar Usuarios' class='details-button'>";
                     echo "</form>";
                 } else {
@@ -86,6 +93,28 @@ include "../plantillas/menu.php";
         echo "<p class='no-id-message'>ID del proyecto no proporcionado.</p>";
     }
     ?>
+     <script>
+    function validarFormulario() {
+        var checkboxes = document.querySelectorAll('input[name="usuarios[]"]:checked');
+        var tipoUsuarioValido = false;
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            var labelText = checkboxes[i].parentNode.textContent;
+
+            if (labelText.includes("arquitecto") || labelText.includes("tipo 2")) {
+                tipoUsuarioValido = true;
+                break;
+            }
+        }
+
+        if (checkboxes.length === 0 || !tipoUsuarioValido) {
+            alert("Selecciona al menos un usuario y asegúrate de que al menos uno sea arquitecto o tipo 2.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
     </main>
 
 </body>

@@ -37,10 +37,12 @@ include "../plantillas/menu.php";
                     $rowProyecto = $resultProyecto->fetch_assoc();
                     $nombreProyecto = $rowProyecto['nombre'];
 
-                    $queryUsuariosProyecto = "SELECT u.*
-        FROM Usuario u
-        INNER JOIN UsuarioProyecto up ON u.idUsuario = up.idUsuario
-        WHERE up.idProyecto = $idProyecto";
+                   $queryUsuariosProyecto = "SELECT u.*, t.rol as nombreTipoUsuario
+                        FROM Usuario u
+                        INNER JOIN UsuarioProyecto up ON u.idUsuario = up.idUsuario
+                        INNER JOIN TipoUsuario t ON u.idTipoUsuario = t.idTu
+                        WHERE up.idProyecto = $idProyecto
+                        ORDER BY t.idTu";
                     $resultUsuariosProyecto = $conexion->exeqSelect($queryUsuariosProyecto);
 
                     if ($resultUsuariosProyecto->num_rows > 0) {
@@ -48,11 +50,28 @@ include "../plantillas/menu.php";
                         echo "<h3>seleccione uno</h3>";
                        
                         echo "<ul>";
-                        while ($rowUsuario = mysqli_fetch_array($resultUsuariosProyecto)) {
+                         $tipoUsuarioActual = "";
+                         while ($rowUsuario = mysqli_fetch_array($resultUsuariosProyecto)) {
                             $idUsuario = $rowUsuario['idUsuario'];
                             $nombreUsuario = $rowUsuario['nombre'];
-
-                            echo "<li><a href='crearTareaForm.php?idUsuario=$idUsuario&idProyecto=$idProyecto'>$nombreUsuario</a></li>";
+                            $apellidoPat = $rowUsuario['apellidoPat'];
+                            $apellidoMat = $rowUsuario['apellidoMat'];
+                            $numTel = $rowUsuario['numTel'];
+                            $email = $rowUsuario['email'];
+                            $nombreTipoUsuario = $rowUsuario['nombreTipoUsuario'];
+if ($nombreTipoUsuario != $tipoUsuarioActual) {
+                                // Imprimir divisor si el tipo de usuario cambió
+                                echo "<hr>";
+                                $tipoUsuarioActual = $nombreTipoUsuario;
+                            }
+                            
+                         echo "<a href='crearTareaForm.php?idUsuario=$idUsuario&idProyecto=$idProyecto'>";
+                            echo "<p>ID: $idUsuario</p>";
+                            echo "<p>Nombre: $nombreUsuario $apellidoPat $apellidoMat</p>";
+                            echo "<p>Teléfono: $numTel</p>";
+                            echo "<p>Email: $email</p>";
+                            echo "<p>Tipo Usuario: $nombreTipoUsuario</p>";
+                            echo "</a>";
                         }
                         echo "</ul>";
                     } else {

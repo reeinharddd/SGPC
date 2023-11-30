@@ -27,7 +27,7 @@ include "../plantillas/menu.php";
 ?>
 
 
-    <main class="main-section">
+    <main>
         <h1>Crear Proyecto
         </h1>
         <form id="datos" method="post" action="addProyecto.php" class="colortexto">
@@ -53,11 +53,12 @@ include "../plantillas/menu.php";
 
                         $query = "SELECT * FROM Estado";
                         $resultado = $conexion->exeqSelect($query);
-                        var_dump($resultado);
 
                         if ($resultado) {
                             while ($row = mysqli_fetch_array($resultado)) {
+                                 if ($row['codigo'] !== 'FIN' && $row['codigo'] !== 'CAN') {
                                 echo "<option value='" . $row['codigo'] . "'>" . $row['nombre'] . "</option>";
+                                 }
                             }
                         } else {
                             echo "Error en la consulta: " . mysqli_error($con);

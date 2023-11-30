@@ -28,7 +28,8 @@ include "../plantillas/menu.php";
 
 
     <main>
-
+<h1>Crear Proyecto
+        </h1>
         <form id="datos" method="post" action="addUnProyecto.php" class="colortexto">
             <br>
 
@@ -41,26 +42,27 @@ include "../plantillas/menu.php";
             <label>Ubicación del proyecto: * <input type="text" name="txtUbi" required
                     placeholder="max. 100 caracteres"></label>
             <br>
-            <label>Fecha de inicio: *<input type="date" name="F-inicio" id="fechaInicio" required></label>
+            <label class="project-date">Fecha de inicio: *<input type="date" name="F-inicio" id="fechaInicio" required></label>
             <br>
-            <label>Fecha de finalización: *<input type="date" name="F-fin" id="fechaFin" required></label>
+             <label class="project-date">Fecha de finalización: *<input type="date" name="F-fin" id="fechaFin" required></label>
             <br>
-            <label>Estado del proyecto: *
+             <label class="project-state">Estado del proyecto: *
                 <select name="estado">
                     <?php
-                        include '../../conexion.php';
-                        $conexion = new conexion();
-                        if ($conexion->connect()) {
-                            $con = $conexion->getConexion();
+                    include '../../conexion.php';
+                    $conexion = new conexion();
+                    if ($conexion->connect()) {
+                        $con = $conexion->getConexion();
 
-                            $query = "SELECT * FROM Estado";
-                            $resultado = $conexion->exeqSelect($query);
-                            var_dump($resultado);
+                        $query = "SELECT * FROM Estado";
+                        $resultado = $conexion->exeqSelect($query);
 
-                            if ($resultado) {
-                                while ($row = mysqli_fetch_array($resultado)) {
-                                    echo "<option value='" . $row['codigo'] . "'>" . $row['nombre'] . "</option>";
-                                }
+                        if ($resultado) {
+                            while ($row = mysqli_fetch_array($resultado)) {
+                                 if ($row['codigo'] !== 'FIN' && $row['codigo'] !== 'CAN') {
+                                echo "<option value='" . $row['codigo'] . "'>" . $row['nombre'] . "</option>";
+                                 }
+                            }
                             } else {
                                 echo "Error en la consulta: " . mysqli_error($con);
                             }
@@ -73,25 +75,25 @@ include "../plantillas/menu.php";
             </label>
             <br>
 
-            <input type="reset" value="Cancel">
-            <input type="submit" value="Send">
+            <input type="reset" value="Limpiar" class="details-button">
+            <input type="submit" value="Crear" class="details-button">
         </form>
-        <script>
-        document.getElementById("datos").addEventListener("submit", function(event) {
-            const fechaInicio = new Date(document.getElementById("fechaInicio").value +
-                "T00:00:00");
-            const fechaFin = new Date(document.getElementById("fechaFin").value +
-                "T00:00:00");
-            const fechaActual = new Date();
+       <script>
+            document.getElementById("datos").addEventListener("submit", function(event) {
+                const fechaInicio = new Date(document.getElementById("fechaInicio").value +
+                    "T00:00:00");
+                const fechaFin = new Date(document.getElementById("fechaFin").value +
+                    "T00:00:00");
+                const fechaActual = new Date();
 
-            if (fechaInicio <= fechaActual) {
-                alert("La fecha de inicio debe ser posterior al día actual.");
-                event.preventDefault();
-            } else if (fechaFin < fechaInicio) {
-                alert("La fecha de fin debe ser posterior o igual a la fecha de inicio.");
-                event.preventDefault();
-            }
-        });
+                if (fechaInicio <= fechaActual) {
+                    alert("La fecha de inicio debe ser posterior al día actual.");
+                    event.preventDefault();
+                } else if (fechaFin < fechaInicio) {
+                    alert("La fecha de fin debe ser posterior o igual a la fecha de inicio.");
+                    event.preventDefault();
+                }
+            });
         </script>
     </main>
 

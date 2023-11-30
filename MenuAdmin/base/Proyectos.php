@@ -82,29 +82,35 @@ if ($proyectos) {
 
             <div class="project-list">
                 <div class="left-section">
-                    <h2>Tareas Próximas</h2>
+    <h2>Tareas Próximas</h2>
 
-                    <?php foreach ($primerasTareas as $tarea) : ?>
-                    <a href='detalleTarea.php?idTarea=" . $tarea["idTarea"] . "'
-                        class='upcoming-task " . strtolower($tarea["estado"]) . "-state-left'>
-                        <div class='task-info'>
-                            <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
-                            <div class='task-data'>
-                                <div class="fechas">
-                                    <span class="label">Fecha final:</span>
-                                    <span
-                                        class="date"><?= $tarea["fechaInicio"] . ' - ' . $tarea["fechaFinal"]; ?></span>
-                                </div>
-                            </div>
-                            <div class='task-data'>
-                                <span class='days-remaining'></span>
-                                <span class='days-message'>días para la fecha final</span>
-                            </div>
-                            <div class='task-data'><?= $tarea["estado"] ?></div>
-                        </div>
-                    </a>
-                    <?php endforeach; ?>
+    <?php foreach ($primerasTareas as $tarea) : ?>
+        <a href='detalleTarea.php?idTarea=<?= $tarea["idTarea"] ?>'
+            class='upcoming-task <?= strtolower($tarea["estado"]) ?>-state-left'>
+            <div class='task-info'>
+                <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
+                <div class='task-data'>
+                    <div class="fechas">
+                        <span class="label">Fecha final:</span>
+                        <?php if(isset($tarea["fechaFinal"])): ?>
+                            <span class="date"><?= $tarea["fechaFinal"]; ?></span>
+                        <?php endif; ?>
+                    </div>
                 </div>
+                <div class='task-data'>
+                    <span class='days-remaining'></span>
+                    <span class='days-message'>días para la fecha final</span>
+                </div>
+                <div class='task-data'>
+                    <span class='task-state <?= getTaskStateClass($tarea["estado"]) ?>'>
+                        <?= $tarea["estado"] ?>
+                    </span>
+                </div>
+            </div>
+        </a>
+    <?php endforeach; ?>
+</div>
+
 
 
 
@@ -143,12 +149,12 @@ if ($proyectos) {
         </main>
 
     </section>
-    <script>
+   <script>
     document.addEventListener("DOMContentLoaded", function() {
         var upcomingTasks = document.querySelectorAll('.upcoming-task');
 
         upcomingTasks.forEach(function(task) {
-            var dueDateElement = task.querySelector('.task-data:nth-child(2)');
+            var dueDateElement = task.querySelector('.task-data:nth-child(2) .date');
             var daysRemainingElement = task.querySelector('.days-remaining');
             var daysMessageElement = task.querySelector('.days-message');
             var taskStatusElement = task.querySelector('.task-data:last-child');
@@ -160,16 +166,20 @@ if ($proyectos) {
             var daysRemaining = Math.floor(timeDifference / (1000 * 3600 * 24));
 
             daysRemainingElement.textContent = daysRemaining;
-            daysMessageElement.style.display = 'inline';
-            daysMessageElement.textContent = 'días para la entrega';
 
             if (daysRemaining <= 3) {
                 daysRemainingElement.style.color = 'red';
                 daysMessageElement.style.color = 'red';
             }
+
+            // Ocultamos el texto 'días para la entrega' si los días restantes son negativos
+            if (daysRemaining < 0) {
+                daysMessageElement.style.display = 'none';
+            }
         });
     });
-    </script>
+</script>
+
 
 
 
