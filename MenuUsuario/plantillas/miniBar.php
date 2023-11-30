@@ -69,9 +69,8 @@
 
       $('#verUsuarios').click(function(e) {
     e.preventDefault();
-    var url = 'usuariosProyecto.php?idProyecto=<?php echo $idProyecto; ?>';
-    console.log(url);
-    handleNavigation('verUsuarios', url);
+    var idProyecto = $(this).data('idproyecto');
+    handleNavigation('verUsuarios', 'usuariosProyecto.php?idProyecto=' + idProyecto);
 });
 
         $('#volver').click(function(e) {

@@ -61,7 +61,6 @@ if ($proyectos) {
     include "../plantillas/header.php";
 
 
-    include "../plantillas/miniBar.php"
     ?> <section>
 
         <?php
@@ -90,21 +89,26 @@ if ($proyectos) {
                         <div class='task-info'>
                             <div class='task-data'><?= $tarea["NombreTarea"] ?></div>
                             <div class='task-data'>
-                                <div class="fechas">
-                                    <span class="label">Fecha final:</span>
-                                    <span
-                                        class="date"><?= $tarea["fechaInicio"] . ' - ' . $tarea["fechaFinal"]; ?></span>
-                                </div>
+                                 <div class="fechas">
+                        <span class="label">Fecha final:</span>
+                        <?php if(isset($tarea["fechaFinal"])): ?>
+                            <span class="date"><?= $tarea["fechaFinal"]; ?></span>
+                        <?php endif; ?>
+                    </div>
                             </div>
                             <div class='task-data'>
-                                <span class='days-remaining'></span>
-                                <span class='days-message'>días para la fecha final</span>
-                            </div>
-                            <div class='task-data'><?= $tarea["estado"] ?></div>
-                        </div>
-                    </a>
-                    <?php endforeach; ?>
+                    <span class='days-remaining'></span>
+                    <span class='days-message'>días para la fecha final</span>
                 </div>
+                <div class='task-data'>
+                    <span class='task-state <?= getTaskStateClass($tarea["estado"]) ?>'>
+                        <?= $tarea["estado"] ?>
+                    </span>
+                </div>
+            </div>
+        </a>
+    <?php endforeach; ?>
+</div>
 
 
 
