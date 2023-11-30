@@ -34,7 +34,7 @@ include "../plantillas/menu.php";
             $sql = "SELECT * FROM Modificacion";
             $result = $conexion->exeqSelect($sql);
             if ($result) {
-                echo "<table border='1' class = 'HistoryTable'>"; // Puedes estilizar la tabla con CSS
+                echo "<table border='1' class = 'HistoryTable'>"; 
                 echo "<tr><th>ID</th><th>Descripción</th><th>Fecha</th><th>Acción</th></tr>";
             
                 while ($row = mysqli_fetch_assoc($result)) {

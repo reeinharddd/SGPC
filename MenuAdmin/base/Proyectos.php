@@ -172,7 +172,7 @@ if ($proyectos) {
                 daysMessageElement.style.color = 'red';
             }
 
-            // Ocultamos el texto 'días para la entrega' si los días restantes son negativos
+           
             if (daysRemaining < 0) {
                 daysMessageElement.style.display = 'none';
             }

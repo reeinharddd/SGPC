@@ -14,11 +14,10 @@ if ($conexion->connect()) {
         $descripcion = $_POST['descripcion'];
         $estado = $_POST['estado'];
         $idProyecto = $_POST['idProyecto'];
-        $idUsuario = $_POST['idUsuario']; // Nuevo campo
+        $idUsuario = $_POST['idUsuario']; 
         $fechaInicio = $_POST['fechaInicio'];
         $fechaFinal = $_POST['fechaFinal'];
 
-        // Insertar tarea
         $queryInsertarTarea = "INSERT INTO Tarea (titulo, descripcion, estado, idProyecto) 
                                VALUES ('$titulo', '$descripcion', '$estado', '$idProyecto')";
         $resultTarea = $conexion->exeqInsert($queryInsertarTarea);
@@ -28,12 +27,10 @@ if ($conexion->connect()) {
         } else {
             $idTarea = mysqli_insert_id($conexion->getConexion());
 
-            // Insertar en UsuarioTarea
             $queryInsertarUsuarioTarea = "INSERT INTO UsuarioTarea (idUsuario, idTarea) 
                                           VALUES ('$idUsuario', '$idTarea')";
             $resultUsuarioTarea = $conexion->exeqInsert($queryInsertarUsuarioTarea);
 
-            // Insertar en ProyectoTarea
             $queryInsertarProyectoTarea = "INSERT INTO ProyectoTarea (idProyecto, idTarea, fechaInicio, fechaFinal) 
                                            VALUES ('$idProyecto', '$idTarea', '$fechaInicio', '$fechaFinal')";
             $resultProyectoTarea = $conexion->exeqInsert($queryInsertarProyectoTarea);

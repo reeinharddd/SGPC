@@ -47,7 +47,6 @@ include "../plantillas/menu.php";
                 $nombreProyecto = $rowProyecto['nombre'];
 
              
-                        // Wrap each project title in a container with a link
         echo "<div class='project-item'>";
         echo "<a href='modificarProyecto.php?idProyecto=$idProyecto'>";
         echo "<h3>$nombreProyecto</h3>";

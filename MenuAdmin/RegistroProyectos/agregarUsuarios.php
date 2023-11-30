@@ -66,7 +66,7 @@ include "../plantillas/menu.php";
                         $nombreTipoUsuario = $rowUsuario['nombreTipoUsuario'];
                           if (!in_array($idUsuario, $usuariosAsignados)) {
                                 if ($nombreTipoUsuario != $tipoUsuarioActual) {
-                                    // Imprimir divisor si el tipo de usuario cambió
+                                    
                                     echo "<hr>";
                                     $tipoUsuarioActual = $nombreTipoUsuario;
                                 }

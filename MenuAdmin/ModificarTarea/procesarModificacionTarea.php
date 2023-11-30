@@ -18,13 +18,11 @@ if ($conexion->connect()) {
         $fechaInicio = $_POST['fechaInicio'];
         $fechaFinal = $_POST['fechaFinal'];
 
-        // Actualizar la tarea
         $queryActualizarTarea = "UPDATE Tarea 
                                  SET titulo = '$titulo', descripcion = '$descripcion', estado = '$estado'
                                  WHERE idTarea = $idTarea";
         $resultActualizarTarea = $conexion->exeqUpdate($queryActualizarTarea);
 
-        // Actualizar ProyectoTarea
         $queryActualizarProyectoTarea = "UPDATE ProyectoTarea 
                                          SET fechaInicio = '$fechaInicio', fechaFinal = '$fechaFinal'
                                          WHERE idTarea = $idTarea";
@@ -33,7 +31,6 @@ if ($conexion->connect()) {
         if ($resultActualizarTarea && $resultActualizarProyectoTarea) {
             echo "Actualización exitosa de la tarea.";
 
-            // Agregar un enlace para regresar a la página de seleccionar tarea
             echo '<br><br><a href="../../index.php">Menu</a>';
         } else {
             echo '<br><br><a href="../../index.php">Menu</a>';

@@ -25,13 +25,11 @@ if ($conexion->connect()) {
         $fechaInicio = $_POST['fechaInicio'];
         $fechaFinal = $_POST['fechaFinal'];
 
-        // Actualizar la tarea
         $queryActualizarTarea = "UPDATE Tarea 
                                  SET titulo = '$titulo', descripcion = '$descripcion', estado = '$estado'
                                  WHERE idTarea = $idTarea";
         $resultActualizarTarea = $conexion->exeqUpdate($queryActualizarTarea);
 
-        // Actualizar ProyectoTarea
         $queryActualizarProyectoTarea = "UPDATE ProyectoTarea 
                                          SET fechaInicio = '$fechaInicio', fechaFinal = '$fechaFinal'
                                          WHERE idTarea = $idTarea";
@@ -82,7 +80,6 @@ if ($conexion->connect()) {
         $idProyecto = isset($_GET['idProyecto']) ? $_GET['idProyecto'] : null;
 
         if ($idTarea !== null) {
-            // Obtener los detalles de la tarea y del proyectoTarea
             $queryDetallesTarea = "SELECT T.*, PT.fechaInicio, PT.fechaFinal
                                    FROM Tarea T
                                    INNER JOIN ProyectoTarea PT ON T.idTarea = PT.idTarea
@@ -96,9 +93,7 @@ if ($conexion->connect()) {
                 $estadoTarea = $rowTarea['estado'];
                 $fechaInicio = $rowTarea['fechaInicio'];
                 $fechaFinal = $rowTarea['fechaFinal'];
-                // Añadir más campos según la estructura de tu base de datos
-
-                // Aquí puedes mostrar un formulario con los detalles actuales de la tarea
+               
                 echo "<h2>Modificar Tarea: $tituloTarea</h2>";
                 echo "<form id='modificarTareaForm' method='post' action=''>";
                 echo "<label>Título: <input type='text' name='titulo' value='$tituloTarea'></label><br>";
@@ -117,7 +112,6 @@ if ($conexion->connect()) {
             $codigoEstado = $row['codigo'];
             $nombreEstado = $row['nombre'];
 
-            // Verificar si es el estado actual y seleccionarlo
             $selected = ($estadoTarea == $codigoEstado) ? "selected" : "";
 
             echo "<option value='$codigoEstado' $selected>$nombreEstado</option>";
@@ -132,7 +126,6 @@ if ($conexion->connect()) {
                 echo "</select>";
                 echo "<br><label>Fecha de Inicio: <input type='date' name='fechaInicio' value='$fechaInicio'></label><br>";
                 echo "<label>Fecha de Finalización: <input type='date' name='fechaFinal' value='$fechaFinal'></label><br>";
-                // Añadir más campos según la estructura de tu base de datos
                 echo "<input type='hidden' name='idProyecto' value='$idProyecto'>";
 
                 echo "<input type='hidden' name='idTarea' value='$idTarea'>";

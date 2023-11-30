@@ -74,16 +74,26 @@ include "../plantillas/menu.php";
             <?php
             $fechaInicioProyecto = $rowProyecto['fechaInicio'];
             $fechaHoy = date('Y-m-d');
-            echo "<label>Fecha de Inicio (debe ser después de $fechaInicioProyecto y $fechaHoy): <input type='date' name='fechaInicio' min='$fechaInicioProyecto' value='$fechaHoy' required></label><br>";
+
+            if ($rowProyecto['estado'] != 'RET') {
+                echo "<label>Fecha de Inicio (debe ser después de $fechaInicioProyecto y $fechaHoy): <input type='date' name='fechaInicio' min='$fechaInicioProyecto' value='$fechaHoy' required></label><br>";
+            } else {
+                echo "<label>Fecha de Inicio: <input type='date' name='fechaInicio' min='$fechaHoy' required></label><br>";
+            }
             ?>
 
             <?php
             $fechaFinProyecto = $rowProyecto['fechaFinal'];
-            echo "<label>Fecha de Finalización (debe ser antes de $fechaFinProyecto): <input type='date' name='fechaFinal' max='$fechaFinProyecto' required></label><br>";
+
+            if ($rowProyecto['estado'] != 'RET') {
+                echo "<label>Fecha de Finalización (debe ser después de $fechaHoy y antes de $fechaFinProyecto): <input type='date' name='fechaFinal' min='$fechaHoy' max='$fechaFinProyecto' required></label><br>";
+            } else {
+                echo "<label>Fecha de Finalización: <input type='date' name='fechaFinal' min='$fechaHoy'required></label><br>";
+            }
             ?>
 
             <?php
-            $queryEstados = "SELECT codigo, nombre FROM Estado";
+            $queryEstados = "SELECT codigo, nombre FROM Estado WHERE nombre NOT IN ('FIN', 'CAN', 'NAN')";
             $resultEstados = $conexion->exeqSelect($queryEstados);
 
             if ($resultEstados->num_rows > 0) {

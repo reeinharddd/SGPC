@@ -31,12 +31,9 @@
     $conexion = new conexion();
 
     if ($conexion->connect()) {
-        // Obtener el idProyecto de la URL
         $idProyecto = isset($_GET['idProyecto']) ? $_GET['idProyecto'] : null;
 
-        // Verificar que el idProyecto no sea nulo
         if ($idProyecto !== null) {
-            // Consultar los usuarios que pertenecen al proyecto seleccionado
             $queryUsuariosProyecto = "SELECT u.* FROM Usuario u
                 INNER JOIN UsuarioProyecto up ON u.idUsuario = up.idUsuario
                 WHERE up.idProyecto = $idProyecto";

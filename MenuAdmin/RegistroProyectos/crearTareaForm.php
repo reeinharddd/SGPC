@@ -32,7 +32,6 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
             $conexion = new conexion();
 
             if ($conexion->connect()) {
-                // Obtener el nombre completo del usuario
                 $queryUsuario = "SELECT nombre, apellidoPat, apellidoMat FROM Usuario WHERE idUsuario = $idUsuario";
                 $resultUsuario = $conexion->exeqSelect($queryUsuario);
 
@@ -40,7 +39,6 @@ if (!isset($_SESSION['admin_name']) && !isset($_SESSION['arqui_name'])) {
                     $rowUsuario = $resultUsuario->fetch_assoc();
                     $nombreCompletoUsuario = $rowUsuario['nombre'] . ' ' . $rowUsuario['apellidoPat'] . ' ' . $rowUsuario['apellidoMat'];
 
-                    // Obtener las fechas de inicio y finalización del proyecto
                   $queryProyecto = "SELECT fechaInicio, fechaFinal FROM Proyecto WHERE idProyecto = $idProyecto";
 $resultProyecto = $conexion->exeqSelect($queryProyecto);
 

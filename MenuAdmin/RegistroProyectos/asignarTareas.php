@@ -60,7 +60,6 @@ include "../plantillas/menu.php";
                             $email = $rowUsuario['email'];
                             $nombreTipoUsuario = $rowUsuario['nombreTipoUsuario'];
 if ($nombreTipoUsuario != $tipoUsuarioActual) {
-                                // Imprimir divisor si el tipo de usuario cambió
                                 echo "<hr>";
                                 $tipoUsuarioActual = $nombreTipoUsuario;
                             }

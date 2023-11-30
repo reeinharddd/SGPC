@@ -43,7 +43,6 @@
                 
         $idProyecto = $rowProyecto['idProyecto'];
         $nombreProyecto = $rowProyecto['nombre'];
-                // Wrap each project title in a container with a link
         echo "<div class='project-item'>";
         echo "<a href='select2.php?idProyecto=$idProyecto'>";
         echo "<h3>$nombreProyecto</h3>";

@@ -1,5 +1,5 @@
 <?php
-$mensaje_actualizacion = ""; // Variable para almacenar el mensaje de actualización
+$mensaje_actualizacion = ""; 
 
 @include 'config.php';
 
